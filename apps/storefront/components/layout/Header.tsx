@@ -36,8 +36,33 @@ export async function Header() {
                 <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
             </Link>
-            <Link href="/cart" className="nav-link" aria-label="Cart">
-              Bag{count > 0 ? ` (${count})` : ""}
+            <Link
+              href="/cart"
+              aria-label={`Bag${count > 0 ? `, ${count} item${count > 1 ? "s" : ""}` : ", empty"}`}
+              className="relative flex h-9 w-9 items-center justify-center"
+            >
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path
+                  d="M6 8h12l-1 12H7L6 8z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9 8V6a3 3 0 0 1 6 0v2"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+              {count > 0 && (
+                <span
+                  className="absolute -right-1.5 -top-1 min-w-4 rounded-full px-1 text-center text-[0.62rem] font-semibold leading-4"
+                  style={{ background: "var(--color-accent)", color: "var(--color-accent-fg)" }}
+                >
+                  {count}
+                </span>
+              )}
             </Link>
           </nav>
         </div>
