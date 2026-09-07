@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: medusa
+          POSTGRES_PASSWORD: medusa
+          POSTGRES_DB: medusa
+        ports: ["5433:5432"]
+        options: >-
+          --health-cmd "pg_isready -U medusa"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgres://medusa:medusa@localhost:5433/medusa
+      REDIS_URL: redis://localhost:6379
+      JWT_SECRET: ci-secret
+      COOKIE_SECRET: ci-secret
+      STORE_CORS: http://localhost:3000
+      ADMIN_CORS: http://localhost:9000
+      AUTH_CORS: http://localhost:9000
+      SUPPLIER_SECRET_KEY: 0e2e714548c4e64d8aec9c2583ff890c471e610987b6e63744c4b0637a04b68b
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npx --workspace @dtc/backend tsc --noEmit
+        working-directory: apps/backend
+      - name: Migrate
+        run: npx medusa db:migrate
+        working-directory: apps/backend
+      - name: Build
+        run: npx medusa build
+        working-directory: apps/backend
+
+  storefront:
+    runs-on: ubuntu-latest
+    env:
+      SITE: cases
+      NEXT_PUBLIC_MEDUSA_BACKEND_URL: http://localhost:9000
+      MEDUSA_BACKEND_URL: http://localhost:9000
+      NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY_CASES: pk_ci_placeholder
+      REVALIDATE_SECRET: ci-secret
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npx tsc --noEmit
+        working-directory: apps/storefront
+      - name: Lint
+        run: npm run lint
+        working-directory: apps/storefront
+      - name: Build
+        run: npm run build
+        working-directory: apps/storefront

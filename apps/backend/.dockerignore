@@ -1,0 +1,8 @@
+node_modules
+.medusa
+.env
+.env.*
+!.env.template
+dist
+*.log
+integration-tests

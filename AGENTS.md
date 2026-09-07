@@ -1,8 +1,25 @@
 # AGENTS.md
 
+## This project
+
+Multi-storefront dropship platform. One Medusa backend serves several niche
+storefronts (`cases`, `eyewear`, `toys` — each a **Sales Channel** with its own
+publishable key). Paid orders are auto-routed to suppliers (Printify / CJ
+Dropshipping, `src/lib/suppliers`), tracking is synced back, and a dropship hub
+(custom modules + Admin extensions + `/admin/pnl`) reports contribution profit.
+
+- Full design + milestone log: `~/.claude/plans/t-i-ang-c-1-hashed-moore.md`
+- Milestones: M0 infra ✅ · M1 commerce + storefront ✅ · M2 dropship pipeline ✅ · M3 hardening (in progress)
+- Custom modules: `supplier`, `supplierOrder`, `adSpend` (register in `medusa-config.ts`)
+- Money fields use `model.bigNumber()` (plain `model.number()` is an **integer** column)
+- Order line-item quantity via `query.graph` lives on `items.detail.quantity`, not `items.quantity`
+- Suppliers have a **sandbox mode** (deterministic fakes) so the pipeline runs with no real API keys
+- Local infra ports: Postgres **5433**, Redis 6379, MinIO **9002**/9001 (Medusa owns 9000)
+- Storefront niche is chosen by `SITE` env (or host); Next 16 dev refuses two instances per dir
+
 ## Overview
 
-Medusa DTC Starter — a Turborepo workspace monorepo containing a Medusa backend (`@medusajs/medusa` latest, Node 20+, PostgreSQL 15+) and an optional storefront (Next.js, Tanstack, etc...).
+Medusa DTC Starter — a Turborepo workspace monorepo containing a Medusa backend (`@medusajs/medusa` latest, Node 20+, PostgreSQL 15+) and a Next.js storefront.
 
 ## Directory Structure
 
