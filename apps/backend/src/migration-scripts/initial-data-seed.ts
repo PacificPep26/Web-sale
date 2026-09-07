@@ -222,6 +222,29 @@ export default async function initial_data_seed({
 
   const usd = (amount: number) => [{ amount, currency_code: "usd" }];
 
+  // 2–3 verified Unsplash photos per product, by handle
+  const U = (id: string) => `https://images.unsplash.com/photo-${id}?w=1400&q=80`;
+  const IMAGES: Record<string, string[]> = {
+    "slim-shockproof-phone-case": ["1601593346740-925612772716", "1592890288564-76628a30a657", "1573148195900-7845dcb9b127"],
+    "felt-laptop-sleeve-13-14": ["1527443224154-c4a3942d3acf", "1491933382434-500287f9b54b"],
+    "magsafe-wallet-case": ["1556228578-8c89e6adf883", "1601972602288-3be527b4f18a"],
+    "clear-bumper-case": ["1610945265064-0e34e5519bbf", "1616423640778-28d1b53229bd"],
+    "kickstand-rugged-case": ["1587033411391-5d9e51cce126", "1601593346740-925612772716"],
+    "16-laptop-sleeve": ["1583394838336-acd977736f90", "1585060544812-6b45742d762f"],
+    "polarized-aviator-sunglasses": ["1511499767150-a48a237f0083", "1508296695146-257a814070b4"],
+    "blue-light-filter-glasses": ["1574258495973-f010dfbb5371", "1595950653106-6c9ebd614d3a"],
+    "round-retro-sunglasses": ["1508296695146-257a814070b4", "1546435770-a3e426bf472b"],
+    "sport-wrap-sunglasses": ["1577803645773-f96470509666", "1473496169904-658ba7c44d8a"],
+    "oversized-square-sunglasses": ["1473496169904-658ba7c44d8a", "1511499767150-a48a237f0083"],
+    "articulated-desk-figure": ["1608889175123-8ee362201f81", "1518384401463-d3876163c195"],
+    "1000-piece-landscape-puzzle": ["1611996575749-79a3a250f948", "1529641484336-ef35148bab06"],
+    "wooden-brain-teaser-set": ["1606092195730-5d7b9af1efc5", "1622560480605-d83c853bc5c3"],
+    "desktop-zen-garden": ["1600880292203-757bb62b4baf", "1607853202273-797f1c22a38e"],
+    "magnetic-fidget-sticks": ["1518946222227-364f22132616", "1529641484336-ef35148bab06"],
+  };
+  const imgs = (handle: string) =>
+    (IMAGES[handle] ?? ["1512054502232-10a0a035d672"]).map((id) => ({ url: U(id) }));
+
   await createProductsWorkflow(container).run({
     input: {
       products: [
@@ -235,7 +258,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.cases.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 60,
-          images: [{ url: "https://images.unsplash.com/photo-1601593346740-925612772716?w=1200" }],
+          images: imgs("slim-shockproof-phone-case"),
           options: [{ title: "Model", values: ["iPhone 15", "iPhone 15 Pro", "Galaxy S24"] }],
           variants: [
             { title: "iPhone 15", sku: "CASE-SLIM-IP15", options: { Model: "iPhone 15" }, prices: usd(19.99) },
@@ -253,7 +276,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.cases.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 180,
-          images: [{ url: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=1200" }],
+          images: imgs("felt-laptop-sleeve-13-14"),
           options: [{ title: "Color", values: ["Charcoal", "Sand"] }],
           variants: [
             { title: "Charcoal", sku: "SLV-FELT-CHAR", options: { Color: "Charcoal" }, prices: usd(29) },
@@ -270,7 +293,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.eyewear.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 40,
-          images: [{ url: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=1200" }],
+          images: imgs("polarized-aviator-sunglasses"),
           options: [{ title: "Color", values: ["Gold / Green", "Black / Grey"] }],
           variants: [
             { title: "Gold / Green", sku: "SUN-AVI-GLD", options: { Color: "Gold / Green" }, prices: usd(34) },
@@ -287,7 +310,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.eyewear.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 35,
-          images: [{ url: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1200" }],
+          images: imgs("blue-light-filter-glasses"),
           options: [{ title: "Color", values: ["Tortoise", "Matte Black"] }],
           variants: [
             { title: "Tortoise", sku: "BLF-TORT", options: { Color: "Tortoise" }, prices: usd(25) },
@@ -304,7 +327,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.toys.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 220,
-          images: [{ url: "https://images.unsplash.com/photo-1608889175123-8ee362201f81?w=1200" }],
+          images: imgs("articulated-desk-figure"),
           options: [{ title: "Variant", values: ["Standard"] }],
           variants: [
             { title: "Standard", sku: "FIG-DESK-STD", options: { Variant: "Standard" }, prices: usd(24.99) },
@@ -320,7 +343,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.toys.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 600,
-          images: [{ url: "https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=1200" }],
+          images: imgs("1000-piece-landscape-puzzle"),
           options: [{ title: "Design", values: ["Coast", "Mountains"] }],
           variants: [
             { title: "Coast", sku: "PZL-1K-COAST", options: { Design: "Coast" }, prices: usd(18.99) },
@@ -339,7 +362,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.cases.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 70,
-          images: [{ url: "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1200" }],
+          images: imgs("magsafe-wallet-case"),
           options: [{ title: "Model", values: ["iPhone 15", "iPhone 15 Pro"] }],
           variants: [
             { title: "iPhone 15", sku: "CASE-MAG-IP15", options: { Model: "iPhone 15" }, prices: usd(24.99) },
@@ -356,7 +379,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.cases.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 45,
-          images: [{ url: "https://images.unsplash.com/photo-1592890288564-76628a30a657?w=1200" }],
+          images: imgs("clear-bumper-case"),
           options: [{ title: "Model", values: ["iPhone 15", "Galaxy S24", "Pixel 8"] }],
           variants: [
             { title: "iPhone 15", sku: "CASE-CLR-IP15", options: { Model: "iPhone 15" }, prices: usd(14.99) },
@@ -374,7 +397,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.cases.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 95,
-          images: [{ url: "https://images.unsplash.com/photo-1541877590-a1885b0d0d7a?w=1200" }],
+          images: imgs("kickstand-rugged-case"),
           options: [{ title: "Model", values: ["iPhone 15 Pro", "Galaxy S24"] }],
           variants: [
             { title: "iPhone 15 Pro", sku: "CASE-KIK-IP15P", options: { Model: "iPhone 15 Pro" }, prices: usd(21.99) },
@@ -391,7 +414,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.cases.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 210,
-          images: [{ url: "https://images.unsplash.com/photo-1491933382434-500287f9b54b?w=1200" }],
+          images: imgs("16-laptop-sleeve"),
           options: [{ title: "Color", values: ["Graphite", "Olive"] }],
           variants: [
             { title: "Graphite", sku: "SLV-16-GRA", options: { Color: "Graphite" }, prices: usd(32) },
@@ -410,7 +433,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.eyewear.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 32,
-          images: [{ url: "https://images.unsplash.com/photo-1508296695146-257a814070b4?w=1200" }],
+          images: imgs("round-retro-sunglasses"),
           options: [{ title: "Color", values: ["Gold", "Gunmetal"] }],
           variants: [
             { title: "Gold", sku: "SUN-RND-GLD", options: { Color: "Gold" }, prices: usd(29) },
@@ -427,7 +450,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.eyewear.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 28,
-          images: [{ url: "https://images.unsplash.com/photo-1577803645773-f96470509666?w=1200" }],
+          images: imgs("sport-wrap-sunglasses"),
           options: [{ title: "Color", values: ["Black", "Neon"] }],
           variants: [
             { title: "Black", sku: "SUN-SPT-BLK", options: { Color: "Black" }, prices: usd(27) },
@@ -444,7 +467,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.eyewear.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 44,
-          images: [{ url: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1200" }],
+          images: imgs("oversized-square-sunglasses"),
           options: [{ title: "Color", values: ["Tortoise", "Black"] }],
           variants: [
             { title: "Tortoise", sku: "SUN-SQR-TRT", options: { Color: "Tortoise" }, prices: usd(31) },
@@ -463,7 +486,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.toys.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 320,
-          images: [{ url: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=1200" }],
+          images: imgs("wooden-brain-teaser-set"),
           options: [{ title: "Variant", values: ["Set of 6"] }],
           variants: [
             { title: "Set of 6", sku: "TOY-WBT-6", options: { Variant: "Set of 6" }, prices: usd(19.99) },
@@ -479,7 +502,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.toys.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 500,
-          images: [{ url: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200" }],
+          images: imgs("desktop-zen-garden"),
           options: [{ title: "Tray", values: ["Bamboo", "Slate"] }],
           variants: [
             { title: "Bamboo", sku: "TOY-ZEN-BMB", options: { Tray: "Bamboo" }, prices: usd(22.5) },
@@ -496,7 +519,7 @@ export default async function initial_data_seed({
           sales_channels: [{ id: channelByKey.toys.id }],
           shipping_profile_id: shippingProfile.id,
           weight: 260,
-          images: [{ url: "https://images.unsplash.com/photo-1518946222227-364f22132616?w=1200" }],
+          images: imgs("magnetic-fidget-sticks"),
           options: [{ title: "Pieces", values: ["84 pcs"] }],
           variants: [
             { title: "84 pcs", sku: "TOY-MFS-84", options: { Pieces: "84 pcs" }, prices: usd(16.5) },

@@ -6,6 +6,10 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start -p 3000",
+    "start:cases": "cross-env SITE=cases next start -p 3000",
+    "start:eyewear": "cross-env SITE=eyewear next start -p 3001",
+    "start:toys": "cross-env SITE=toys next start -p 3002",
+    "sites": "npm run build && concurrently -n cases,eyewear,toys -c blue,green,magenta \"npm:start:cases\" \"npm:start:eyewear\" \"npm:start:toys\"",
     "lint": "eslint",
     "test:e2e": "playwright test"
   },
@@ -20,6 +24,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.48.0",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

@@ -75,7 +75,7 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
     sections: ["hero", "featured", "editorial", "rail", "usps", "faq"],
     editorial: {
       image:
-        "https://images.unsplash.com/photo-1592286927505-1def25e7b8f4?w=1600&q=80",
+        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=1600&q=80",
       kicker: "Materials",
       title: "Aramid fibre, felt, and nothing you don't need",
       body: "Every case is built from a short list of materials chosen for grip, weight and the way they age. No logos the size of your thumb.",
