@@ -1,22 +1,19 @@
-/* Eyewear — warm editorial, serif display, soft paper */
+/* Meridian Optic — warm paper, Playfair display */
 [data-theme="eyewear"] {
-  --color-bg: #fdfcf9;
-  --color-surface: #f6f1e8;
-  --color-surface-2: #eee6d7;
+  --color-bg: #fdfbf7;
+  --color-surface: #f4efe5;
+  --color-surface-2: #ebe3d4;
   --color-fg: #211d17;
   --color-muted: #7a6f5d;
   --color-border: #e4dac7;
+  --card-bg: #f1ebde;
 
   --color-accent: #1f1a14;
-  --color-accent-fg: #fdfcf9;
-  --color-accent-hover: #3a3128;
-  --color-link: #8a5a2b;
+  --color-accent-fg: #fdfbf7;
+  --color-accent-hover: #000000;
+  --color-link: #1f1a14;
 
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-display: "Playfair Display", Georgia, serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --radius: 4px;
-  --radius-sm: 3px;
-  --tracking-display: 0em;
-
-  --hero-bg: linear-gradient(180deg, #f6f1e8 0%, #fdfcf9 100%);
+  --radius: 2px;
 }

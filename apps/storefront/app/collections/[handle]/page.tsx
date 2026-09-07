@@ -26,14 +26,22 @@ export default async function CollectionPage({
   const pages = Math.ceil(count / limit);
 
   return (
-    <div className="container-page py-10">
-      <h1 className="text-2xl md:text-3xl">{category.name}</h1>
-      {category.description && (
-        <p className="mt-2 max-w-2xl text-muted">{category.description}</p>
-      )}
-      <div className="mt-8">
-        <ProductGrid products={products} />
+    <div className="container-page py-12 md:py-16">
+      <div className="mb-10 text-center">
+        <p className="eyebrow">Collection</p>
+        <h1 className="mt-2" style={{ fontSize: "var(--fs-h2)" }}>
+          {category.name}
+        </h1>
+        {category.description && (
+          <p className="mx-auto mt-3 max-w-xl text-sm text-muted">
+            {category.description}
+          </p>
+        )}
+        <p className="mt-4 text-xs uppercase tracking-[0.14em] text-muted">
+          {count} {count === 1 ? "piece" : "pieces"}
+        </p>
       </div>
+      <ProductGrid products={products} priorityCount={4} />
       {pages > 1 && (
         <div className="mt-10 flex justify-center gap-2 text-sm">
           {Array.from({ length: pages }, (_, i) => i + 1).map((p) => (

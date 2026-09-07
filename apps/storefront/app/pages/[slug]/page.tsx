@@ -3,6 +3,14 @@ import { themeFor } from "@/themes/registry";
 import { headers } from "next/headers";
 
 const CONTENT: Record<string, { title: string; body: string[] }> = {
+  about: {
+    title: "About",
+    body: [
+      "We run a small catalogue of things we would actually use, sourced from makers and fulfilment partners we have vetted, and shipped from the United States.",
+      "Prices are set to be fair rather than clever. If something isn't right, our returns policy is generous and our email is answered by a person.",
+      "This storefront is one of a small family of single-focus shops — each one dedicated to doing a single category properly.",
+    ],
+  },
   shipping: {
     title: "Shipping policy",
     body: [

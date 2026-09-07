@@ -1,31 +1,49 @@
 import Link from "next/link";
 import { getCart } from "@/lib/data/cart";
-import { listCategories } from "@/lib/data/products";
 import { THEMES } from "@/themes/registry";
 import { NICHE } from "@/lib/config";
+import { MobileNav } from "./MobileNav";
 
 export async function Header() {
   const theme = THEMES[NICHE];
-  const [cart, categories] = await Promise.all([getCart(), listCategories()]);
-  const count =
-    cart?.items?.reduce((n, i) => n + (i.quantity ?? 0), 0) ?? 0;
+  const cart = await getCart();
+  const count = cart?.items?.reduce((n, i) => n + (i.quantity ?? 0), 0) ?? 0;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-token bg-base/90 backdrop-blur">
-      <div className="container-page flex h-14 items-center justify-between gap-4">
-        <Link href="/" className="font-semibold" style={{ fontFamily: "var(--font-display)" }}>
-          {theme.brand}
-        </Link>
-        <nav className="hidden gap-5 text-sm md:flex">
-          {categories.slice(0, 5).map((c) => (
-            <Link key={c.id} href={`/collections/${c.handle}`} className="text-muted hover:text-accent">
-              {c.name}
+    <header className="sticky top-0 z-40 border-b border-token bg-base">
+      <div className="container-page">
+        {/* top row */}
+        <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center">
+          <div className="flex items-center gap-4">
+            <MobileNav
+              brand={theme.brand}
+              nav={theme.nav}
+              cartCount={count}
+            />
+            <span className="hidden text-[0.72rem] uppercase tracking-[0.14em] text-muted lg:block">
+              United States
+            </span>
+          </div>
+
+          <Link href="/" className="wordmark text-xl md:text-2xl">
+            {theme.brand}
+          </Link>
+
+          <nav className="flex items-center justify-end gap-5">
+            <Link href="/cart" className="nav-link" aria-label="Cart">
+              Bag{count > 0 ? ` (${count})` : ""}
+            </Link>
+          </nav>
+        </div>
+
+        {/* desktop nav row */}
+        <nav className="hidden justify-center gap-9 pb-3 md:flex">
+          {theme.nav.map((n) => (
+            <Link key={n.label} href={n.href} className="nav-link">
+              {n.label}
             </Link>
           ))}
         </nav>
-        <Link href="/cart" className="text-sm font-medium">
-          Cart{count > 0 ? ` (${count})` : ""}
-        </Link>
       </div>
     </header>
   );

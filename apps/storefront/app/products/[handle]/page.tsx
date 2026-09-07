@@ -56,11 +56,20 @@ export default async function ProductPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <ProductDetails product={product} />
-      <section className="container-page py-12">
-        <h2 className="mb-6 text-xl">You might also like</h2>
-        <ProductGrid
-          products={related.products.filter((p) => p.id !== product.id).slice(0, 4)}
-        />
+      <section className="surface">
+        <div className="container-page py-[var(--space-section)]">
+          <div className="mb-10 text-center">
+            <p className="eyebrow">More to see</p>
+            <h2 className="mt-2" style={{ fontSize: "var(--fs-h2)" }}>
+              You might also like
+            </h2>
+          </div>
+          <ProductGrid
+            products={related.products
+              .filter((p) => p.id !== product.id)
+              .slice(0, 4)}
+          />
+        </div>
       </section>
     </>
   );

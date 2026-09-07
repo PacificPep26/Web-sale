@@ -1,21 +1,19 @@
-/* Cases — techy, high-contrast, cool neutrals */
+/* Casewin — cool graphite, Cormorant display over Inter */
 [data-theme="cases"] {
   --color-bg: #ffffff;
-  --color-surface: #f4f6f8;
-  --color-surface-2: #e9edf1;
-  --color-fg: #0f172a;
-  --color-muted: #64748b;
-  --color-border: #dbe2e8;
+  --color-surface: #f5f6f7;
+  --color-surface-2: #eceef0;
+  --color-fg: #16181d;
+  --color-muted: #6a7078;
+  --color-border: #e3e6e9;
+  --card-bg: #f1f3f5;
 
-  --color-accent: #2563eb;
+  --color-accent: #16181d;
   --color-accent-fg: #ffffff;
-  --color-accent-hover: #1d4ed8;
-  --color-link: #2563eb;
+  --color-accent-hover: #000000;
+  --color-link: #16181d;
 
-  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --radius: 14px;
-  --tracking-display: -0.03em;
-
-  --hero-bg: radial-gradient(120% 120% at 100% 0%, #dbeafe 0%, #f4f6f8 45%, #ffffff 100%);
+  --radius: 2px;
 }

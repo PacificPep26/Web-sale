@@ -327,6 +327,181 @@ export default async function initial_data_seed({
             { title: "Mountains", sku: "PZL-1K-MTN", options: { Design: "Mountains" }, prices: usd(18.99) },
           ],
         },
+
+        // ── more cases ──────────────────────────────────────────────
+        {
+          title: "MagSafe Wallet Case",
+          handle: "magsafe-wallet-case",
+          description:
+            "Leather-look case with a magnetic card pocket on the back. Holds 2–3 cards. MagSafe pass-through.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Cases")],
+          sales_channels: [{ id: channelByKey.cases.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 70,
+          images: [{ url: "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1200" }],
+          options: [{ title: "Model", values: ["iPhone 15", "iPhone 15 Pro"] }],
+          variants: [
+            { title: "iPhone 15", sku: "CASE-MAG-IP15", options: { Model: "iPhone 15" }, prices: usd(24.99) },
+            { title: "iPhone 15 Pro", sku: "CASE-MAG-IP15P", options: { Model: "iPhone 15 Pro" }, prices: usd(24.99) },
+          ],
+        },
+        {
+          title: "Clear Bumper Case",
+          handle: "clear-bumper-case",
+          description:
+            "Ultra-clear, yellowing-resistant TPU with reinforced corners. Shows off your phone.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Cases")],
+          sales_channels: [{ id: channelByKey.cases.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 45,
+          images: [{ url: "https://images.unsplash.com/photo-1592890288564-76628a30a657?w=1200" }],
+          options: [{ title: "Model", values: ["iPhone 15", "Galaxy S24", "Pixel 8"] }],
+          variants: [
+            { title: "iPhone 15", sku: "CASE-CLR-IP15", options: { Model: "iPhone 15" }, prices: usd(14.99) },
+            { title: "Galaxy S24", sku: "CASE-CLR-GS24", options: { Model: "Galaxy S24" }, prices: usd(14.99) },
+            { title: "Pixel 8", sku: "CASE-CLR-PX8", options: { Model: "Pixel 8" }, prices: usd(14.99) },
+          ],
+        },
+        {
+          title: "Kickstand Rugged Case",
+          handle: "kickstand-rugged-case",
+          description:
+            "Dual-layer armor case with a built-in metal kickstand for hands-free video. Drop-tested to 10 ft.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Cases")],
+          sales_channels: [{ id: channelByKey.cases.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 95,
+          images: [{ url: "https://images.unsplash.com/photo-1541877590-a1885b0d0d7a?w=1200" }],
+          options: [{ title: "Model", values: ["iPhone 15 Pro", "Galaxy S24"] }],
+          variants: [
+            { title: "iPhone 15 Pro", sku: "CASE-KIK-IP15P", options: { Model: "iPhone 15 Pro" }, prices: usd(21.99) },
+            { title: "Galaxy S24", sku: "CASE-KIK-GS24", options: { Model: "Galaxy S24" }, prices: usd(21.99) },
+          ],
+        },
+        {
+          title: "16\" Laptop Sleeve",
+          handle: "16-laptop-sleeve",
+          description:
+            "Water-repellent sleeve with a plush lining and a front zip pocket for a charger. Fits 15–16\" laptops.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Cases")],
+          sales_channels: [{ id: channelByKey.cases.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 210,
+          images: [{ url: "https://images.unsplash.com/photo-1491933382434-500287f9b54b?w=1200" }],
+          options: [{ title: "Color", values: ["Graphite", "Olive"] }],
+          variants: [
+            { title: "Graphite", sku: "SLV-16-GRA", options: { Color: "Graphite" }, prices: usd(32) },
+            { title: "Olive", sku: "SLV-16-OLV", options: { Color: "Olive" }, prices: usd(32) },
+          ],
+        },
+
+        // ── more eyewear ────────────────────────────────────────────
+        {
+          title: "Round Retro Sunglasses",
+          handle: "round-retro-sunglasses",
+          description:
+            "Slim metal round frame, polarized UV400 lenses, adjustable nose pads.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Eyewear")],
+          sales_channels: [{ id: channelByKey.eyewear.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 32,
+          images: [{ url: "https://images.unsplash.com/photo-1508296695146-257a814070b4?w=1200" }],
+          options: [{ title: "Color", values: ["Gold", "Gunmetal"] }],
+          variants: [
+            { title: "Gold", sku: "SUN-RND-GLD", options: { Color: "Gold" }, prices: usd(29) },
+            { title: "Gunmetal", sku: "SUN-RND-GUN", options: { Color: "Gunmetal" }, prices: usd(29) },
+          ],
+        },
+        {
+          title: "Sport Wrap Sunglasses",
+          handle: "sport-wrap-sunglasses",
+          description:
+            "Wraparound shatter-resistant lenses, rubberized grip temples, made for running and cycling.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Eyewear")],
+          sales_channels: [{ id: channelByKey.eyewear.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 28,
+          images: [{ url: "https://images.unsplash.com/photo-1577803645773-f96470509666?w=1200" }],
+          options: [{ title: "Color", values: ["Black", "Neon"] }],
+          variants: [
+            { title: "Black", sku: "SUN-SPT-BLK", options: { Color: "Black" }, prices: usd(27) },
+            { title: "Neon", sku: "SUN-SPT-NEO", options: { Color: "Neon" }, prices: usd(27) },
+          ],
+        },
+        {
+          title: "Oversized Square Sunglasses",
+          handle: "oversized-square-sunglasses",
+          description:
+            "Bold acetate square frame with gradient UV400 lenses. Statement piece, lightweight fit.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Eyewear")],
+          sales_channels: [{ id: channelByKey.eyewear.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 44,
+          images: [{ url: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=1200" }],
+          options: [{ title: "Color", values: ["Tortoise", "Black"] }],
+          variants: [
+            { title: "Tortoise", sku: "SUN-SQR-TRT", options: { Color: "Tortoise" }, prices: usd(31) },
+            { title: "Black", sku: "SUN-SQR-BLK", options: { Color: "Black" }, prices: usd(31) },
+          ],
+        },
+
+        // ── more toys ───────────────────────────────────────────────
+        {
+          title: "Wooden Brain Teaser Set",
+          handle: "wooden-brain-teaser-set",
+          description:
+            "Set of 6 interlocking wooden puzzles of increasing difficulty. Solutions card included. Ages 14+.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Toys")],
+          sales_channels: [{ id: channelByKey.toys.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 320,
+          images: [{ url: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=1200" }],
+          options: [{ title: "Variant", values: ["Set of 6"] }],
+          variants: [
+            { title: "Set of 6", sku: "TOY-WBT-6", options: { Variant: "Set of 6" }, prices: usd(19.99) },
+          ],
+        },
+        {
+          title: "Desktop Zen Garden",
+          handle: "desktop-zen-garden",
+          description:
+            "Mini sand garden with rake, stones and a bamboo tray. A small reset for a busy desk. Adult decor.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Toys")],
+          sales_channels: [{ id: channelByKey.toys.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 500,
+          images: [{ url: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200" }],
+          options: [{ title: "Tray", values: ["Bamboo", "Slate"] }],
+          variants: [
+            { title: "Bamboo", sku: "TOY-ZEN-BMB", options: { Tray: "Bamboo" }, prices: usd(22.5) },
+            { title: "Slate", sku: "TOY-ZEN-SLT", options: { Tray: "Slate" }, prices: usd(22.5) },
+          ],
+        },
+        {
+          title: "Magnetic Fidget Sticks",
+          handle: "magnetic-fidget-sticks",
+          description:
+            "Set of magnetic rods and steel balls to build, click and fidget. 84 pieces. Not for children under 14.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Toys")],
+          sales_channels: [{ id: channelByKey.toys.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 260,
+          images: [{ url: "https://images.unsplash.com/photo-1518946222227-364f22132616?w=1200" }],
+          options: [{ title: "Pieces", values: ["84 pcs"] }],
+          variants: [
+            { title: "84 pcs", sku: "TOY-MFS-84", options: { Pieces: "84 pcs" }, prices: usd(16.5) },
+          ],
+        },
       ],
     },
   });
