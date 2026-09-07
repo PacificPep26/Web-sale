@@ -1,6 +1,6 @@
-export type NicheKey = "cases" | "eyewear" | "toys";
+export type NicheKey = "cases" | "eyewear" | "toys" | "watches";
 
-export const NICHES: NicheKey[] = ["cases", "eyewear", "toys"];
+export const NICHES: NicheKey[] = ["cases", "eyewear", "toys", "watches"];
 
 export type NavItem = { label: string; href: string };
 
@@ -36,6 +36,7 @@ const domainMap: Record<string, NicheKey> = {
   "cases.com": "cases",
   "eyewear.com": "eyewear",
   "toys.com": "toys",
+  "watches.com": "watches",
 };
 
 export function resolveNiche(host?: string | null): NicheKey {
@@ -62,7 +63,7 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
         "Slim shockproof cases and felt sleeves, engineered to disappear into your day.",
       cta: "Explore the collection",
       image:
-        "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=2000&q=80",
+        "https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=2000&q=80",
       align: "left",
     },
     nav: [
@@ -75,7 +76,7 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
     sections: ["hero", "featured", "editorial", "rail", "usps", "faq"],
     editorial: {
       image:
-        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=1600&q=80",
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=1600&q=80",
       kicker: "Materials",
       title: "Aramid fibre, felt, and nothing you don't need",
       body: "Every case is built from a short list of materials chosen for grip, weight and the way they age. No logos the size of your thumb.",
@@ -105,7 +106,7 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
         "Polarised, impact-resistant lenses and clean everyday frames. UV400 on every pair.",
       cta: "Shop eyewear",
       image:
-        "https://images.unsplash.com/photo-1508296695146-257a814070b4?w=2000&q=80",
+        "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=2000&q=80",
       align: "center",
     },
     nav: [
@@ -148,7 +149,7 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
         "Articulated figures, landscape puzzles and models — curated for collectors, not kids.",
       cta: "Shop the shelf",
       image:
-        "https://images.unsplash.com/photo-1516981879613-9f5da904015f?w=2000&q=80",
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=2000&q=80",
       align: "left",
     },
     nav: [
@@ -179,6 +180,49 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       { q: "Do puzzles come with a poster?", a: "Yes, every 1000-piece puzzle includes a reference sheet." },
     ],
     collectionHandle: "toys",
+  },
+  watches: {
+    key: "watches",
+    brand: "Kesten",
+    tagline: "Mechanical and quartz watches, without the markup theatre.",
+    hero: {
+      eyebrow: "The Reference Collection",
+      title: "Time, honestly priced",
+      subtitle:
+        "Automatic and quartz watches with sapphire crystal and 316L steel — chosen for the movement, not the marketing.",
+      cta: "Explore the collection",
+      image:
+        "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=2000&q=80",
+      align: "left",
+    },
+    nav: [
+      { label: "Automatic", href: "/collections/watches" },
+      { label: "Quartz", href: "/collections/watches" },
+      { label: "New", href: "/collections/watches" },
+      { label: "About", href: "/pages/about" },
+    ],
+    fonts: ["Cormorant+Garamond:500,600", "Inter:300,400,500,600"],
+    sections: ["hero", "featured", "editorial", "rail", "usps", "faq"],
+    editorial: {
+      image:
+        "https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=1600&q=80",
+      kicker: "The Movement",
+      title: "Sapphire crystal, 100m water resistance, and a movement you can name",
+      body: "Every reference lists its calibre, power reserve and lume. No marketing calibre names, no mystery.",
+      cta: "How we pick a calibre",
+      href: "/pages/about",
+    },
+    usps: [
+      { title: "Sapphire crystal", body: "Scratch-resistant glass on every reference." },
+      { title: "2-year movement warranty", body: "Serviced by our US watchmaker." },
+      { title: "30-day returns", body: "Unworn, in the full kit — send it back." },
+    ],
+    faqs: [
+      { q: "Are these automatic or quartz?", a: "Both — each product page states the calibre and whether it's automatic or quartz." },
+      { q: "What's the water resistance?", a: "Most references are 100m (10 ATM); dress models are 30–50m. It's listed per product." },
+      { q: "Do they come with a warranty?", a: "Yes, a 2-year movement warranty serviced in the US." },
+    ],
+    collectionHandle: "watches",
   },
 };
 

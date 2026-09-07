@@ -49,7 +49,7 @@
   --dur: 260ms;
 
   /* hero */
-  --hero-overlay: linear-gradient(180deg, rgb(0 0 0 / 0.05) 0%, rgb(0 0 0 / 0.45) 100%);
+  --hero-overlay: linear-gradient(180deg, rgb(0 0 0 / 0.28) 0%, rgb(0 0 0 / 0.30) 45%, rgb(0 0 0 / 0.68) 100%);
   --hero-fg: #ffffff;
   --card-bg: #f4f1ec;
 }

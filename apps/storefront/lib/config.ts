@@ -11,6 +11,7 @@ const KEY_BY_NICHE: Record<NicheKey, string | undefined> = {
   cases: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY_CASES,
   eyewear: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY_EYEWEAR,
   toys: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY_TOYS,
+  watches: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY_WATCHES,
 };
 
 export const PUBLISHABLE_KEY = KEY_BY_NICHE[NICHE] ?? "";

@@ -4,6 +4,7 @@
 @import "../themes/cases.css";
 @import "../themes/eyewear.css";
 @import "../themes/toys.css";
+@import "../themes/watches.css";
 
 @layer base {
   html {

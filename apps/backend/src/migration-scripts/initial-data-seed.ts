@@ -42,6 +42,7 @@ const NICHES = [
   { key: "cases", name: "Cases", description: "Phone & laptop cases" },
   { key: "eyewear", name: "Eyewear", description: "Sunglasses & blue-light glasses" },
   { key: "toys", name: "Toys", description: "Figures, models & puzzles" },
+  { key: "watches", name: "Watches", description: "Automatic & quartz watches" },
 ] as const;
 
 export default async function initial_data_seed({
@@ -241,6 +242,10 @@ export default async function initial_data_seed({
     "wooden-brain-teaser-set": ["1606092195730-5d7b9af1efc5", "1622560480605-d83c853bc5c3"],
     "desktop-zen-garden": ["1600880292203-757bb62b4baf", "1607853202273-797f1c22a38e"],
     "magnetic-fidget-sticks": ["1518946222227-364f22132616", "1529641484336-ef35148bab06"],
+    "field-automatic-38mm": ["1524805444758-089113d48a6d", "1523170335258-f5ed11844a49"],
+    "diver-automatic-40mm": ["1533139502658-0198f920d8e8", "1508057198894-247b23fe5ade"],
+    "quartz-chronograph-42mm": ["1547996160-81dfa63595aa", "1594534475808-b18fc33b045e"],
+    "dress-quartz-36mm": ["1526045431048-f857369baa09", "1434056886845-dac89ffe9b56"],
   };
   const imgs = (handle: string) =>
     (IMAGES[handle] ?? ["1512054502232-10a0a035d672"]).map((id) => ({ url: U(id) }));
@@ -523,6 +528,76 @@ export default async function initial_data_seed({
           options: [{ title: "Pieces", values: ["84 pcs"] }],
           variants: [
             { title: "84 pcs", sku: "TOY-MFS-84", options: { Pieces: "84 pcs" }, prices: usd(16.5) },
+          ],
+        },
+
+        // ── watches ─────────────────────────────────────────────────
+        {
+          title: "Field Automatic 38mm",
+          handle: "field-automatic-38mm",
+          description:
+            "38mm field watch, automatic movement (~40h reserve), sapphire crystal, 100m water resistance, sandwich dial with full lume. 20mm lugs.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Watches")],
+          sales_channels: [{ id: channelByKey.watches.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 140,
+          images: imgs("field-automatic-38mm"),
+          options: [{ title: "Strap", values: ["Nylon", "Leather"] }],
+          variants: [
+            { title: "Nylon", sku: "WCH-FLD-NYL", options: { Strap: "Nylon" }, prices: usd(149) },
+            { title: "Leather", sku: "WCH-FLD-LTHR", options: { Strap: "Leather" }, prices: usd(159) },
+          ],
+        },
+        {
+          title: "Diver Automatic 40mm",
+          handle: "diver-automatic-40mm",
+          description:
+            "40mm dive watch, automatic, 200m water resistance, unidirectional bezel, screw-down crown, sapphire crystal. On a steel bracelet.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Watches")],
+          sales_channels: [{ id: channelByKey.watches.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 210,
+          images: imgs("diver-automatic-40mm"),
+          options: [{ title: "Dial", values: ["Black", "Navy"] }],
+          variants: [
+            { title: "Black", sku: "WCH-DIV-BLK", options: { Dial: "Black" }, prices: usd(219) },
+            { title: "Navy", sku: "WCH-DIV-NVY", options: { Dial: "Navy" }, prices: usd(219) },
+          ],
+        },
+        {
+          title: "Quartz Chronograph 42mm",
+          handle: "quartz-chronograph-42mm",
+          description:
+            "42mm chronograph, Japanese quartz movement, tachymeter bezel, 100m water resistance, sapphire crystal, date window.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Watches")],
+          sales_channels: [{ id: channelByKey.watches.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 180,
+          images: imgs("quartz-chronograph-42mm"),
+          options: [{ title: "Dial", values: ["Panda", "Reverse Panda"] }],
+          variants: [
+            { title: "Panda", sku: "WCH-CHR-PND", options: { Dial: "Panda" }, prices: usd(129) },
+            { title: "Reverse Panda", sku: "WCH-CHR-RPD", options: { Dial: "Reverse Panda" }, prices: usd(129) },
+          ],
+        },
+        {
+          title: "Dress Quartz 36mm",
+          handle: "dress-quartz-36mm",
+          description:
+            "36mm slim dress watch, Japanese quartz, 6mm thick, domed sapphire crystal, 30m water resistance. Genuine leather strap.",
+          status: ProductStatus.PUBLISHED,
+          category_ids: [catId("Watches")],
+          sales_channels: [{ id: channelByKey.watches.id }],
+          shipping_profile_id: shippingProfile.id,
+          weight: 90,
+          images: imgs("dress-quartz-36mm"),
+          options: [{ title: "Case", values: ["Steel", "Gold-tone"] }],
+          variants: [
+            { title: "Steel", sku: "WCH-DRS-STL", options: { Case: "Steel" }, prices: usd(99) },
+            { title: "Gold-tone", sku: "WCH-DRS-GLD", options: { Case: "Gold-tone" }, prices: usd(99) },
           ],
         },
       ],

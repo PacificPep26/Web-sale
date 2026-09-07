@@ -1,0 +1,21 @@
+/* Kesten — dark horological, Cormorant display */
+[data-theme="watches"] {
+  --color-bg: #0f1113;
+  --color-surface: #16191c;
+  --color-surface-2: #1f2327;
+  --color-fg: #eceae5;
+  --color-muted: #9a978f;
+  --color-border: #2a2e33;
+  --card-bg: #16191c;
+
+  --color-accent: #eceae5;
+  --color-accent-fg: #0f1113;
+  --color-accent-hover: #ffffff;
+  --color-link: #eceae5;
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --radius: 2px;
+
+  --hero-overlay: linear-gradient(180deg, rgb(0 0 0 / 0.15) 0%, rgb(0 0 0 / 0.6) 100%);
+}

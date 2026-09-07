@@ -18,7 +18,8 @@
     "backend:seed": "turbo seed --filter=@dtc/backend",
     "backend:migrate": "npm --workspace=@dtc/backend run -s -- medusa db:migrate",
     "storefront:dev": "turbo dev --filter=@dtc/storefront",
-    "sites": "npm --workspace @dtc/storefront run sites"
+    "sites": "npm --workspace @dtc/storefront run sites",
+    "hub": "node tools/hub/serve.mjs"
   },
   "devDependencies": {
     "@medusajs/eslint-plugin": "2.20.1",

@@ -3,7 +3,7 @@
  * storefront. Keep this dependency-free.
  */
 
-export type NicheKey = "cases" | "eyewear" | "toys";
+export type NicheKey = "cases" | "eyewear" | "toys" | "watches";
 
 export type SupplierType = "cj" | "printify" | "manual";
 
