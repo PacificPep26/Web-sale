@@ -1,0 +1,21 @@
+/* Cases — techy, high-contrast, cool neutrals */
+[data-theme="cases"] {
+  --color-bg: #ffffff;
+  --color-surface: #f4f6f8;
+  --color-surface-2: #e9edf1;
+  --color-fg: #0f172a;
+  --color-muted: #64748b;
+  --color-border: #dbe2e8;
+
+  --color-accent: #2563eb;
+  --color-accent-fg: #ffffff;
+  --color-accent-hover: #1d4ed8;
+  --color-link: #2563eb;
+
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --radius: 14px;
+  --tracking-display: -0.03em;
+
+  --hero-bg: radial-gradient(120% 120% at 100% 0%, #dbeafe 0%, #f4f6f8 45%, #ffffff 100%);
+}

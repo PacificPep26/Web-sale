@@ -1,0 +1,22 @@
+/* Toys — playful, rounded, bright */
+[data-theme="toys"] {
+  --color-bg: #ffffff;
+  --color-surface: #fff7ed;
+  --color-surface-2: #ffedd5;
+  --color-fg: #21160b;
+  --color-muted: #8a6d4b;
+  --color-border: #f3ddc0;
+
+  --color-accent: #ea580c;
+  --color-accent-fg: #ffffff;
+  --color-accent-hover: #c2410c;
+  --color-link: #c2410c;
+
+  --font-display: "Baloo 2", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --radius: 20px;
+  --radius-sm: 12px;
+  --tracking-display: -0.01em;
+
+  --hero-bg: radial-gradient(110% 120% at 0% 0%, #fed7aa 0%, #fff7ed 50%, #ffffff 100%);
+}

@@ -1,0 +1,22 @@
+/* Eyewear — warm editorial, serif display, soft paper */
+[data-theme="eyewear"] {
+  --color-bg: #fdfcf9;
+  --color-surface: #f6f1e8;
+  --color-surface-2: #eee6d7;
+  --color-fg: #211d17;
+  --color-muted: #7a6f5d;
+  --color-border: #e4dac7;
+
+  --color-accent: #1f1a14;
+  --color-accent-fg: #fdfcf9;
+  --color-accent-hover: #3a3128;
+  --color-link: #8a5a2b;
+
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --radius: 4px;
+  --radius-sm: 3px;
+  --tracking-display: 0em;
+
+  --hero-bg: linear-gradient(180deg, #f6f1e8 0%, #fdfcf9 100%);
+}

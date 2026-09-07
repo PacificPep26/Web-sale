@@ -1,0 +1,68 @@
+/*
+ * Base design tokens. Every component reads these via var(--…); never hardcode
+ * a colour or font in _base/ or components/. Each niche theme file overrides a
+ * subset under its own [data-theme="…"] selector.
+ */
+:root,
+[data-theme] {
+  /* surfaces */
+  --color-bg: #ffffff;
+  --color-surface: #faf9f7;
+  --color-surface-2: #f2f0ec;
+  --color-fg: #1c1917;
+  --color-muted: #78716c;
+  --color-border: #e7e5e4;
+
+  /* brand */
+  --color-accent: #111827;
+  --color-accent-fg: #ffffff;
+  --color-accent-hover: #374151;
+  --color-link: #2563eb;
+
+  /* status */
+  --color-success: #15803d;
+  --color-warning: #b45309;
+  --color-danger: #b91c1c;
+
+  /* type */
+  --font-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fs-hero: clamp(2rem, 1.4rem + 3vw, 3.5rem);
+  --fs-h2: clamp(1.4rem, 1.1rem + 1.4vw, 2rem);
+  --tracking-display: -0.02em;
+
+  /* shape */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.12);
+  --shadow-pop: 0 12px 40px -12px rgb(0 0 0 / 0.25);
+
+  /* spacing rhythm */
+  --space-section: clamp(3rem, 2rem + 4vw, 5.5rem);
+  --container: 1200px;
+
+  /* motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur: 180ms;
+
+  /* decorative (themes may set an image/gradient) */
+  --hero-bg: linear-gradient(180deg, var(--color-surface), var(--color-bg));
+  --hero-fg: var(--color-fg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-bg: #0c0a09;
+    --color-surface: #1c1917;
+    --color-surface-2: #292524;
+    --color-fg: #f5f5f4;
+    --color-muted: #a8a29e;
+    --color-border: #292524;
+    --color-accent: #f5f5f4;
+    --color-accent-fg: #1c1917;
+    --color-accent-hover: #e7e5e4;
+    --color-link: #60a5fa;
+    --hero-bg: linear-gradient(180deg, var(--color-surface), var(--color-bg));
+  }
+}

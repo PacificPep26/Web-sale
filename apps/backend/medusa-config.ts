@@ -3,6 +3,8 @@ import { loadEnv, defineConfig, Modules } from '@medusajs/framework/utils'
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
 const REDIS_URL = process.env.REDIS_URL
+const STRIPE_API_KEY = process.env.STRIPE_API_KEY
+const RESEND_API_KEY = process.env.RESEND_API_KEY
 
 /**
  * Redis-backed infra modules. Enabled whenever REDIS_URL is set (dev via
@@ -58,5 +60,52 @@ module.exports = defineConfig({
   admin: {
     disable: process.env.DISABLE_MEDUSA_ADMIN === 'true',
   },
-  modules: [...redisModules],
+  modules: [
+    ...redisModules,
+    {
+      resolve: '@medusajs/medusa/payment',
+      options: {
+        providers: [
+          ...(STRIPE_API_KEY
+            ? [
+                {
+                  resolve: '@medusajs/payment-stripe',
+                  id: 'stripe',
+                  options: {
+                    apiKey: STRIPE_API_KEY,
+                    webhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
+                    capture: true,
+                  },
+                },
+              ]
+            : []),
+        ],
+      },
+    },
+    {
+      resolve: '@medusajs/medusa/notification',
+      options: {
+        providers: [
+          RESEND_API_KEY
+            ? {
+                resolve: './src/modules/notification-resend',
+                id: 'resend',
+                options: {
+                  channels: ['email'],
+                  apiKey: RESEND_API_KEY,
+                  from: process.env.RESEND_FROM || 'orders@example.com',
+                  replyTo: process.env.RESEND_REPLY_TO,
+                },
+              }
+            : {
+                resolve: '@medusajs/medusa/notification-local',
+                id: 'local',
+                options: {
+                  channels: ['email'],
+                },
+              },
+        ],
+      },
+    },
+  ],
 })
