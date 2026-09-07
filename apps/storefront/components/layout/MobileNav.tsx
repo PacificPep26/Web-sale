@@ -60,6 +60,9 @@ export function MobileNav({
               </button>
             </div>
             <div className="mt-6 flex flex-col">
+              <Link href="/search" className="nav-link border-b border-token py-4">
+                Search
+              </Link>
               {nav.map((n) => (
                 <Link
                   key={n.label}
