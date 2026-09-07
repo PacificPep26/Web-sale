@@ -1,11 +1,13 @@
 import type { SubscriberArgs, SubscriberConfig } from "@medusajs/framework";
 import { Modules } from "@medusajs/framework/utils";
+import { routeOrderToSuppliersWorkflow } from "../workflows/route-order-to-suppliers";
+import { notifyTelegram } from "../lib/telegram";
 
 /**
  * On order.placed:
- *  - send the customer an "order-placed" confirmation email
- *
- * M2 extends this to also run routeOrderToSuppliersWorkflow + a Telegram ping.
+ *  1. confirmation email to the customer
+ *  2. route the order to suppliers (payment-safety invariant enforced inside)
+ *  3. Telegram "new order" ping
  */
 export default async function orderPlacedHandler({
   event: { data },
@@ -24,33 +26,43 @@ export default async function orderPlacedHandler({
       "email",
       "currency_code",
       "total",
+      "sales_channel.name",
       "items.title",
       "items.quantity",
       "items.unit_price",
     ],
   });
   const order = orders[0];
-  if (!order?.email) {
-    logger.warn(`[order-placed] order ${data.id} has no email — skipping confirmation`);
-    return;
+  if (!order) return;
+
+  if (order.email) {
+    await notification.createNotifications({
+      to: order.email,
+      channel: "email",
+      template: "order-placed",
+      data: {
+        display_id: order.display_id,
+        email: order.email,
+        currency_code: order.currency_code,
+        total: order.total,
+        items: order.items,
+      },
+    });
   }
 
-  await notification.createNotifications({
-    to: order.email,
-    channel: "email",
-    template: "order-placed",
-    data: {
-      display_id: order.display_id,
-      email: order.email,
-      currency_code: order.currency_code,
-      total: order.total,
-      items: order.items,
-    },
-  });
+  await notifyTelegram(
+    `🛒 <b>New order #${order.display_id}</b>\n` +
+      `${order.sales_channel?.name ?? "?"} · ${order.currency_code?.toUpperCase()} ${order.total}\n` +
+      `${(order.items ?? []).map((i: any) => `• ${i.title} ×${i.quantity}`).join("\n")}`
+  );
 
-  logger.info(`[order-placed] confirmation queued for order #${order.display_id}`);
+  try {
+    await routeOrderToSuppliersWorkflow(container).run({
+      input: { orderId: data.id },
+    });
+  } catch (e) {
+    logger.error(`[order-placed] routing failed for ${data.id}: ${(e as Error).message}`);
+  }
 }
 
-export const config: SubscriberConfig = {
-  event: "order.placed",
-};
+export const config: SubscriberConfig = { event: "order.placed" };

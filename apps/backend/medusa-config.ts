@@ -62,6 +62,9 @@ module.exports = defineConfig({
   },
   modules: [
     ...redisModules,
+    { resolve: './src/modules/supplier' },
+    { resolve: './src/modules/supplier-order' },
+    { resolve: './src/modules/ad-spend' },
     {
       resolve: '@medusajs/medusa/payment',
       options: {
