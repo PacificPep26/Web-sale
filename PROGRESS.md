@@ -88,6 +88,24 @@ npm --workspace @dtc/backend exec medusa exec ./src/scripts/print-publishable-ke
 Single-niche dev: `cd apps/storefront && SITE=eyewear npm run dev` (Next 16 dev
 refuses two instances per dir → use `npm run sites` / `next start` for multiple).
 
+### Restart after a reboot
+
+Data persists in the docker volumes (`pgdata` / `redisdata` / `miniodata`) — a
+plain shutdown does **not** wipe products, orders or the admin user. What stops
+is every process. Admin will ask you to sign in again (session cookie expired,
+not data loss) — `admin@dev.local` / `supersecret`.
+
+```bash
+# start Docker Desktop first (it does not auto-start on this machine), then:
+npm run infra:up          # containers were "created", not running
+npm run backend:dev       # first boot after reboot takes ~30-40s
+npm run sites             # 4 storefronts
+npm run hub               # :8080
+```
+
+If the admin user is somehow gone (only after `docker compose down -v` / a DB
+reset): `npm --workspace @dtc/backend exec medusa user -e admin@dev.local -p supersecret`.
+
 ---
 
 ## Gotchas (learned the hard way)
