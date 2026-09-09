@@ -1,7 +1,7 @@
 # PROGRESS — Web Product Project
 
 Living status + context doc. Full design rationale: `~/.claude/plans/t-i-ang-c-1-hashed-moore.md`.
-Last updated: 2026-09-07.
+Last updated: 2026-09-09.
 
 ---
 
@@ -33,7 +33,7 @@ Admin login: `admin@dev.local` / `supersecret`.
 | **M1** Stripe + email wiring, storefront (Home/PLP/PDP/Cart/Checkout/Order), theme #1 | ✅ |
 | **M2** supplier + supplier-order + ad-spend modules, module links, routing / push / tracking / refund workflows, subscribers, cron jobs, Admin API + UI (Suppliers, Supplier orders, P&L, widgets), Printify + CJ + manual clients (with sandbox mode) | ✅ |
 | **M3** theme #2+ verified token-only, Docker, GitHub Actions CI, Playwright scaffold | ✅ |
-| **Post-M3** editorial redesign (maison style), mobile-first (drawer nav + sticky PDP bar), product search, 4th niche (watches), workspace hub, bag icon, webpack build fix | ✅ |
+| **Post-M3** editorial redesign (maison style), mobile-first (drawer nav + sticky PDP bar), product search, 4th niche (watches), workspace hub, bag icon, webpack build fix, +17 catalogue products (**37 total**: Cases 11 / Eyewear 9 / Toys 9 / Watches 8) | ✅ |
 | **Deferred** product-import pipeline (paste supplier URL → auto product + markup), customer accounts/login, Meilisearch, real tax provider (Stripe Tax), live Stripe, `warehouse_3pl` supplier type | ⬜ |
 
 ---
@@ -83,7 +83,13 @@ npm run hub                                                # :8080
 
 # re-print publishable keys any time:
 npm --workspace @dtc/backend exec medusa exec ./src/scripts/print-publishable-keys.ts
+
+# add the extra catalogue products (idempotent — skips existing handles):
+npm --workspace @dtc/backend exec medusa exec ./src/scripts/add-more-products.ts
 ```
+
+`medusa exec` boots its own Medusa instance — **stop `npm run backend:dev` first**
+or the two fight over the Redis workflow-engine lock and hang.
 
 Single-niche dev: `cd apps/storefront && SITE=eyewear npm run dev` (Next 16 dev
 refuses two instances per dir → use `npm run sites` / `next start` for multiple).
@@ -98,10 +104,17 @@ not data loss) — `admin@dev.local` / `supersecret`.
 ```bash
 # start Docker Desktop first (it does not auto-start on this machine), then:
 npm run infra:up          # containers were "created", not running
-npm run backend:dev       # first boot after reboot takes ~30-40s
+npm run backend:dev       # first boot after reboot takes ~30-45s
 npm run sites             # 4 storefronts
 npm run hub               # :8080
 ```
+
+**Docker Desktop is unstable on this machine** — it has crashed mid-session
+several times (root cause: virtualization support flaky). Symptom: backend log
+spews `Pg connection failed … ECONNREFUSED` / `Knex: Timeout acquiring a
+connection`. Fix: relaunch Docker Desktop, wait for `docker info` to succeed,
+`npm run infra:up`, restart the backend. Long-term: enable virtualization in
+BIOS + Windows features, or run Postgres/Redis natively instead of Docker.
 
 If the admin user is somehow gone (only after `docker compose down -v` / a DB
 reset): `npm --workspace @dtc/backend exec medusa user -e admin@dev.local -p supersecret`.
@@ -170,6 +183,9 @@ reset): `npm --workspace @dtc/backend exec medusa user -e admin@dev.local -p sup
 ## Commit history (feature-level)
 
 ```
+6afbb81  seed: add-more-products script (+17 products across the 4 niches)
+9fd7a05  docs: PROGRESS.md — restart-after-reboot
+0db160e  docs: add PROGRESS.md
 718a74a  header "Bag" text → shopping-bag icon + count badge
 f984bdb  watches niche (Kesten) + workspace hub + classier hero images
 2e5c289  build with webpack not Turbopack (fixes unstyled prod pages)
