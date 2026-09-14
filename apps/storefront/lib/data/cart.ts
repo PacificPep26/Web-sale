@@ -22,10 +22,25 @@ async function writeCartId(id: string) {
     path: "/",
     maxAge: 60 * 60 * 24 * 30,
   });
+  try {
+    (await cookies()).set(CART_COOKIE, id, {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 30,
+    });
+  } catch {
+    // cookies can only be modified in Server Actions or Route Handlers
+  }
 }
 
 async function clearCartId() {
   (await cookies()).delete(CART_COOKIE);
+  try {
+    (await cookies()).delete(CART_COOKIE);
+  } catch {
+    // cookies can only be modified in Server Actions or Route Handlers
+  }
 }
 
 export async function getCart(): Promise<HttpTypes.StoreCart | null> {

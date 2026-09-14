@@ -64,26 +64,37 @@ const DEFS: Def[] = [
   {
     channel: "Eyewear", title: "Clubmaster Sunglasses", handle: "clubmaster-sunglasses",
     description: "Browline acetate-and-metal frame, polarised UV400 lenses.",
-    weight: 34, images: img2("1546435770-a3e426bf472b", "1595950653106-6c9ebd614d3a"),
+    weight: 34, images: img2("1574258495973-f010dfbb5371", "1511499767150-a48a237f0083"),
     option: { title: "Color", values: ["Tortoise", "Black / Gold"] }, price: 32.0, skuPrefix: "SUN-CLB",
   },
   {
     channel: "Eyewear", title: "Cat-Eye Sunglasses", handle: "cat-eye-sunglasses",
     description: "Uplifted cat-eye acetate frame with gradient UV400 lenses.",
-    weight: 30, images: img2("1560343090-f0409e92791a", "1546435770-a3e426bf472b"),
+    weight: 30, images: img2("1508296695146-257a814070b4", "1574258495973-f010dfbb5371"),
     option: { title: "Color", values: ["Amber", "Black"] }, price: 29.0, skuPrefix: "SUN-CAT",
   },
   {
     channel: "Eyewear", title: "Blue-Light Reading Glasses", handle: "blue-light-reading-glasses",
     description: "Blue-light filter with a light magnification. Spring hinges, matte frame.",
-    weight: 26, images: img2("1595950653106-6c9ebd614d3a", "1560343090-f0409e92791a"),
+    weight: 26, images: img2("1577803645773-f96470509666", "1574258495973-f010dfbb5371"),
     option: { title: "Strength", values: ["+1.0", "+1.5", "+2.0"] }, price: 22.0, skuPrefix: "BLF-RDG",
   },
   {
     channel: "Eyewear", title: "Rimless Titanium Frames", handle: "rimless-titanium-frames",
     description: "Featherweight rimless titanium frames with blue-light filtering lenses.",
-    weight: 18, images: img2("1574258495973-f010dfbb5371", "1595950653106-6c9ebd614d3a"),
+    weight: 18, images: img2("1574258495973-f010dfbb5371", "1511499767150-a48a237f0083"),
     option: { title: "Color", values: ["Silver", "Graphite"] }, price: 39.0, skuPrefix: "FRM-TTN",
+  },
+  {
+    channel: "Eyewear", title: "Heritage Square Sunglasses", handle: "heritage-square-sunglasses",
+    description: "Thick acetate square frame in tortoise, blue-mirrored UV400 lenses. Studio shots, true product photos.",
+    weight: 32,
+    images: [
+      { url: "/tryon/frame-01-front.png" },
+      { url: "/tryon/frame-01-angle.png" },
+      { url: "/tryon/frame-01-side.png" },
+    ],
+    option: { title: "Color", values: ["Tortoise"] }, price: 45.0, skuPrefix: "SUN-HER",
   },
 
   // ── Toys ─────────────────────────────────────────────────────────
@@ -182,6 +193,7 @@ export default async function addMoreProducts({ container }: ExecArgs) {
         status: ProductStatus.PUBLISHED,
         weight: d.weight,
         category_ids: catId(d.channel) ? [catId(d.channel)] : [],
+        category_ids: catId(d.channel) ? [catId(d.channel) as string] : [],
         sales_channels: [{ id: chId(d.channel)! }],
         shipping_profile_id: shippingProfileId,
         images: d.images,

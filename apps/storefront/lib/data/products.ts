@@ -4,7 +4,7 @@ import { getRegion } from "./regions";
 import type { HttpTypes } from "@medusajs/types";
 
 const PRODUCT_FIELDS =
-  "id,title,handle,description,thumbnail,*images,*options,*options.values,*variants,*variants.options,*variants.calculated_price,*categories";
+  "id,title,handle,description,thumbnail,*images,*options,*options.values,*variants,*variants.options,*variants.calculated_price,variants.inventory_quantity,*categories";
 
 export async function listProducts(params?: {
   limit?: number;

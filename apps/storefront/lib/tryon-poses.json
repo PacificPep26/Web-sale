@@ -1,0 +1,9 @@
+[
+  { "id": "left90", "angleDeg": -90, "cellX": 0, "cellY": 0, "name": "Left profile" },
+  { "id": "left60", "angleDeg": -60, "cellX": 300, "cellY": 0, "name": "Left 3/4" },
+  { "id": "left30", "angleDeg": -30, "cellX": 600, "cellY": 0, "name": "Slight left" },
+  { "id": "front", "angleDeg": 0, "cellX": 0, "cellY": 375, "name": "Front" },
+  { "id": "right30", "angleDeg": 30, "cellX": 300, "cellY": 375, "name": "Slight right" },
+  { "id": "right60", "angleDeg": 60, "cellX": 600, "cellY": 375, "name": "Right 3/4" },
+  { "id": "right90", "angleDeg": 90, "cellX": 0, "cellY": 750, "name": "Right profile" }
+]

@@ -5,9 +5,37 @@ import Image from "next/image";
 import type { HttpTypes } from "@medusajs/types";
 import { addItem } from "@/lib/data/cart";
 import { formatMoney } from "@/lib/money";
+import { fromPrice, currencyOf } from "@/lib/data/products";
 import { WishlistButton } from "./WishlistButton";
+import { TryOnModal, type TryOnItem } from "./TryOnModal";
+import type { NicheKey } from "@/themes/registry";
+import poses from "@/lib/tryon-poses.json";
 
-export function ProductDetails({ product }: { product: HttpTypes.StoreProduct }) {
+// Product handles that have a full set of Gemini-composited "model wearing
+// these glasses" photos, one per face-visible pose in lib/tryon-poses.json
+// (see scripts/generate-worn-composites.mjs) — one unified pose set built
+// the same way for every product, not run for the whole catalogue yet.
+// Try-on only ever shows products in this set — no lower-quality fallback.
+const WORN_COMPOSITE_HANDLES = new Set<string>([
+  "blue-light-filter-glasses",
+  "heritage-square-sunglasses",
+]);
+
+function wornImagesFor(handle: string): Record<string, string> {
+  return Object.fromEntries(
+    poses.map((p) => [p.id, `/tryon/worn/${handle}-${p.id}.jpg`])
+  );
+}
+
+export function ProductDetails({
+  product,
+  niche,
+  tryOnProducts,
+}: {
+  product: HttpTypes.StoreProduct;
+  niche?: NicheKey;
+  tryOnProducts?: HttpTypes.StoreProduct[];
+}) {
   const images = product.images?.length
     ? product.images
     : product.thumbnail
@@ -39,6 +67,30 @@ export function ProductDetails({ product }: { product: HttpTypes.StoreProduct })
 
   const [pending, startTransition] = useTransition();
   const [added, setAdded] = useState(false);
+  const [tryOnOpen, setTryOnOpen] = useState(false);
+
+  const tryOnItems: TryOnItem[] = useMemo(
+    () =>
+      (tryOnProducts ?? []).flatMap((p) => {
+        const img = p.thumbnail ?? p.images?.[0]?.url;
+        if (!img || !p.handle || !WORN_COMPOSITE_HANDLES.has(p.handle)) return [];
+        return [
+          {
+            id: p.id,
+            handle: p.handle,
+            variantId: p.variants?.[0]?.id,
+            title: p.title,
+            price: fromPrice(p),
+            currency: currencyOf(p),
+            image: img,
+            wornImages: wornImagesFor(p.handle),
+          },
+        ];
+      }),
+    [tryOnProducts]
+  );
+
+  const canTryOn = WORN_COMPOSITE_HANDLES.has(product.handle) && tryOnItems.length > 0;
 
   function handleAdd() {
     if (!variant) return;
@@ -63,7 +115,7 @@ export function ProductDetails({ product }: { product: HttpTypes.StoreProduct })
     <div className="container-page grid gap-10 py-8 pb-28 md:grid-cols-2 md:gap-16 md:py-14 md:pb-14">
       {/* gallery */}
       <div>
-        <div className="relative aspect-[4/5] overflow-hidden bg-card">
+        <div className="relative aspect-square max-h-[38vh] overflow-hidden bg-card md:aspect-4/5 md:max-h-none">
           {images[activeImg]?.url && (
             <Image
               src={images[activeImg].url}
@@ -71,7 +123,7 @@ export function ProductDetails({ product }: { product: HttpTypes.StoreProduct })
               fill
               priority
               sizes="(max-width:768px) 100vw, 50vw"
-              className="object-contain p-8"
+              className="object-contain p-4 md:p-8"
             />
           )}
         </div>
@@ -149,6 +201,15 @@ export function ProductDetails({ product }: { product: HttpTypes.StoreProduct })
           Ships from the US · 2–7 business days · 30-day returns
         </p>
 
+        {niche === "eyewear" && canTryOn && (
+          <button
+            className="btn btn-outline mt-3 w-full"
+            onClick={() => setTryOnOpen(true)}
+          >
+            Virtual try-on
+          </button>
+        )}
+
         <div className="mt-10 border-t border-token">
           {product.description && (
             <details className="border-b border-token py-4" open>
@@ -187,6 +248,14 @@ export function ProductDetails({ product }: { product: HttpTypes.StoreProduct })
           </button>
         </div>
       </div>
+
+      {tryOnOpen && canTryOn && (
+        <TryOnModal
+          items={tryOnItems}
+          initialId={product.id}
+          onClose={() => setTryOnOpen(false)}
+        />
+      )}
     </div>
   );
 }
