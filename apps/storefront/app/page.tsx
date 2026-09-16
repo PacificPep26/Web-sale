@@ -163,7 +163,7 @@ export default async function HomePage() {
           <Link
             key={b.label}
             href={b.href}
-            className="group relative flex h-52 w-full items-center overflow-hidden border-b border-white/10 bg-black last:border-b-0 sm:h-60 md:h-72 lg:h-80"
+            className="group relative flex h-[33.333vh] min-h-[220px] w-full items-center overflow-hidden border-b border-white/10 bg-black last:border-b-0"
           >
             <Image
               src={b.image}
