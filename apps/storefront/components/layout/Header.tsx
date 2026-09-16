@@ -21,21 +21,17 @@ export async function Header() {
             {theme.brand}
           </Link>
 
-          <Link
-            href="/search"
-            aria-label="Search"
-            className="hidden h-9 w-9 shrink-0 items-center justify-center md:flex"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-              <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
-              <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          </Link>
-
           <div className="ml-auto flex items-center gap-4">
-            <span className="hidden text-[0.72rem] uppercase tracking-[0.14em] text-muted lg:block">
-              United States
-            </span>
+            <Link
+              href="/search"
+              aria-label="Search"
+              className="flex h-9 w-9 items-center justify-center"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            </Link>
             <span
               aria-hidden
               className="hidden h-9 w-9 items-center justify-center opacity-60 md:flex"
@@ -50,16 +46,7 @@ export async function Header() {
                 />
               </svg>
             </span>
-            <Link
-              href="/search"
-              aria-label="Search"
-              className="flex h-9 w-9 items-center justify-center md:hidden"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            </Link>
+
             <Link
               href="/cart"
               aria-label={`Bag${count > 0 ? `, ${count} item${count > 1 ? "s" : ""}` : ", empty"}`}
