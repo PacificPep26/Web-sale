@@ -33,15 +33,14 @@ export function ProductDetails({
   product: HttpTypes.StoreProduct;
   niche?: NicheKey;
 }) {
-  const baseImages = product.images?.length
-    ? product.images
-    : product.thumbnail
-      ? [{ url: product.thumbnail, id: "thumb" }]
-      : [];
-  const images = useMemo(
-    () => [...baseImages, ...wornGalleryImagesFor(product.handle)],
-    [baseImages, product.handle]
-  );
+  const images = useMemo(() => {
+    const baseImages = product.images?.length
+      ? product.images
+      : product.thumbnail
+        ? [{ url: product.thumbnail, id: "thumb" }]
+        : [];
+    return [...baseImages, ...wornGalleryImagesFor(product.handle)];
+  }, [product.images, product.thumbnail, product.handle]);
   const [activeImg, setActiveImg] = useState(0);
 
   const options = product.options ?? [];

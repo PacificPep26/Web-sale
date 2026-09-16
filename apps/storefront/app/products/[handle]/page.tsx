@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getProductByHandle, listProducts } from "@/lib/data/products";
+import { getProductByHandle } from "@/lib/data/products";
 import { ProductDetails } from "@/components/product/ProductDetails";
-import { ProductGrid } from "@/components/product/ProductGrid";
 import { NICHE } from "@/lib/config";
 
 export const revalidate = 300;
@@ -33,8 +32,6 @@ export default async function ProductPage({
   const product = await getProductByHandle(handle);
   if (!product) notFound();
 
-  const related = await listProducts({ limit: 4 });
-
   const jsonLd = {
     "@context": "https://schema.org/",
     "@type": "Product",
@@ -58,21 +55,6 @@ export default async function ProductPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <ProductDetails product={product} niche={NICHE} />
-      <section className="surface">
-        <div className="container-page py-[var(--space-section)]">
-          <div className="mb-10 text-center">
-            <p className="eyebrow">More to see</p>
-            <h2 className="mt-2" style={{ fontSize: "var(--fs-h2)" }}>
-              You might also like
-            </h2>
-          </div>
-          <ProductGrid
-            products={related.products
-              .filter((p) => p.id !== product.id)
-              .slice(0, 4)}
-          />
-        </div>
-      </section>
     </>
   );
 }
