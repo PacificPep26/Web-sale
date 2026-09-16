@@ -16,12 +16,6 @@ async function readCartId() {
 }
 
 async function writeCartId(id: string) {
-  (await cookies()).set(CART_COOKIE, id, {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 30,
-  });
   try {
     (await cookies()).set(CART_COOKIE, id, {
       httpOnly: true,
@@ -35,7 +29,6 @@ async function writeCartId(id: string) {
 }
 
 async function clearCartId() {
-  (await cookies()).delete(CART_COOKIE);
   try {
     (await cookies()).delete(CART_COOKIE);
   } catch {
