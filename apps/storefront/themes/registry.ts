@@ -4,6 +4,8 @@ export const NICHES: NicheKey[] = ["cases", "eyewear", "toys", "watches"];
 
 export type NavItem = { label: string; href: string };
 
+export type UspIcon = "shield" | "sun" | "hinge" | "truck" | "return" | "warranty";
+
 export type ThemeConfig = {
   key: NicheKey;
   brand: string;
@@ -23,10 +25,12 @@ export type ThemeConfig = {
   /** google font families for --font-display / --font-body */
   fonts: string[];
   /** homepage section order */
-  sections: Array<"hero" | "featured" | "editorial" | "usps" | "rail" | "faq">;
+  sections: Array<"hero" | "categories" | "featured" | "editorial" | "usps" | "rail" | "faq">;
+  /** "shop by category" tiles shown right under the hero */
+  categories: { label: string; image: string; href: string }[];
   /** a secondary editorial banner on the home page */
   editorial: { image: string; kicker: string; title: string; body: string; cta: string; href: string };
-  usps: { title: string; body: string }[];
+  usps: { title: string; body: string; icon: UspIcon }[];
   faqs: { q: string; a: string }[];
   /** category handle used as the "shop all" collection */
   collectionHandle: string;
@@ -73,7 +77,24 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       { label: "About", href: "/pages/about" },
     ],
     fonts: ["Cormorant+Garamond:500,600", "Inter:300,400,500,600"],
-    sections: ["hero", "featured", "editorial", "rail", "usps", "faq"],
+    sections: ["hero", "categories", "usps", "featured", "editorial", "rail", "faq"],
+    categories: [
+      {
+        label: "Phone Cases",
+        image: "https://images.unsplash.com/photo-1601593346740-925612772716?w=900&q=80",
+        href: "/collections/cases",
+      },
+      {
+        label: "Laptop Sleeves",
+        image: "https://images.unsplash.com/photo-1602080858428-57174f9431cf?w=900&q=80",
+        href: "/collections/cases",
+      },
+      {
+        label: "New In",
+        image: "https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=900&q=80",
+        href: "/collections/cases",
+      },
+    ],
     editorial: {
       image:
         "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=1600&q=80",
@@ -84,9 +105,9 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       href: "/pages/about",
     },
     usps: [
-      { title: "Drop-tested", body: "MIL-STD-810G corners on every hard case." },
-      { title: "2–5 day US shipping", body: "Dispatched from our Delaware warehouse." },
-      { title: "30-day returns", body: "Wrong model? Send it back, no questions." },
+      { title: "Drop-tested", body: "MIL-STD-810G corners on every hard case.", icon: "shield" },
+      { title: "2–5 day US shipping", body: "Dispatched from our Delaware warehouse.", icon: "truck" },
+      { title: "30-day returns", body: "Wrong model? Send it back, no questions.", icon: "return" },
     ],
     faqs: [
       { q: "How do I know it fits my phone?", a: "Choose your exact model on the product page. Between models? Message us first." },
@@ -116,7 +137,24 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       { label: "About", href: "/pages/about" },
     ],
     fonts: ["Playfair+Display:500,600,700", "Inter:300,400,500,600"],
-    sections: ["hero", "featured", "editorial", "usps", "faq", "rail"],
+    sections: ["hero", "categories", "usps", "featured", "editorial", "rail", "faq"],
+    categories: [
+      {
+        label: "Sunglasses",
+        image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=900&q=80",
+        href: "/collections/eyewear",
+      },
+      {
+        label: "Blue-Light",
+        image: "https://images.unsplash.com/photo-1508296695146-257a814070b4?w=900&q=80",
+        href: "/collections/eyewear",
+      },
+      {
+        label: "New In",
+        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=900&q=80",
+        href: "/collections/eyewear",
+      },
+    ],
     editorial: {
       image:
         "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=1600&q=80",
@@ -127,9 +165,9 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       href: "/pages/about",
     },
     usps: [
-      { title: "UV400 + polarised", body: "100% UVA/UVB blocked on every pair." },
-      { title: "Spring hinges", body: "Flex where your face is, not where it isn't." },
-      { title: "Try for 30 days", body: "Not your look? Free returns within a month." },
+      { title: "UV400 + polarised", body: "100% UVA/UVB blocked on every pair.", icon: "sun" },
+      { title: "Spring hinges", body: "Flex where your face is, not where it isn't.", icon: "hinge" },
+      { title: "Try for 30 days", body: "Not your look? Free returns within a month.", icon: "return" },
     ],
     faqs: [
       { q: "Are these prescription?", a: "No — our frames are plano sunglasses and blue-light filters." },
@@ -159,7 +197,24 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       { label: "About", href: "/pages/about" },
     ],
     fonts: ["Fraunces:500,600", "Inter:300,400,500,600"],
-    sections: ["hero", "rail", "editorial", "featured", "usps", "faq"],
+    sections: ["hero", "categories", "usps", "rail", "editorial", "featured", "faq"],
+    categories: [
+      {
+        label: "Figures",
+        image: "https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=900&q=80",
+        href: "/collections/toys",
+      },
+      {
+        label: "Puzzles",
+        image: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=900&q=80",
+        href: "/collections/toys",
+      },
+      {
+        label: "New In",
+        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&q=80",
+        href: "/collections/toys",
+      },
+    ],
     editorial: {
       image:
         "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=1600&q=80",
@@ -170,9 +225,9 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       href: "/pages/about",
     },
     usps: [
-      { title: "Collector-grade", body: "Adult collectibles — not for children under 14." },
-      { title: "Ships protected", body: "Double-boxed so corners survive the trip." },
-      { title: "Easy returns", body: "30 days if it's not what you hoped." },
+      { title: "Collector-grade", body: "Adult collectibles — not for children under 14.", icon: "shield" },
+      { title: "Ships protected", body: "Double-boxed so corners survive the trip.", icon: "truck" },
+      { title: "Easy returns", body: "30 days if it's not what you hoped.", icon: "return" },
     ],
     faqs: [
       { q: "Are these safe for kids?", a: "These are adult collectibles and may contain small parts. Not for children under 14." },
@@ -202,7 +257,24 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       { label: "About", href: "/pages/about" },
     ],
     fonts: ["Cormorant+Garamond:500,600", "Inter:300,400,500,600"],
-    sections: ["hero", "featured", "editorial", "rail", "usps", "faq"],
+    sections: ["hero", "categories", "usps", "featured", "editorial", "rail", "faq"],
+    categories: [
+      {
+        label: "Automatic",
+        image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=900&q=80",
+        href: "/collections/watches",
+      },
+      {
+        label: "Quartz",
+        image: "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=900&q=80",
+        href: "/collections/watches",
+      },
+      {
+        label: "New In",
+        image: "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=900&q=80",
+        href: "/collections/watches",
+      },
+    ],
     editorial: {
       image:
         "https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=1600&q=80",
@@ -213,9 +285,9 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       href: "/pages/about",
     },
     usps: [
-      { title: "Sapphire crystal", body: "Scratch-resistant glass on every reference." },
-      { title: "2-year movement warranty", body: "Serviced by our US watchmaker." },
-      { title: "30-day returns", body: "Unworn, in the full kit — send it back." },
+      { title: "Sapphire crystal", body: "Scratch-resistant glass on every reference.", icon: "shield" },
+      { title: "2-year movement warranty", body: "Serviced by our US watchmaker.", icon: "warranty" },
+      { title: "30-day returns", body: "Unworn, in the full kit — send it back.", icon: "return" },
     ],
     faqs: [
       { q: "Are these automatic or quartz?", a: "Both — each product page states the calibre and whether it's automatic or quartz." },

@@ -1,11 +1,81 @@
 import Link from "next/link";
 import Image from "next/image";
 import { headers } from "next/headers";
-import { themeFor } from "@/themes/registry";
+import { themeFor, type UspIcon } from "@/themes/registry";
 import { listProducts } from "@/lib/data/products";
 import { ProductGrid } from "@/components/product/ProductGrid";
 
 export const revalidate = 300;
+
+const USP_ICON_PATHS: Record<UspIcon, React.ReactNode> = {
+  shield: (
+    <path
+      d="M12 3l7 3v5c0 4.6-2.98 8.5-7 10-4.02-1.5-7-5.4-7-10V6l7-3z"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinejoin="round"
+    />
+  ),
+  sun: (
+    <>
+      <circle cx="12" cy="12" r="4.5" stroke="currentColor" strokeWidth="1.4" />
+      <path
+        d="M12 2.5v3M12 18.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2.5 12h3M18.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
+    </>
+  ),
+  hinge: (
+    <>
+      <circle cx="7" cy="12" r="2.6" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M9.4 12H20M20 9v6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </>
+  ),
+  truck: (
+    <>
+      <path d="M2.5 6.5h11v9h-11z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+      <path
+        d="M13.5 10h4l3 3v2.5h-7V10z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+      <circle cx="6" cy="17" r="1.6" stroke="currentColor" strokeWidth="1.4" />
+      <circle cx="17.5" cy="17" r="1.6" stroke="currentColor" strokeWidth="1.4" />
+    </>
+  ),
+  return: (
+    <path
+      d="M4 12a8 8 0 1 1 2.6 5.9M4 12V7M4 12h5"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      fill="none"
+    />
+  ),
+  warranty: (
+    <>
+      <path
+        d="M12 3l7 3v5c0 4.6-2.98 8.5-7 10-4.02-1.5-7-5.4-7-10V6l7-3z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinejoin="round"
+      />
+      <path d="M9 12l2 2 4-4.2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </>
+  ),
+};
+
+function UspIconGlyph({ icon }: { icon: UspIcon }) {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden>
+      {USP_ICON_PATHS[icon]}
+    </svg>
+  );
+}
 
 export default async function HomePage() {
   const theme = themeFor((await headers()).get("host"));
@@ -55,6 +125,38 @@ export default async function HomePage() {
         </div>
       </section>
     ),
+    categories: theme.categories?.length ? (
+      <section key="categories" className="container-page py-[var(--space-section)]">
+        <div className="mb-10 text-center">
+          <p className="eyebrow">Shop by category</p>
+          <h2 className="mt-2" style={{ fontSize: "var(--fs-h2)" }}>
+            Find your pair
+          </h2>
+        </div>
+        <div className="grid grid-cols-3 gap-3 md:gap-6">
+          {theme.categories.map((c) => (
+            <Link
+              key={c.label}
+              href={c.href}
+              className="group block"
+            >
+              <div className="relative aspect-square overflow-hidden rounded-token surface">
+                <Image
+                  src={c.image}
+                  alt=""
+                  fill
+                  sizes="(max-width:768px) 33vw, 300px"
+                  className="object-cover transition-transform duration-500 ease-[var(--ease)] group-hover:scale-105"
+                />
+              </div>
+              <p className="mt-3 text-center text-xs font-medium uppercase tracking-[0.1em] md:text-sm">
+                {c.label}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
+    ) : null,
     featured: featured.length ? (
       <section key="featured" className="container-page py-[var(--space-section)]">
         <div className="mb-10 text-center">
@@ -112,14 +214,22 @@ export default async function HomePage() {
     usps: (
       <section
         key="usps"
-        className="container-page grid gap-10 border-y border-token py-16 text-center md:grid-cols-3"
+        className="container-page grid gap-4 py-12 sm:grid-cols-3 sm:gap-6 md:py-16"
       >
         {theme.usps.map((u) => (
-          <div key={u.title}>
-            <h3 className="text-base font-medium uppercase tracking-[0.1em]">
-              {u.title}
-            </h3>
-            <p className="mt-2 text-sm text-muted">{u.body}</p>
+          <div
+            key={u.title}
+            className="flex items-start gap-4 rounded-token border border-token bg-card px-5 py-5 sm:flex-col sm:items-start sm:gap-3 sm:px-6 sm:py-7"
+          >
+            <span className="text-accent">
+              <UspIconGlyph icon={u.icon} />
+            </span>
+            <div>
+              <h3 className="text-sm font-medium uppercase tracking-[0.08em]">
+                {u.title}
+              </h3>
+              <p className="mt-1 text-sm text-muted">{u.body}</p>
+            </div>
           </div>
         ))}
       </section>

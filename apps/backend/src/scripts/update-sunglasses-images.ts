@@ -38,3 +38,4 @@ export default async function updateSunglassesImages({ container }: ExecArgs) {
 
   logger.info(`Successfully updated images for ${updates.length} sunglasses products.`);
 }
+

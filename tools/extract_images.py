@@ -67,3 +67,4 @@ with open(json_out, 'w', encoding='utf-8') as f:
     json.dump(items, f, ensure_ascii=False, indent=2)
 
 print(f"\nSuccessfully extracted {len(items)} images and updated {json_out}!")
+
