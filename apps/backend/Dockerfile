@@ -19,7 +19,7 @@ WORKDIR /app
 # the compiled server is self-contained under .medusa/server
 COPY --from=build /repo/apps/backend/.medusa/server ./
 COPY --from=build /repo/apps/backend/package.json ./package.json
-RUN npm ci --omit=dev && npm cache clean --force
+RUN npm install --omit=dev --no-package-lock --legacy-peer-deps && npm cache clean --force
 
 EXPOSE 9000
 # MEDUSA_WORKER_MODE=server | worker | shared  (set per service)
