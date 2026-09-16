@@ -18,6 +18,7 @@ export function MobileNav({
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";

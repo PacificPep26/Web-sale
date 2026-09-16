@@ -192,7 +192,6 @@ export default async function addMoreProducts({ container }: ExecArgs) {
         description: d.description,
         status: ProductStatus.PUBLISHED,
         weight: d.weight,
-        category_ids: catId(d.channel) ? [catId(d.channel)] : [],
         category_ids: catId(d.channel) ? [catId(d.channel) as string] : [],
         sales_channels: [{ id: chId(d.channel)! }],
         shipping_profile_id: shippingProfileId,

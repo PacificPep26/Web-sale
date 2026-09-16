@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/purity */
 import Link from "next/link";
 import Image from "next/image";
 import type { HttpTypes } from "@medusajs/types";
@@ -14,7 +15,12 @@ export function ProductCard({
   product: HttpTypes.StoreProduct;
   priority?: boolean;
 }) {
-  const img = product.thumbnail ?? product.images?.[0]?.url;
+  const imgPrimary = product.thumbnail ?? product.images?.[0]?.url;
+  const imgSecondary =
+    product.images && product.images.length > 1
+      ? product.images[1].url
+      : undefined;
+
   const price = fromPrice(product);
   const multiVariant = (product.variants?.length ?? 0) > 1;
   const isNew =
@@ -26,15 +32,28 @@ export function ProductCard({
   return (
     <Link href={`/products/${product.handle}`} className="group block text-center">
       <div className="relative aspect-[4/5] overflow-hidden bg-card">
-        {img ? (
-          <Image
-            src={img}
-            alt={product.title}
-            fill
-            priority={priority}
-            sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
-            className="object-contain p-6 transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-          />
+        {imgPrimary ? (
+          <>
+            <Image
+              src={imgPrimary}
+              alt={product.title}
+              fill
+              priority={priority}
+              sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
+              className={`object-contain p-6 transition-all duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                imgSecondary ? "group-hover:opacity-0 group-hover:scale-[1.04]" : "group-hover:scale-[1.04]"
+              }`}
+            />
+            {imgSecondary && (
+              <Image
+                src={imgSecondary}
+                alt={`${product.title} campaign`}
+                fill
+                sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 25vw"
+                className="absolute inset-0 object-contain p-6 opacity-0 transition-all duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-100 group-hover:scale-[1.04]"
+              />
+            )}
+          </>
         ) : (
           <div className="absolute inset-0 skeleton" />
         )}

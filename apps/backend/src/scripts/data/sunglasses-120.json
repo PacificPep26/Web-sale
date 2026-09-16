@@ -1,0 +1,962 @@
+[
+  {
+    "n": 1,
+    "brand": "Jacques Marie Mage",
+    "model": "ENZO",
+    "shape": "Oversized square",
+    "info": "Unisex; acetate; signature 7-barrel hinge",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 2,
+    "brand": "Jacques Marie Mage",
+    "model": "MOLINO",
+    "shape": "Rectangular / square",
+    "info": "Unisex; bold acetate",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 3,
+    "brand": "Jacques Marie Mage",
+    "model": "DEALAN 53",
+    "shape": "Square",
+    "info": "Acetate; larger Dealan silhouette",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 4,
+    "brand": "Jacques Marie Mage",
+    "model": "WALKER",
+    "shape": "Square",
+    "info": "Acetate; masculine/unisex",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 5,
+    "brand": "Jacques Marie Mage",
+    "model": "DEALAN",
+    "shape": "Square",
+    "info": "Iconic acetate silhouette",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 6,
+    "brand": "Jacques Marie Mage",
+    "model": "SILVERTON",
+    "shape": "Aviator",
+    "info": "Metal/titanium aesthetic",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 7,
+    "brand": "Jacques Marie Mage",
+    "model": "ZEPHIRIN",
+    "shape": "Panto / round-square",
+    "info": "Acetate; iconic JMM",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 8,
+    "brand": "Jacques Marie Mage",
+    "model": "FELLINI",
+    "shape": "Oversized square",
+    "info": "Thick acetate statement frame",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 9,
+    "brand": "Jacques Marie Mage",
+    "model": "MOLINO 55",
+    "shape": "Square",
+    "info": "Large Molino acetate frame",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 10,
+    "brand": "Jacques Marie Mage",
+    "model": "TORINO",
+    "shape": "Rectangular",
+    "info": "Acetate; unisex",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 11,
+    "brand": "Jacques Marie Mage",
+    "model": "VENDOME",
+    "shape": "Square / navigator",
+    "info": "Bold acetate; sculpted brow; collector demand",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 12,
+    "brand": "Jacques Marie Mage",
+    "model": "STURGES",
+    "shape": "Rectangular",
+    "info": "Thick acetate; strong unisex silhouette",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 13,
+    "brand": "Jacques Marie Mage",
+    "model": "YVES",
+    "shape": "Oversized square",
+    "info": "1970s-inspired statement frame",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 14,
+    "brand": "Jacques Marie Mage",
+    "model": "ASHCROFT",
+    "shape": "Square",
+    "info": "Structured acetate; vintage Hollywood influence",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 15,
+    "brand": "Jacques Marie Mage",
+    "model": "FONTAINE",
+    "shape": "Cat-eye / upswept",
+    "info": "Fashion-forward acetate; strong editorial appeal",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 16,
+    "brand": "Prada",
+    "model": "PR 17WS",
+    "shape": "Geometric / oversized",
+    "info": "Acetate; women/unisex",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 17,
+    "brand": "Prada",
+    "model": "PR 15WS",
+    "shape": "Rectangular / oversized",
+    "info": "Acetate; Prada lettering logo",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 18,
+    "brand": "Prada",
+    "model": "PR 14YS",
+    "shape": "Geometric / cat-eye",
+    "info": "Acetate; women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 19,
+    "brand": "Prada",
+    "model": "PR 16WS",
+    "shape": "Rectangular",
+    "info": "Acetate; women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 20,
+    "brand": "Prada",
+    "model": "PR 19WS",
+    "shape": "Oversized square",
+    "info": "Acetate; women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 21,
+    "brand": "Prada",
+    "model": "PR A09S",
+    "shape": "Bold rectangular",
+    "info": "Contemporary acetate",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 22,
+    "brand": "Prada",
+    "model": "PR A06S",
+    "shape": "Narrow rectangular",
+    "info": "Fashion-forward",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 23,
+    "brand": "Prada",
+    "model": "PR 24ZS",
+    "shape": "Cat-eye",
+    "info": "Women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 24,
+    "brand": "Prada",
+    "model": "PR 26ZS",
+    "shape": "Rectangular",
+    "info": "Women/unisex",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 25,
+    "brand": "Prada",
+    "model": "PR B01S",
+    "shape": "Contemporary rectangular",
+    "info": "Women/unisex",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 26,
+    "brand": "Prada",
+    "model": "PR B17S",
+    "shape": "Slim oval",
+    "info": "Runway-led oval shape; women/unisex",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 27,
+    "brand": "Prada",
+    "model": "PR B09S",
+    "shape": "Rectangular",
+    "info": "Bold acetate; modern logo temple",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 28,
+    "brand": "Prada",
+    "model": "PR A19S",
+    "shape": "Geometric cat-eye",
+    "info": "Angular acetate; fashion-forward",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 29,
+    "brand": "Prada",
+    "model": "PR A16S",
+    "shape": "Oversized square",
+    "info": "Statement acetate; women",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 30,
+    "brand": "Prada",
+    "model": "PR C01S",
+    "shape": "Narrow rectangular",
+    "info": "New-season slim silhouette; unisex",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 31,
+    "brand": "Tom Ford",
+    "model": "Snowdon FT0237",
+    "shape": "Square",
+    "info": "Iconic acetate; men/unisex",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 32,
+    "brand": "Tom Ford",
+    "model": "Henry FT0248",
+    "shape": "Browline / clubmaster",
+    "info": "Men/unisex",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 33,
+    "brand": "Tom Ford",
+    "model": "Whitney FT0009",
+    "shape": "Oversized butterfly",
+    "info": "Women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 34,
+    "brand": "Tom Ford",
+    "model": "Jennifer FT0008",
+    "shape": "Oversized",
+    "info": "Women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 35,
+    "brand": "Tom Ford",
+    "model": "Anoushka FT0371",
+    "shape": "Cat-eye",
+    "info": "Women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 36,
+    "brand": "Tom Ford",
+    "model": "Fausto FT0711",
+    "shape": "Bold square",
+    "info": "Men/unisex",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 37,
+    "brand": "Tom Ford",
+    "model": "Stephenson FT0775",
+    "shape": "Aviator",
+    "info": "Men/unisex",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 38,
+    "brand": "Tom Ford",
+    "model": "FT1044",
+    "shape": "Oversized contemporary",
+    "info": "Acetate",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 39,
+    "brand": "Tom Ford",
+    "model": "FT1083",
+    "shape": "Modern acetate",
+    "info": "Rectangular",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 40,
+    "brand": "Tom Ford",
+    "model": "FT1108",
+    "shape": "Contemporary luxury",
+    "info": "Modern silhouette",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 41,
+    "brand": "Tom Ford",
+    "model": "FT1177",
+    "shape": "Aviator",
+    "info": "Metal pilot profile; refined unisex style",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 42,
+    "brand": "Tom Ford",
+    "model": "FT1188",
+    "shape": "Bold square",
+    "info": "Thick acetate and signature T hardware",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 43,
+    "brand": "Tom Ford",
+    "model": "FT1195-D",
+    "shape": "Rectangular",
+    "info": "Asian-fit option; contemporary acetate",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 44,
+    "brand": "Tom Ford",
+    "model": "FT1233",
+    "shape": "Oversized butterfly",
+    "info": "Glamorous women’s statement silhouette",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 45,
+    "brand": "Tom Ford",
+    "model": "FT1242",
+    "shape": "Slim rectangular",
+    "info": "Minimal 1990s-inspired profile",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 46,
+    "brand": "Gucci",
+    "model": "GG0010S",
+    "shape": "Wayfarer",
+    "info": "Acetate; iconic Gucci",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 47,
+    "brand": "Gucci",
+    "model": "GG0022S",
+    "shape": "Cat-eye / rectangular",
+    "info": "Acetate; GG detailing",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 48,
+    "brand": "Gucci",
+    "model": "GG0529S",
+    "shape": "Aviator",
+    "info": "Metal; oversized",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 49,
+    "brand": "Gucci",
+    "model": "GG0879S",
+    "shape": "Aviator",
+    "info": "Metal luxury look",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 50,
+    "brand": "Gucci",
+    "model": "GG0926S",
+    "shape": "Square",
+    "info": "Acetate",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 51,
+    "brand": "Gucci",
+    "model": "GG1338S",
+    "shape": "Rectangular",
+    "info": "Vintage-inspired",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 52,
+    "brand": "Gucci",
+    "model": "GG1661S",
+    "shape": "Square / cat-eye",
+    "info": "Women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 53,
+    "brand": "Gucci",
+    "model": "GG1714S",
+    "shape": "Rectangular",
+    "info": "Contemporary",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 54,
+    "brand": "Gucci",
+    "model": "GG1829SK",
+    "shape": "Narrow rectangular",
+    "info": "Trend-driven",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 55,
+    "brand": "Gucci",
+    "model": "GG1861S",
+    "shape": "Rectangular",
+    "info": "Available in polarized variants",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 56,
+    "brand": "Gucci",
+    "model": "GG1854S",
+    "shape": "Oversized square",
+    "info": "Bold acetate with prominent GG branding",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 57,
+    "brand": "Gucci",
+    "model": "GG1888S",
+    "shape": "Narrow oval",
+    "info": "Retro-futurist shape; trend-focused",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 58,
+    "brand": "Gucci",
+    "model": "GG1926S",
+    "shape": "Rectangular",
+    "info": "Clean unisex acetate silhouette",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 59,
+    "brand": "Gucci",
+    "model": "GG1940S",
+    "shape": "Cat-eye",
+    "info": "Sharp feminine profile; logo temples",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 60,
+    "brand": "Gucci",
+    "model": "GG1975S",
+    "shape": "Pilot / aviator",
+    "info": "Metal frame; contemporary luxury styling",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 61,
+    "brand": "Chrome Hearts",
+    "model": "Box Officer",
+    "shape": "Square / rectangular",
+    "info": "Bold acetate; CH hardware",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 62,
+    "brand": "Chrome Hearts",
+    "model": "Vagillionaire II",
+    "shape": "Square",
+    "info": "Acetate + signature hardware",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 63,
+    "brand": "Chrome Hearts",
+    "model": "Dooable",
+    "shape": "Rectangular",
+    "info": "Bold acetate",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 64,
+    "brand": "Chrome Hearts",
+    "model": "Rump",
+    "shape": "Geometric",
+    "info": "Statement frame",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 65,
+    "brand": "Chrome Hearts",
+    "model": "Dick Fitzener",
+    "shape": "Rectangular",
+    "info": "Bold luxury",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 66,
+    "brand": "Chrome Hearts",
+    "model": "Lilith",
+    "shape": "Square",
+    "info": "Women/unisex",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 67,
+    "brand": "Chrome Hearts",
+    "model": "Lowrider",
+    "shape": "Oval",
+    "info": "Fashion-forward",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 68,
+    "brand": "Chrome Hearts",
+    "model": "Zelda",
+    "shape": "Rectangular",
+    "info": "Acetate",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 69,
+    "brand": "Chrome Hearts",
+    "model": "99 Eyes / Matty Boy",
+    "shape": "Statement",
+    "info": "Collector/collaboration style",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 70,
+    "brand": "Chrome Hearts",
+    "model": "Spreader",
+    "shape": "Geometric",
+    "info": "Signature CH hardware aesthetic",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 71,
+    "brand": "Chrome Hearts",
+    "model": "SLUNTRADICTION",
+    "shape": "Square",
+    "info": "Bold acetate with signature silver hardware",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 72,
+    "brand": "Chrome Hearts",
+    "model": "GITTIN ANY?",
+    "shape": "Rectangular",
+    "info": "Chunky collector-favorite silhouette",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 73,
+    "brand": "Chrome Hearts",
+    "model": "PILLS III",
+    "shape": "Round / panto",
+    "info": "Distinctive luxury hardware; unisex",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 74,
+    "brand": "Chrome Hearts",
+    "model": "BJORN AGAIN",
+    "shape": "Aviator",
+    "info": "Metal pilot frame; rock-luxury aesthetic",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 75,
+    "brand": "Chrome Hearts",
+    "model": "BEAST II",
+    "shape": "Oversized square",
+    "info": "Heavy acetate statement frame",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 76,
+    "brand": "Cartier",
+    "model": "Santos de Cartier ESW00675",
+    "shape": "Round",
+    "info": "Platinum-finish metal; blue lenses; 51-21-145",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 77,
+    "brand": "Cartier",
+    "model": "Santos de Cartier ESW00436",
+    "shape": "Rectangular",
+    "info": "Golden-finish metal; gray lenses; 58-17-140",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 78,
+    "brand": "Cartier",
+    "model": "Santos de Cartier ESW00769",
+    "shape": "Rectangular",
+    "info": "Platinum finish + black rubber; polarized; 55-20-145",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 79,
+    "brand": "Cartier",
+    "model": "Santos de Cartier ESW00705",
+    "shape": "Square",
+    "info": "Dark ruthenium/black PVD; polarized; 56-21-145",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 80,
+    "brand": "Cartier",
+    "model": "Panthère de Cartier",
+    "shape": "Cat-eye / metal",
+    "info": "Jewelry-inspired panther detailing",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 81,
+    "brand": "Cartier",
+    "model": "Signature C de Cartier",
+    "shape": "Pilot / rectangular",
+    "info": "Titanium; C motif",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 82,
+    "brand": "Cartier",
+    "model": "Classic C Motif",
+    "shape": "Pilot / aviator",
+    "info": "Metal; classic C motif",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 83,
+    "brand": "Cartier",
+    "model": "Clash de Cartier",
+    "shape": "Fashion metal",
+    "info": "Jewelry-inspired design",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 84,
+    "brand": "Cartier",
+    "model": "Première de Cartier",
+    "shape": "Aviator / rectangular",
+    "info": "Luxury metal; precious variants",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 85,
+    "brand": "Cartier",
+    "model": "C Allongé de Cartier",
+    "shape": "Rimless / metal",
+    "info": "Precious luxury eyewear",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 86,
+    "brand": "Cartier",
+    "model": "CT0471S Santos de Cartier",
+    "shape": "Pilot",
+    "info": "Santos screw details; metal construction",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 87,
+    "brand": "Cartier",
+    "model": "CT0511S Panthère de Cartier",
+    "shape": "Cat-eye",
+    "info": "Jewelry-inspired panther temple detail",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 88,
+    "brand": "Cartier",
+    "model": "CT0434S Signature C",
+    "shape": "Rectangular",
+    "info": "Minimal metal frame with C motif",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 89,
+    "brand": "Cartier",
+    "model": "CT0500S Première de Cartier",
+    "shape": "Rimless",
+    "info": "Lightweight precious-look rimless design",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 90,
+    "brand": "Cartier",
+    "model": "CT0397S Décor C Allongé",
+    "shape": "Navigator",
+    "info": "Elongated C detail; luxury metal profile",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 91,
+    "brand": "Fendi",
+    "model": "FE40005U",
+    "shape": "Square",
+    "info": "Logo-driven",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 92,
+    "brand": "Fendi",
+    "model": "FE40006U",
+    "shape": "Cat-eye",
+    "info": "Women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 93,
+    "brand": "Fendi",
+    "model": "FE40065I",
+    "shape": "Rectangular",
+    "info": "Contemporary",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 94,
+    "brand": "Fendi",
+    "model": "FE40096I",
+    "shape": "Oval / rectangular",
+    "info": "Fashion",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 95,
+    "brand": "Fendi",
+    "model": "FE40110I",
+    "shape": "Narrow",
+    "info": "Trend-driven",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 96,
+    "brand": "Fendi",
+    "model": "FE40117I",
+    "shape": "Geometric",
+    "info": "Women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 97,
+    "brand": "Fendi",
+    "model": "FE40130I",
+    "shape": "Rectangular",
+    "info": "Unisex",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 98,
+    "brand": "Fendi",
+    "model": "FE40202I",
+    "shape": "Bold acetate",
+    "info": "Statement",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 99,
+    "brand": "Fendi",
+    "model": "FE4075US First Crystal",
+    "shape": "Oversized",
+    "info": "Crystal detail / luxury",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 100,
+    "brand": "Fendi",
+    "model": "Fendi First",
+    "shape": "Geometric",
+    "info": "Signature fashion line",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 101,
+    "brand": "Fendi",
+    "model": "FE40153I",
+    "shape": "Narrow oval",
+    "info": "Y2K-influenced acetate; women/unisex",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 102,
+    "brand": "Fendi",
+    "model": "FE40168I",
+    "shape": "Rectangular",
+    "info": "Bold temples and clean front profile",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 103,
+    "brand": "Fendi",
+    "model": "FE40195I",
+    "shape": "Cat-eye",
+    "info": "Angular women’s silhouette; logo detail",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 104,
+    "brand": "Fendi",
+    "model": "FE40233I",
+    "shape": "Geometric",
+    "info": "Runway-led acetate statement frame",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 105,
+    "brand": "Fendi",
+    "model": "FE4076US Fendi First",
+    "shape": "Oversized square",
+    "info": "Fendi First detail; high-fashion styling",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 106,
+    "brand": "Miu Miu",
+    "model": "MU 11WS",
+    "shape": "Oversized rectangular",
+    "info": "Logo temple; women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 107,
+    "brand": "Miu Miu",
+    "model": "MU 11ZS",
+    "shape": "Cat-eye / rectangular",
+    "info": "Women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 108,
+    "brand": "Miu Miu",
+    "model": "MU 56ZS",
+    "shape": "Metal oval",
+    "info": "Women",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 109,
+    "brand": "Miu Miu",
+    "model": "MU A03S",
+    "shape": "Oval",
+    "info": "Fashion-forward",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 110,
+    "brand": "Miu Miu",
+    "model": "MU 09WS",
+    "shape": "Oversized",
+    "info": "Strong logo aesthetic",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 111,
+    "brand": "Miu Miu",
+    "model": "MU A04S",
+    "shape": "Narrow oval",
+    "info": "Y2K/trend",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 112,
+    "brand": "Miu Miu",
+    "model": "MU A06S",
+    "shape": "Rectangular",
+    "info": "Modern",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 113,
+    "brand": "Miu Miu",
+    "model": "MU 01ZS",
+    "shape": "Cat-eye",
+    "info": "Feminine",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 114,
+    "brand": "Miu Miu",
+    "model": "MU 04ZS",
+    "shape": "Oval",
+    "info": "Retro",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 115,
+    "brand": "Miu Miu",
+    "model": "Miu Regard",
+    "shape": "Narrow rectangular",
+    "info": "Runway/fashion aesthetic",
+    "tier": "Core bestseller / iconic"
+  },
+  {
+    "n": 116,
+    "brand": "Miu Miu",
+    "model": "MU A07S",
+    "shape": "Slim oval",
+    "info": "Y2K oval silhouette; logo temple",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 117,
+    "brand": "Miu Miu",
+    "model": "MU A08S",
+    "shape": "Rectangular",
+    "info": "Low-profile acetate; runway-led",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 118,
+    "brand": "Miu Miu",
+    "model": "MU A09S",
+    "shape": "Cat-eye",
+    "info": "Sharp feminine shape; fashion-forward",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 119,
+    "brand": "Miu Miu",
+    "model": "MU B01S",
+    "shape": "Oversized oval",
+    "info": "Statement acetate; women",
+    "tier": "Trending / high demand"
+  },
+  {
+    "n": 120,
+    "brand": "Miu Miu",
+    "model": "MU B06S",
+    "shape": "Narrow rectangular",
+    "info": "New-season slim shape; trend-focused",
+    "tier": "Trending / high demand"
+  }
+]

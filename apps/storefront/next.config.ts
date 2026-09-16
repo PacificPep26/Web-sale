@@ -6,6 +6,7 @@ const backend = new URL(
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  output: "standalone",
   // we keep our own AGENTS.md at the repo root
   agentRules: false,
   images: {

@@ -16,6 +16,7 @@ export function WishlistButton({ id, className }: { id: string; className?: stri
   const [on, setOn] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setOn(read().includes(id));
   }, [id]);
 

@@ -197,9 +197,21 @@ export function ProductDetails({
         >
           {cta}
         </button>
-        <p className="mt-4 text-xs uppercase tracking-[0.1em] text-muted">
-          Ships from the US · 2–7 business days · 30-day returns
-        </p>
+        {/* Luxury Trust Badges */}
+        <div className="mt-6 grid grid-cols-3 gap-2 border-y border-token py-3 text-center text-[0.72rem] tracking-[0.06em] text-muted uppercase">
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-base">🛡️</span>
+            <span>100% Authentic</span>
+          </div>
+          <div className="flex flex-col items-center gap-1 border-x border-token">
+            <span className="text-base">✈️</span>
+            <span>Express Shipping</span>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-base">🔄</span>
+            <span>30-Day Returns</span>
+          </div>
+        </div>
 
         {niche === "eyewear" && canTryOn && (
           <button
@@ -210,17 +222,39 @@ export function ProductDetails({
           </button>
         )}
 
-        <div className="mt-10 border-t border-token">
+        <div className="mt-8 border-t border-token">
           {product.description && (
             <details className="border-b border-token py-4" open>
               <summary className="cursor-pointer list-none text-sm font-medium uppercase tracking-[0.08em]">
-                Details
+                Details &amp; Description
               </summary>
               <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-muted">
                 {product.description}
               </p>
             </details>
           )}
+
+          {/* Craftsmanship & Specs Accordion */}
+          <details className="border-b border-token py-4" open>
+            <summary className="cursor-pointer list-none text-sm font-medium uppercase tracking-[0.08em]">
+              Craftsmanship &amp; Specifications
+            </summary>
+            <ul className="mt-3 space-y-2 text-xs leading-relaxed text-muted">
+              <li className="flex items-center gap-2">
+                <span className="font-semibold text-token">Lens Protection:</span> 100% UV400 Protection (UVA/UVB filter)
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="font-semibold text-token">Frame Material:</span> Premium Hand-Finished Italian/Japanese Acetate &amp; Light Alloys
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="font-semibold text-token">Hinge &amp; Hardware:</span> Reinforced Custom Luxury Hinges
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="font-semibold text-token">In the Box:</span> Hard Protective Case, Microfiber Pouch &amp; Cleaning Cloth
+              </li>
+            </ul>
+          </details>
+
           <details className="border-b border-token py-4">
             <summary className="cursor-pointer list-none text-sm font-medium uppercase tracking-[0.08em]">
               Shipping &amp; returns
