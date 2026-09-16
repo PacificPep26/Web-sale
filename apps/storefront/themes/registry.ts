@@ -158,14 +158,14 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       },
     ],
     brands: [
-      { label: "Jacques Marie Mage", image: "/images/sunglasses/sun-jacques-marie-mage-enzo.jpg", href: "/collections/eyewear?brand=jacques-marie-mage" },
-      { label: "Miu Miu", image: "/images/sunglasses/sun-miu-miu-mu-11ws.jpg", href: "/collections/eyewear?brand=miu-miu" },
+      { label: "Jacques Marie Mage", image: "/images/sunglasses/sun-jacques-marie-mage-ashcroft.jpg", href: "/collections/eyewear?brand=jacques-marie-mage" },
+      { label: "Miu Miu", image: "/images/sunglasses/sun-miu-miu-miu-regard.jpg", href: "/collections/eyewear?brand=miu-miu" },
       { label: "Fendi", image: "/images/sunglasses/sun-fendi-fe40005u.jpg", href: "/collections/eyewear?brand=fendi" },
       { label: "Gucci", image: "/images/sunglasses/sun-gucci-gg0010s.jpg", href: "/collections/eyewear?brand=gucci" },
-      { label: "Cartier", image: "/images/sunglasses/sun-cartier-santos-de-cartier-esw00675.jpg", href: "/collections/eyewear?brand=cartier" },
-      { label: "Tom Ford", image: "/images/sunglasses/sun-tom-ford-snowdon-ft0237.jpg", href: "/collections/eyewear?brand=tom-ford" },
-      { label: "Prada", image: "/images/sunglasses/sun-prada-pr-17ws.jpg", href: "/collections/eyewear?brand=prada" },
-      { label: "Chrome Hearts", image: "/images/sunglasses/sun-chrome-hearts-box-officer.jpg", href: "/collections/eyewear?brand=chrome-hearts" },
+      { label: "Cartier", image: "/images/sunglasses/sun-cartier-c-allonge-de-cartier.jpg", href: "/collections/eyewear?brand=cartier" },
+      { label: "Tom Ford", image: "/images/sunglasses/sun-tom-ford-anoushka-ft0371.jpg", href: "/collections/eyewear?brand=tom-ford" },
+      { label: "Prada", image: "/images/sunglasses/sun-prada-pr-14ys.jpg", href: "/collections/eyewear?brand=prada" },
+      { label: "Chrome Hearts", image: "/images/sunglasses/sun-chrome-hearts-99-eyes-matty-boy.jpg", href: "/collections/eyewear?brand=chrome-hearts" },
     ],
     editorial: {
       image:
