@@ -158,50 +158,52 @@ export default async function HomePage() {
       </section>
     ) : null,
     brands: theme.brands?.length ? (
-      <section key="brands" className="w-full">
-        {theme.brands.map((b) => (
-          <Link
-            key={b.label}
-            href={b.href}
-            className="group relative flex h-72 w-full items-center overflow-hidden border-b border-white/10 bg-black last:border-b-0 sm:h-96 md:h-[32rem]"
-          >
-            <Image
-              src={b.image}
-              alt=""
-              fill
-              sizes="100vw"
-              priority={false}
-              className="object-cover object-center transition-transform duration-700 ease-[var(--ease)] group-hover:scale-105"
-            />
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{ background: "linear-gradient(to right, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.55) 32%, rgba(10,10,10,0.05) 60%)" }}
-            />
-            <div
-              className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-              style={{ boxShadow: "inset 0 0 0 1px rgba(184,137,74,0.55)" }}
-            />
-            <div className="relative z-10 px-6 text-white sm:px-10 md:px-14">
-              <p
-                className="text-2xl leading-none sm:text-3xl md:text-4xl"
-                style={{
-                  fontFamily: b.font,
-                  fontStyle: b.italic ? "italic" : "normal",
-                  fontWeight: 600,
-                  textShadow: "0 2px 16px rgba(0,0,0,0.45)",
-                }}
-              >
-                {b.label}
-              </p>
-              <p className="mt-3 flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-white/85 sm:text-[11px]">
-                Explore collection
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
-                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </p>
-            </div>
-          </Link>
-        ))}
+      <section key="brands" className="w-full bg-[#0a0a0a]">
+        <div className="mx-auto w-full max-w-[620px] border-x border-white/10 shadow-2xl">
+          {theme.brands.map((b) => (
+            <Link
+              key={b.label}
+              href={b.href}
+              className="group relative flex h-64 sm:h-72 md:h-[280px] w-full items-center overflow-hidden border-b border-white/10 bg-black last:border-b-0"
+            >
+              <Image
+                src={b.image}
+                alt=""
+                fill
+                sizes="(max-width: 640px) 100vw, 620px"
+                priority={false}
+                className="object-cover object-center transition-transform duration-700 ease-[var(--ease)] group-hover:scale-105"
+              />
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{ background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.55) 35%, rgba(10,10,10,0.1) 70%)" }}
+              />
+              <div
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                style={{ boxShadow: "inset 0 0 0 1px rgba(184,137,74,0.55)" }}
+              />
+              <div className="relative z-10 px-6 text-white sm:px-8">
+                <p
+                  className="text-2xl leading-none sm:text-3xl"
+                  style={{
+                    fontFamily: b.font,
+                    fontStyle: b.italic ? "italic" : "normal",
+                    fontWeight: 600,
+                    textShadow: "0 2px 16px rgba(0,0,0,0.45)",
+                  }}
+                >
+                  {b.label}
+                </p>
+                <p className="mt-3 flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-white/85 sm:text-[11px]">
+                  Explore collection
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
     ) : null,
     featured: featured.length ? (
