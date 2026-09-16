@@ -52,7 +52,7 @@ const slug = (s: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
-type Row = { n: number; brand: string; model: string; shape: string; info: string; tier: string };
+type Row = { n: number; brand: string; model: string; shape: string; info: string; tier: string; image?: string };
 const rows = sunglassesData as Row[];
 
 const PRICE = 350.0;
@@ -61,12 +61,13 @@ const DEFS = rows.map((r) => {
   const handle = `sun-${slug(r.brand)}-${slug(r.model)}`;
   const title = `${r.brand} ${r.model}`;
   const description = [r.shape, r.info, r.tier].filter(Boolean).join(" — ");
+  const images = r.image ? [{ url: r.image }] : img2(r.n);
   return {
     title,
     handle,
     description,
     weight: 30,
-    images: img2(r.n),
+    images,
     skuPrefix: `SUN-${slug(r.brand).slice(0, 4).toUpperCase()}-${r.n}`,
   };
 });

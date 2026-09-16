@@ -5,7 +5,9 @@
     "model": "ENZO",
     "shape": "Oversized square",
     "info": "Unisex; acetate; signature 7-barrel hinge",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-jacques-marie-mage-enzo",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-enzo.jpg"
   },
   {
     "n": 2,
@@ -13,7 +15,9 @@
     "model": "MOLINO",
     "shape": "Rectangular / square",
     "info": "Unisex; bold acetate",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-jacques-marie-mage-molino",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-molino.jpg"
   },
   {
     "n": 3,
@@ -21,7 +25,9 @@
     "model": "DEALAN 53",
     "shape": "Square",
     "info": "Acetate; larger Dealan silhouette",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-jacques-marie-mage-dealan-53",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-dealan-53.jpg"
   },
   {
     "n": 4,
@@ -29,7 +35,9 @@
     "model": "WALKER",
     "shape": "Square",
     "info": "Acetate; masculine/unisex",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-jacques-marie-mage-walker",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-walker.jpg"
   },
   {
     "n": 5,
@@ -37,7 +45,9 @@
     "model": "DEALAN",
     "shape": "Square",
     "info": "Iconic acetate silhouette",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-jacques-marie-mage-dealan",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-dealan.jpg"
   },
   {
     "n": 6,
@@ -45,7 +55,9 @@
     "model": "SILVERTON",
     "shape": "Aviator",
     "info": "Metal/titanium aesthetic",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-jacques-marie-mage-silverton",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-silverton.jpg"
   },
   {
     "n": 7,
@@ -53,7 +65,9 @@
     "model": "ZEPHIRIN",
     "shape": "Panto / round-square",
     "info": "Acetate; iconic JMM",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-jacques-marie-mage-zephirin",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-zephirin.jpg"
   },
   {
     "n": 8,
@@ -61,7 +75,9 @@
     "model": "FELLINI",
     "shape": "Oversized square",
     "info": "Thick acetate statement frame",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-jacques-marie-mage-fellini",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-fellini.jpg"
   },
   {
     "n": 9,
@@ -69,7 +85,9 @@
     "model": "MOLINO 55",
     "shape": "Square",
     "info": "Large Molino acetate frame",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-jacques-marie-mage-molino-55",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-molino-55.jpg"
   },
   {
     "n": 10,
@@ -77,7 +95,9 @@
     "model": "TORINO",
     "shape": "Rectangular",
     "info": "Acetate; unisex",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-jacques-marie-mage-torino",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-torino.jpg"
   },
   {
     "n": 11,
@@ -85,7 +105,9 @@
     "model": "VENDOME",
     "shape": "Square / navigator",
     "info": "Bold acetate; sculpted brow; collector demand",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-jacques-marie-mage-vendome",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-vendome.jpg"
   },
   {
     "n": 12,
@@ -93,7 +115,9 @@
     "model": "STURGES",
     "shape": "Rectangular",
     "info": "Thick acetate; strong unisex silhouette",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-jacques-marie-mage-sturges",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-sturges.jpg"
   },
   {
     "n": 13,
@@ -101,7 +125,9 @@
     "model": "YVES",
     "shape": "Oversized square",
     "info": "1970s-inspired statement frame",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-jacques-marie-mage-yves",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-yves.jpg"
   },
   {
     "n": 14,
@@ -109,7 +135,9 @@
     "model": "ASHCROFT",
     "shape": "Square",
     "info": "Structured acetate; vintage Hollywood influence",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-jacques-marie-mage-ashcroft",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-ashcroft.jpg"
   },
   {
     "n": 15,
@@ -117,7 +145,9 @@
     "model": "FONTAINE",
     "shape": "Cat-eye / upswept",
     "info": "Fashion-forward acetate; strong editorial appeal",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-jacques-marie-mage-fontaine",
+    "image": "/images/sunglasses/sun-jacques-marie-mage-fontaine.jpg"
   },
   {
     "n": 16,
@@ -125,7 +155,9 @@
     "model": "PR 17WS",
     "shape": "Geometric / oversized",
     "info": "Acetate; women/unisex",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-prada-pr-17ws",
+    "image": "/images/sunglasses/sun-prada-pr-17ws.jpg"
   },
   {
     "n": 17,
@@ -133,7 +165,9 @@
     "model": "PR 15WS",
     "shape": "Rectangular / oversized",
     "info": "Acetate; Prada lettering logo",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-prada-pr-15ws",
+    "image": "/images/sunglasses/sun-prada-pr-15ws.jpg"
   },
   {
     "n": 18,
@@ -141,7 +175,9 @@
     "model": "PR 14YS",
     "shape": "Geometric / cat-eye",
     "info": "Acetate; women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-prada-pr-14ys",
+    "image": "/images/sunglasses/sun-prada-pr-14ys.jpg"
   },
   {
     "n": 19,
@@ -149,7 +185,9 @@
     "model": "PR 16WS",
     "shape": "Rectangular",
     "info": "Acetate; women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-prada-pr-16ws",
+    "image": "/images/sunglasses/sun-prada-pr-16ws.jpg"
   },
   {
     "n": 20,
@@ -157,7 +195,9 @@
     "model": "PR 19WS",
     "shape": "Oversized square",
     "info": "Acetate; women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-prada-pr-19ws",
+    "image": "/images/sunglasses/sun-prada-pr-19ws.jpg"
   },
   {
     "n": 21,
@@ -165,7 +205,9 @@
     "model": "PR A09S",
     "shape": "Bold rectangular",
     "info": "Contemporary acetate",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-prada-pr-a09s",
+    "image": "/images/sunglasses/sun-prada-pr-a09s.jpg"
   },
   {
     "n": 22,
@@ -173,7 +215,9 @@
     "model": "PR A06S",
     "shape": "Narrow rectangular",
     "info": "Fashion-forward",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-prada-pr-a06s",
+    "image": "/images/sunglasses/sun-prada-pr-a06s.jpg"
   },
   {
     "n": 23,
@@ -181,7 +225,9 @@
     "model": "PR 24ZS",
     "shape": "Cat-eye",
     "info": "Women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-prada-pr-24zs",
+    "image": "/images/sunglasses/sun-prada-pr-24zs.jpg"
   },
   {
     "n": 24,
@@ -189,7 +235,9 @@
     "model": "PR 26ZS",
     "shape": "Rectangular",
     "info": "Women/unisex",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-prada-pr-26zs",
+    "image": "/images/sunglasses/sun-prada-pr-26zs.jpg"
   },
   {
     "n": 25,
@@ -197,7 +245,9 @@
     "model": "PR B01S",
     "shape": "Contemporary rectangular",
     "info": "Women/unisex",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-prada-pr-b01s",
+    "image": "/images/sunglasses/sun-prada-pr-b01s.jpg"
   },
   {
     "n": 26,
@@ -205,7 +255,9 @@
     "model": "PR B17S",
     "shape": "Slim oval",
     "info": "Runway-led oval shape; women/unisex",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-prada-pr-b17s",
+    "image": "/images/sunglasses/sun-prada-pr-b17s.jpg"
   },
   {
     "n": 27,
@@ -213,7 +265,9 @@
     "model": "PR B09S",
     "shape": "Rectangular",
     "info": "Bold acetate; modern logo temple",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-prada-pr-b09s",
+    "image": "/images/sunglasses/sun-prada-pr-b09s.jpg"
   },
   {
     "n": 28,
@@ -221,7 +275,9 @@
     "model": "PR A19S",
     "shape": "Geometric cat-eye",
     "info": "Angular acetate; fashion-forward",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-prada-pr-a19s",
+    "image": "/images/sunglasses/sun-prada-pr-a19s.jpg"
   },
   {
     "n": 29,
@@ -229,7 +285,9 @@
     "model": "PR A16S",
     "shape": "Oversized square",
     "info": "Statement acetate; women",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-prada-pr-a16s",
+    "image": "/images/sunglasses/sun-prada-pr-a16s.jpg"
   },
   {
     "n": 30,
@@ -237,7 +295,9 @@
     "model": "PR C01S",
     "shape": "Narrow rectangular",
     "info": "New-season slim silhouette; unisex",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-prada-pr-c01s",
+    "image": "/images/sunglasses/sun-prada-pr-c01s.jpg"
   },
   {
     "n": 31,
@@ -245,7 +305,9 @@
     "model": "Snowdon FT0237",
     "shape": "Square",
     "info": "Iconic acetate; men/unisex",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-tom-ford-snowdon-ft0237",
+    "image": "/images/sunglasses/sun-tom-ford-snowdon-ft0237.jpg"
   },
   {
     "n": 32,
@@ -253,7 +315,9 @@
     "model": "Henry FT0248",
     "shape": "Browline / clubmaster",
     "info": "Men/unisex",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-tom-ford-henry-ft0248",
+    "image": "/images/sunglasses/sun-tom-ford-henry-ft0248.jpg"
   },
   {
     "n": 33,
@@ -261,7 +325,9 @@
     "model": "Whitney FT0009",
     "shape": "Oversized butterfly",
     "info": "Women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-tom-ford-whitney-ft0009",
+    "image": "/images/sunglasses/sun-tom-ford-whitney-ft0009.jpg"
   },
   {
     "n": 34,
@@ -269,7 +335,9 @@
     "model": "Jennifer FT0008",
     "shape": "Oversized",
     "info": "Women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-tom-ford-jennifer-ft0008",
+    "image": "/images/sunglasses/sun-tom-ford-jennifer-ft0008.jpg"
   },
   {
     "n": 35,
@@ -277,7 +345,9 @@
     "model": "Anoushka FT0371",
     "shape": "Cat-eye",
     "info": "Women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-tom-ford-anoushka-ft0371",
+    "image": "/images/sunglasses/sun-tom-ford-anoushka-ft0371.jpg"
   },
   {
     "n": 36,
@@ -285,7 +355,9 @@
     "model": "Fausto FT0711",
     "shape": "Bold square",
     "info": "Men/unisex",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-tom-ford-fausto-ft0711",
+    "image": "/images/sunglasses/sun-tom-ford-fausto-ft0711.jpg"
   },
   {
     "n": 37,
@@ -293,7 +365,9 @@
     "model": "Stephenson FT0775",
     "shape": "Aviator",
     "info": "Men/unisex",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-tom-ford-stephenson-ft0775",
+    "image": "/images/sunglasses/sun-tom-ford-stephenson-ft0775.jpg"
   },
   {
     "n": 38,
@@ -301,7 +375,9 @@
     "model": "FT1044",
     "shape": "Oversized contemporary",
     "info": "Acetate",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-tom-ford-ft1044",
+    "image": "/images/sunglasses/sun-tom-ford-ft1044.jpg"
   },
   {
     "n": 39,
@@ -309,7 +385,9 @@
     "model": "FT1083",
     "shape": "Modern acetate",
     "info": "Rectangular",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-tom-ford-ft1083",
+    "image": "/images/sunglasses/sun-tom-ford-ft1083.jpg"
   },
   {
     "n": 40,
@@ -317,7 +395,9 @@
     "model": "FT1108",
     "shape": "Contemporary luxury",
     "info": "Modern silhouette",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-tom-ford-ft1108",
+    "image": "/images/sunglasses/sun-tom-ford-ft1108.jpg"
   },
   {
     "n": 41,
@@ -325,7 +405,9 @@
     "model": "FT1177",
     "shape": "Aviator",
     "info": "Metal pilot profile; refined unisex style",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-tom-ford-ft1177",
+    "image": "/images/sunglasses/sun-tom-ford-ft1177.jpg"
   },
   {
     "n": 42,
@@ -333,7 +415,9 @@
     "model": "FT1188",
     "shape": "Bold square",
     "info": "Thick acetate and signature T hardware",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-tom-ford-ft1188",
+    "image": "/images/sunglasses/sun-tom-ford-ft1188.jpg"
   },
   {
     "n": 43,
@@ -341,7 +425,9 @@
     "model": "FT1195-D",
     "shape": "Rectangular",
     "info": "Asian-fit option; contemporary acetate",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-tom-ford-ft1195-d",
+    "image": "/images/sunglasses/sun-tom-ford-ft1195-d.jpg"
   },
   {
     "n": 44,
@@ -349,7 +435,9 @@
     "model": "FT1233",
     "shape": "Oversized butterfly",
     "info": "Glamorous women’s statement silhouette",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-tom-ford-ft1233",
+    "image": "/images/sunglasses/sun-tom-ford-ft1233.jpg"
   },
   {
     "n": 45,
@@ -357,7 +445,9 @@
     "model": "FT1242",
     "shape": "Slim rectangular",
     "info": "Minimal 1990s-inspired profile",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-tom-ford-ft1242",
+    "image": "/images/sunglasses/sun-tom-ford-ft1242.jpg"
   },
   {
     "n": 46,
@@ -365,7 +455,9 @@
     "model": "GG0010S",
     "shape": "Wayfarer",
     "info": "Acetate; iconic Gucci",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-gucci-gg0010s",
+    "image": "/images/sunglasses/sun-gucci-gg0010s.jpg"
   },
   {
     "n": 47,
@@ -373,7 +465,9 @@
     "model": "GG0022S",
     "shape": "Cat-eye / rectangular",
     "info": "Acetate; GG detailing",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-gucci-gg0022s",
+    "image": "/images/sunglasses/sun-gucci-gg0022s.jpg"
   },
   {
     "n": 48,
@@ -381,7 +475,9 @@
     "model": "GG0529S",
     "shape": "Aviator",
     "info": "Metal; oversized",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-gucci-gg0529s",
+    "image": "/images/sunglasses/sun-gucci-gg0529s.jpg"
   },
   {
     "n": 49,
@@ -389,7 +485,9 @@
     "model": "GG0879S",
     "shape": "Aviator",
     "info": "Metal luxury look",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-gucci-gg0879s",
+    "image": "/images/sunglasses/sun-gucci-gg0879s.jpg"
   },
   {
     "n": 50,
@@ -397,7 +495,9 @@
     "model": "GG0926S",
     "shape": "Square",
     "info": "Acetate",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-gucci-gg0926s",
+    "image": "/images/sunglasses/sun-gucci-gg0926s.jpg"
   },
   {
     "n": 51,
@@ -405,7 +505,9 @@
     "model": "GG1338S",
     "shape": "Rectangular",
     "info": "Vintage-inspired",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-gucci-gg1338s",
+    "image": "/images/sunglasses/sun-gucci-gg1338s.jpg"
   },
   {
     "n": 52,
@@ -413,7 +515,9 @@
     "model": "GG1661S",
     "shape": "Square / cat-eye",
     "info": "Women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-gucci-gg1661s",
+    "image": "/images/sunglasses/sun-gucci-gg1661s.jpg"
   },
   {
     "n": 53,
@@ -421,7 +525,9 @@
     "model": "GG1714S",
     "shape": "Rectangular",
     "info": "Contemporary",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-gucci-gg1714s",
+    "image": "/images/sunglasses/sun-gucci-gg1714s.jpg"
   },
   {
     "n": 54,
@@ -429,7 +535,9 @@
     "model": "GG1829SK",
     "shape": "Narrow rectangular",
     "info": "Trend-driven",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-gucci-gg1829sk",
+    "image": "/images/sunglasses/sun-gucci-gg1829sk.jpg"
   },
   {
     "n": 55,
@@ -437,7 +545,9 @@
     "model": "GG1861S",
     "shape": "Rectangular",
     "info": "Available in polarized variants",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-gucci-gg1861s",
+    "image": "/images/sunglasses/sun-gucci-gg1861s.jpg"
   },
   {
     "n": 56,
@@ -445,7 +555,9 @@
     "model": "GG1854S",
     "shape": "Oversized square",
     "info": "Bold acetate with prominent GG branding",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-gucci-gg1854s",
+    "image": "/images/sunglasses/sun-gucci-gg1854s.jpg"
   },
   {
     "n": 57,
@@ -453,7 +565,9 @@
     "model": "GG1888S",
     "shape": "Narrow oval",
     "info": "Retro-futurist shape; trend-focused",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-gucci-gg1888s",
+    "image": "/images/sunglasses/sun-gucci-gg1888s.jpg"
   },
   {
     "n": 58,
@@ -461,7 +575,9 @@
     "model": "GG1926S",
     "shape": "Rectangular",
     "info": "Clean unisex acetate silhouette",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-gucci-gg1926s",
+    "image": "/images/sunglasses/sun-gucci-gg1926s.jpg"
   },
   {
     "n": 59,
@@ -469,7 +585,9 @@
     "model": "GG1940S",
     "shape": "Cat-eye",
     "info": "Sharp feminine profile; logo temples",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-gucci-gg1940s",
+    "image": "/images/sunglasses/sun-gucci-gg1940s.jpg"
   },
   {
     "n": 60,
@@ -477,7 +595,9 @@
     "model": "GG1975S",
     "shape": "Pilot / aviator",
     "info": "Metal frame; contemporary luxury styling",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-gucci-gg1975s",
+    "image": "/images/sunglasses/sun-gucci-gg1975s.jpg"
   },
   {
     "n": 61,
@@ -485,7 +605,9 @@
     "model": "Box Officer",
     "shape": "Square / rectangular",
     "info": "Bold acetate; CH hardware",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-chrome-hearts-box-officer",
+    "image": "/images/sunglasses/sun-chrome-hearts-box-officer.jpg"
   },
   {
     "n": 62,
@@ -493,7 +615,9 @@
     "model": "Vagillionaire II",
     "shape": "Square",
     "info": "Acetate + signature hardware",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-chrome-hearts-vagillionaire-ii",
+    "image": "/images/sunglasses/sun-chrome-hearts-vagillionaire-ii.jpg"
   },
   {
     "n": 63,
@@ -501,7 +625,9 @@
     "model": "Dooable",
     "shape": "Rectangular",
     "info": "Bold acetate",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-chrome-hearts-dooable",
+    "image": "/images/sunglasses/sun-chrome-hearts-dooable.jpg"
   },
   {
     "n": 64,
@@ -509,7 +635,9 @@
     "model": "Rump",
     "shape": "Geometric",
     "info": "Statement frame",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-chrome-hearts-rump",
+    "image": "/images/sunglasses/sun-chrome-hearts-rump.jpg"
   },
   {
     "n": 65,
@@ -517,7 +645,9 @@
     "model": "Dick Fitzener",
     "shape": "Rectangular",
     "info": "Bold luxury",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-chrome-hearts-dick-fitzener",
+    "image": "/images/sunglasses/sun-chrome-hearts-dick-fitzener.jpg"
   },
   {
     "n": 66,
@@ -525,7 +655,9 @@
     "model": "Lilith",
     "shape": "Square",
     "info": "Women/unisex",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-chrome-hearts-lilith",
+    "image": "/images/sunglasses/sun-chrome-hearts-lilith.jpg"
   },
   {
     "n": 67,
@@ -533,7 +665,9 @@
     "model": "Lowrider",
     "shape": "Oval",
     "info": "Fashion-forward",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-chrome-hearts-lowrider",
+    "image": "/images/sunglasses/sun-chrome-hearts-lowrider.jpg"
   },
   {
     "n": 68,
@@ -541,7 +675,9 @@
     "model": "Zelda",
     "shape": "Rectangular",
     "info": "Acetate",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-chrome-hearts-zelda",
+    "image": "/images/sunglasses/sun-chrome-hearts-zelda.jpg"
   },
   {
     "n": 69,
@@ -549,7 +685,9 @@
     "model": "99 Eyes / Matty Boy",
     "shape": "Statement",
     "info": "Collector/collaboration style",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-chrome-hearts-99-eyes-matty-boy",
+    "image": "/images/sunglasses/sun-chrome-hearts-99-eyes-matty-boy.jpg"
   },
   {
     "n": 70,
@@ -557,7 +695,9 @@
     "model": "Spreader",
     "shape": "Geometric",
     "info": "Signature CH hardware aesthetic",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-chrome-hearts-spreader",
+    "image": "/images/sunglasses/sun-chrome-hearts-spreader.jpg"
   },
   {
     "n": 71,
@@ -565,7 +705,9 @@
     "model": "SLUNTRADICTION",
     "shape": "Square",
     "info": "Bold acetate with signature silver hardware",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-chrome-hearts-sluntradiction",
+    "image": "/images/sunglasses/sun-chrome-hearts-sluntradiction.jpg"
   },
   {
     "n": 72,
@@ -573,7 +715,9 @@
     "model": "GITTIN ANY?",
     "shape": "Rectangular",
     "info": "Chunky collector-favorite silhouette",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-chrome-hearts-gittin-any",
+    "image": "/images/sunglasses/sun-chrome-hearts-gittin-any.jpg"
   },
   {
     "n": 73,
@@ -581,7 +725,9 @@
     "model": "PILLS III",
     "shape": "Round / panto",
     "info": "Distinctive luxury hardware; unisex",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-chrome-hearts-pills-iii",
+    "image": "/images/sunglasses/sun-chrome-hearts-pills-iii.jpg"
   },
   {
     "n": 74,
@@ -589,7 +735,9 @@
     "model": "BJORN AGAIN",
     "shape": "Aviator",
     "info": "Metal pilot frame; rock-luxury aesthetic",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-chrome-hearts-bjorn-again",
+    "image": "/images/sunglasses/sun-chrome-hearts-bjorn-again.jpg"
   },
   {
     "n": 75,
@@ -597,7 +745,9 @@
     "model": "BEAST II",
     "shape": "Oversized square",
     "info": "Heavy acetate statement frame",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-chrome-hearts-beast-ii",
+    "image": "/images/sunglasses/sun-chrome-hearts-beast-ii.jpg"
   },
   {
     "n": 76,
@@ -605,7 +755,9 @@
     "model": "Santos de Cartier ESW00675",
     "shape": "Round",
     "info": "Platinum-finish metal; blue lenses; 51-21-145",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-cartier-santos-de-cartier-esw00675",
+    "image": "/images/sunglasses/sun-cartier-santos-de-cartier-esw00675.jpg"
   },
   {
     "n": 77,
@@ -613,7 +765,9 @@
     "model": "Santos de Cartier ESW00436",
     "shape": "Rectangular",
     "info": "Golden-finish metal; gray lenses; 58-17-140",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-cartier-santos-de-cartier-esw00436",
+    "image": "/images/sunglasses/sun-cartier-santos-de-cartier-esw00436.jpg"
   },
   {
     "n": 78,
@@ -621,7 +775,9 @@
     "model": "Santos de Cartier ESW00769",
     "shape": "Rectangular",
     "info": "Platinum finish + black rubber; polarized; 55-20-145",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-cartier-santos-de-cartier-esw00769",
+    "image": "/images/sunglasses/sun-cartier-santos-de-cartier-esw00769.jpg"
   },
   {
     "n": 79,
@@ -629,7 +785,9 @@
     "model": "Santos de Cartier ESW00705",
     "shape": "Square",
     "info": "Dark ruthenium/black PVD; polarized; 56-21-145",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-cartier-santos-de-cartier-esw00705",
+    "image": "/images/sunglasses/sun-cartier-santos-de-cartier-esw00705.jpg"
   },
   {
     "n": 80,
@@ -637,7 +795,9 @@
     "model": "Panthère de Cartier",
     "shape": "Cat-eye / metal",
     "info": "Jewelry-inspired panther detailing",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-cartier-panth-re-de-cartier",
+    "image": "/images/sunglasses/sun-cartier-panth-re-de-cartier.jpg"
   },
   {
     "n": 81,
@@ -645,7 +805,9 @@
     "model": "Signature C de Cartier",
     "shape": "Pilot / rectangular",
     "info": "Titanium; C motif",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-cartier-signature-c-de-cartier",
+    "image": "/images/sunglasses/sun-cartier-signature-c-de-cartier.jpg"
   },
   {
     "n": 82,
@@ -653,7 +815,9 @@
     "model": "Classic C Motif",
     "shape": "Pilot / aviator",
     "info": "Metal; classic C motif",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-cartier-classic-c-motif",
+    "image": "/images/sunglasses/sun-cartier-classic-c-motif.jpg"
   },
   {
     "n": 83,
@@ -661,7 +825,9 @@
     "model": "Clash de Cartier",
     "shape": "Fashion metal",
     "info": "Jewelry-inspired design",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-cartier-clash-de-cartier",
+    "image": "/images/sunglasses/sun-cartier-clash-de-cartier.jpg"
   },
   {
     "n": 84,
@@ -669,7 +835,9 @@
     "model": "Première de Cartier",
     "shape": "Aviator / rectangular",
     "info": "Luxury metal; precious variants",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-cartier-premi-re-de-cartier",
+    "image": "/images/sunglasses/sun-cartier-premi-re-de-cartier.jpg"
   },
   {
     "n": 85,
@@ -677,7 +845,9 @@
     "model": "C Allongé de Cartier",
     "shape": "Rimless / metal",
     "info": "Precious luxury eyewear",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-cartier-c-allong-de-cartier",
+    "image": "/images/sunglasses/sun-cartier-c-allong-de-cartier.jpg"
   },
   {
     "n": 86,
@@ -685,7 +855,9 @@
     "model": "CT0471S Santos de Cartier",
     "shape": "Pilot",
     "info": "Santos screw details; metal construction",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-cartier-ct0471s-santos-de-cartier",
+    "image": "/images/sunglasses/sun-cartier-ct0471s-santos-de-cartier.jpg"
   },
   {
     "n": 87,
@@ -693,7 +865,9 @@
     "model": "CT0511S Panthère de Cartier",
     "shape": "Cat-eye",
     "info": "Jewelry-inspired panther temple detail",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-cartier-ct0511s-panth-re-de-cartier",
+    "image": "/images/sunglasses/sun-cartier-ct0511s-panth-re-de-cartier.jpg"
   },
   {
     "n": 88,
@@ -701,7 +875,9 @@
     "model": "CT0434S Signature C",
     "shape": "Rectangular",
     "info": "Minimal metal frame with C motif",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-cartier-ct0434s-signature-c",
+    "image": "/images/sunglasses/sun-cartier-ct0434s-signature-c.jpg"
   },
   {
     "n": 89,
@@ -709,7 +885,9 @@
     "model": "CT0500S Première de Cartier",
     "shape": "Rimless",
     "info": "Lightweight precious-look rimless design",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-cartier-ct0500s-premi-re-de-cartier",
+    "image": "/images/sunglasses/sun-cartier-ct0500s-premi-re-de-cartier.jpg"
   },
   {
     "n": 90,
@@ -717,7 +895,9 @@
     "model": "CT0397S Décor C Allongé",
     "shape": "Navigator",
     "info": "Elongated C detail; luxury metal profile",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-cartier-ct0397s-d-cor-c-allong",
+    "image": "/images/sunglasses/sun-cartier-ct0397s-d-cor-c-allong.jpg"
   },
   {
     "n": 91,
@@ -725,7 +905,9 @@
     "model": "FE40005U",
     "shape": "Square",
     "info": "Logo-driven",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-fendi-fe40005u",
+    "image": "/images/sunglasses/sun-fendi-fe40005u.jpg"
   },
   {
     "n": 92,
@@ -733,7 +915,9 @@
     "model": "FE40006U",
     "shape": "Cat-eye",
     "info": "Women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-fendi-fe40006u",
+    "image": "/images/sunglasses/sun-fendi-fe40006u.jpg"
   },
   {
     "n": 93,
@@ -741,7 +925,9 @@
     "model": "FE40065I",
     "shape": "Rectangular",
     "info": "Contemporary",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-fendi-fe40065i",
+    "image": "/images/sunglasses/sun-fendi-fe40065i.jpg"
   },
   {
     "n": 94,
@@ -749,7 +935,9 @@
     "model": "FE40096I",
     "shape": "Oval / rectangular",
     "info": "Fashion",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-fendi-fe40096i",
+    "image": "/images/sunglasses/sun-fendi-fe40096i.jpg"
   },
   {
     "n": 95,
@@ -757,7 +945,9 @@
     "model": "FE40110I",
     "shape": "Narrow",
     "info": "Trend-driven",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-fendi-fe40110i",
+    "image": "/images/sunglasses/sun-fendi-fe40110i.jpg"
   },
   {
     "n": 96,
@@ -765,7 +955,9 @@
     "model": "FE40117I",
     "shape": "Geometric",
     "info": "Women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-fendi-fe40117i",
+    "image": "/images/sunglasses/sun-fendi-fe40117i.jpg"
   },
   {
     "n": 97,
@@ -773,7 +965,9 @@
     "model": "FE40130I",
     "shape": "Rectangular",
     "info": "Unisex",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-fendi-fe40130i",
+    "image": "/images/sunglasses/sun-fendi-fe40130i.jpg"
   },
   {
     "n": 98,
@@ -781,7 +975,9 @@
     "model": "FE40202I",
     "shape": "Bold acetate",
     "info": "Statement",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-fendi-fe40202i",
+    "image": "/images/sunglasses/sun-fendi-fe40202i.jpg"
   },
   {
     "n": 99,
@@ -789,7 +985,9 @@
     "model": "FE4075US First Crystal",
     "shape": "Oversized",
     "info": "Crystal detail / luxury",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-fendi-fe4075us-first-crystal",
+    "image": "/images/sunglasses/sun-fendi-fe4075us-first-crystal.jpg"
   },
   {
     "n": 100,
@@ -797,7 +995,9 @@
     "model": "Fendi First",
     "shape": "Geometric",
     "info": "Signature fashion line",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-fendi-fendi-first",
+    "image": "/images/sunglasses/sun-fendi-fendi-first.jpg"
   },
   {
     "n": 101,
@@ -805,7 +1005,9 @@
     "model": "FE40153I",
     "shape": "Narrow oval",
     "info": "Y2K-influenced acetate; women/unisex",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-fendi-fe40153i",
+    "image": "/images/sunglasses/sun-fendi-fe40153i.jpg"
   },
   {
     "n": 102,
@@ -813,7 +1015,9 @@
     "model": "FE40168I",
     "shape": "Rectangular",
     "info": "Bold temples and clean front profile",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-fendi-fe40168i",
+    "image": "/images/sunglasses/sun-fendi-fe40168i.jpg"
   },
   {
     "n": 103,
@@ -821,7 +1025,9 @@
     "model": "FE40195I",
     "shape": "Cat-eye",
     "info": "Angular women’s silhouette; logo detail",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-fendi-fe40195i",
+    "image": "/images/sunglasses/sun-fendi-fe40195i.jpg"
   },
   {
     "n": 104,
@@ -829,7 +1035,9 @@
     "model": "FE40233I",
     "shape": "Geometric",
     "info": "Runway-led acetate statement frame",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-fendi-fe40233i",
+    "image": "/images/sunglasses/sun-fendi-fe40233i.jpg"
   },
   {
     "n": 105,
@@ -837,7 +1045,9 @@
     "model": "FE4076US Fendi First",
     "shape": "Oversized square",
     "info": "Fendi First detail; high-fashion styling",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-fendi-fe4076us-fendi-first",
+    "image": "/images/sunglasses/sun-fendi-fe4076us-fendi-first.jpg"
   },
   {
     "n": 106,
@@ -845,7 +1055,9 @@
     "model": "MU 11WS",
     "shape": "Oversized rectangular",
     "info": "Logo temple; women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-miu-miu-mu-11ws",
+    "image": "/images/sunglasses/sun-miu-miu-mu-11ws.jpg"
   },
   {
     "n": 107,
@@ -853,7 +1065,9 @@
     "model": "MU 11ZS",
     "shape": "Cat-eye / rectangular",
     "info": "Women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-miu-miu-mu-11zs",
+    "image": "/images/sunglasses/sun-miu-miu-mu-11zs.jpg"
   },
   {
     "n": 108,
@@ -861,7 +1075,9 @@
     "model": "MU 56ZS",
     "shape": "Metal oval",
     "info": "Women",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-miu-miu-mu-56zs",
+    "image": "/images/sunglasses/sun-miu-miu-mu-56zs.jpg"
   },
   {
     "n": 109,
@@ -869,7 +1085,9 @@
     "model": "MU A03S",
     "shape": "Oval",
     "info": "Fashion-forward",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-miu-miu-mu-a03s",
+    "image": "/images/sunglasses/sun-miu-miu-mu-a03s.jpg"
   },
   {
     "n": 110,
@@ -877,7 +1095,9 @@
     "model": "MU 09WS",
     "shape": "Oversized",
     "info": "Strong logo aesthetic",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-miu-miu-mu-09ws",
+    "image": "/images/sunglasses/sun-miu-miu-mu-09ws.jpg"
   },
   {
     "n": 111,
@@ -885,7 +1105,9 @@
     "model": "MU A04S",
     "shape": "Narrow oval",
     "info": "Y2K/trend",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-miu-miu-mu-a04s",
+    "image": "/images/sunglasses/sun-miu-miu-mu-a04s.jpg"
   },
   {
     "n": 112,
@@ -893,7 +1115,9 @@
     "model": "MU A06S",
     "shape": "Rectangular",
     "info": "Modern",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-miu-miu-mu-a06s",
+    "image": "/images/sunglasses/sun-miu-miu-mu-a06s.jpg"
   },
   {
     "n": 113,
@@ -901,7 +1125,9 @@
     "model": "MU 01ZS",
     "shape": "Cat-eye",
     "info": "Feminine",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-miu-miu-mu-01zs",
+    "image": "/images/sunglasses/sun-miu-miu-mu-01zs.jpg"
   },
   {
     "n": 114,
@@ -909,7 +1135,9 @@
     "model": "MU 04ZS",
     "shape": "Oval",
     "info": "Retro",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-miu-miu-mu-04zs",
+    "image": "/images/sunglasses/sun-miu-miu-mu-04zs.jpg"
   },
   {
     "n": 115,
@@ -917,7 +1145,9 @@
     "model": "Miu Regard",
     "shape": "Narrow rectangular",
     "info": "Runway/fashion aesthetic",
-    "tier": "Core bestseller / iconic"
+    "tier": "Core bestseller / iconic",
+    "handle": "sun-miu-miu-miu-regard",
+    "image": "/images/sunglasses/sun-miu-miu-miu-regard.jpg"
   },
   {
     "n": 116,
@@ -925,7 +1155,9 @@
     "model": "MU A07S",
     "shape": "Slim oval",
     "info": "Y2K oval silhouette; logo temple",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-miu-miu-mu-a07s",
+    "image": "/images/sunglasses/sun-miu-miu-mu-a07s.jpg"
   },
   {
     "n": 117,
@@ -933,7 +1165,9 @@
     "model": "MU A08S",
     "shape": "Rectangular",
     "info": "Low-profile acetate; runway-led",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-miu-miu-mu-a08s",
+    "image": "/images/sunglasses/sun-miu-miu-mu-a08s.jpg"
   },
   {
     "n": 118,
@@ -941,7 +1175,9 @@
     "model": "MU A09S",
     "shape": "Cat-eye",
     "info": "Sharp feminine shape; fashion-forward",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-miu-miu-mu-a09s",
+    "image": "/images/sunglasses/sun-miu-miu-mu-a09s.jpg"
   },
   {
     "n": 119,
@@ -949,7 +1185,9 @@
     "model": "MU B01S",
     "shape": "Oversized oval",
     "info": "Statement acetate; women",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-miu-miu-mu-b01s",
+    "image": "/images/sunglasses/sun-miu-miu-mu-b01s.jpg"
   },
   {
     "n": 120,
@@ -957,6 +1195,8 @@
     "model": "MU B06S",
     "shape": "Narrow rectangular",
     "info": "New-season slim shape; trend-focused",
-    "tier": "Trending / high demand"
+    "tier": "Trending / high demand",
+    "handle": "sun-miu-miu-mu-b06s",
+    "image": "/images/sunglasses/sun-miu-miu-mu-b06s.jpg"
   }
 ]
