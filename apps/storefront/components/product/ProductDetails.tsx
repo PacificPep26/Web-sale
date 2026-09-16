@@ -5,42 +5,43 @@ import Image from "next/image";
 import type { HttpTypes } from "@medusajs/types";
 import { addItem } from "@/lib/data/cart";
 import { formatMoney } from "@/lib/money";
-import { fromPrice, currencyOf } from "@/lib/data/products";
 import { WishlistButton } from "./WishlistButton";
-import { TryOnModal, type TryOnItem } from "./TryOnModal";
 import type { NicheKey } from "@/themes/registry";
-import poses from "@/lib/tryon-poses.json";
+import sunglasses120Handles from "@/lib/sunglasses-120-handles.json";
 
-// Product handles that have a full set of Gemini-composited "model wearing
-// these glasses" photos, one per face-visible pose in lib/tryon-poses.json
-// (see scripts/generate-worn-composites.mjs) — one unified pose set built
-// the same way for every product, not run for the whole catalogue yet.
-// Try-on only ever shows products in this set — no lower-quality fallback.
-const WORN_COMPOSITE_HANDLES = new Set<string>([
-  "blue-light-filter-glasses",
-  "heritage-square-sunglasses",
-]);
+// The 120-model luxury sunglasses catalogue has Gemini-composited "model
+// wearing these glasses" photos for two reference models (see
+// scripts/generate-victor-tryon.mjs) — these are additional product
+// photography, not a personalized try-on, so they're just extra gallery
+// images rather than a separate "Try It On" feature.
+const WORN_VICTOR_HANDLES = new Set<string>(sunglasses120Handles as string[]);
+const VICTOR_POSES = ["front", "left", "right"];
 
-function wornImagesFor(handle: string): Record<string, string> {
-  return Object.fromEntries(
-    poses.map((p) => [p.id, `/tryon/worn/${handle}-${p.id}.jpg`])
+function wornGalleryImagesFor(handle: string): { id: string; url: string }[] {
+  if (!WORN_VICTOR_HANDLES.has(handle)) return [];
+  return ["worn-victor", "worn-victor-male"].flatMap((dir) =>
+    VICTOR_POSES.map((pose) => ({
+      id: `${dir}-${pose}`,
+      url: `/tryon/${dir}/${handle}-${pose}.jpg`,
+    }))
   );
 }
 
 export function ProductDetails({
   product,
-  niche,
-  tryOnProducts,
 }: {
   product: HttpTypes.StoreProduct;
   niche?: NicheKey;
-  tryOnProducts?: HttpTypes.StoreProduct[];
 }) {
-  const images = product.images?.length
+  const baseImages = product.images?.length
     ? product.images
     : product.thumbnail
       ? [{ url: product.thumbnail, id: "thumb" }]
       : [];
+  const images = useMemo(
+    () => [...baseImages, ...wornGalleryImagesFor(product.handle)],
+    [baseImages, product.handle]
+  );
   const [activeImg, setActiveImg] = useState(0);
 
   const options = product.options ?? [];
@@ -67,30 +68,6 @@ export function ProductDetails({
 
   const [pending, startTransition] = useTransition();
   const [added, setAdded] = useState(false);
-  const [tryOnOpen, setTryOnOpen] = useState(false);
-
-  const tryOnItems: TryOnItem[] = useMemo(
-    () =>
-      (tryOnProducts ?? []).flatMap((p) => {
-        const img = p.thumbnail ?? p.images?.[0]?.url;
-        if (!img || !p.handle || !WORN_COMPOSITE_HANDLES.has(p.handle)) return [];
-        return [
-          {
-            id: p.id,
-            handle: p.handle,
-            variantId: p.variants?.[0]?.id,
-            title: p.title,
-            price: fromPrice(p),
-            currency: currencyOf(p),
-            image: img,
-            wornImages: wornImagesFor(p.handle),
-          },
-        ];
-      }),
-    [tryOnProducts]
-  );
-
-  const canTryOn = WORN_COMPOSITE_HANDLES.has(product.handle) && tryOnItems.length > 0;
 
   function handleAdd() {
     if (!variant) return;
@@ -112,38 +89,53 @@ export function ProductDetails({
           : "Add to bag";
 
   return (
-    <div className="container-page grid gap-10 py-8 pb-28 md:grid-cols-2 md:gap-16 md:py-14 md:pb-14">
+    <div className="container-page grid gap-10 py-8 pb-28 md:grid-cols-12 md:gap-14 md:py-14 md:pb-14">
       {/* gallery */}
-      <div>
-        <div className="relative aspect-square max-h-[38vh] overflow-hidden bg-card md:aspect-4/5 md:max-h-none">
-          {images[activeImg]?.url && (
-            <Image
-              src={images[activeImg].url}
-              alt={product.title}
-              fill
-              priority
-              sizes="(max-width:768px) 100vw, 50vw"
-              className="object-contain p-4 md:p-8"
-            />
+      <div className="md:col-span-7 md:sticky md:top-24 md:self-start">
+        <div className="flex gap-4">
+          {images.length > 1 && (
+            <div className="hidden w-20 shrink-0 flex-col gap-3 sm:flex">
+              {images.map((im, i) => (
+                <button
+                  key={im.id ?? i}
+                  onClick={() => setActiveImg(i)}
+                  aria-label={`Image ${i + 1}`}
+                  className="relative aspect-square w-20 overflow-hidden border border-token transition-opacity"
+                  style={i === activeImg ? { borderColor: "var(--color-fg)", opacity: 1 } : { opacity: 0.55 }}
+                >
+                  {im.url && (
+                    <Image src={im.url} alt="" fill sizes="80px" className="object-cover" />
+                  )}
+                </button>
+              ))}
+            </div>
           )}
+
+          <div className="relative aspect-4/5 max-h-[60vh] flex-1 overflow-hidden bg-card md:max-h-none">
+            {images[activeImg]?.url && (
+              <Image
+                src={images[activeImg].url}
+                alt={product.title}
+                fill
+                priority
+                sizes="(max-width:768px) 100vw, 55vw"
+                className="object-cover"
+              />
+            )}
+          </div>
         </div>
+
         {images.length > 1 && (
-          <div className="mt-4 flex gap-3">
+          <div className="mt-4 flex gap-3 overflow-x-auto sm:hidden">
             {images.map((im, i) => (
               <button
                 key={im.id ?? i}
                 onClick={() => setActiveImg(i)}
                 aria-label={`Image ${i + 1}`}
-                className="relative h-20 w-20 overflow-hidden bg-card"
-                style={
-                  i === activeImg
-                    ? { outline: "1px solid var(--color-fg)", outlineOffset: "2px" }
-                    : { opacity: 0.55 }
-                }
+                className="relative h-16 w-16 shrink-0 overflow-hidden border border-token"
+                style={i === activeImg ? { borderColor: "var(--color-fg)", opacity: 1 } : { opacity: 0.55 }}
               >
-                {im.url && (
-                  <Image src={im.url} alt="" fill sizes="80px" className="object-contain p-2" />
-                )}
+                {im.url && <Image src={im.url} alt="" fill sizes="64px" className="object-cover" />}
               </button>
             ))}
           </div>
@@ -151,15 +143,15 @@ export function ProductDetails({
       </div>
 
       {/* buy box */}
-      <div className="md:pt-4">
+      <div className="md:col-span-5 md:pt-1">
         <div className="flex items-start justify-between gap-4">
-          <h1 className="text-2xl md:text-4xl">{product.title}</h1>
+          <h1 className="text-3xl leading-tight md:text-[2.6rem]">{product.title}</h1>
           <WishlistButton
             id={product.id}
             className="text-muted mt-1 flex h-9 w-9 shrink-0 items-center justify-center"
           />
         </div>
-        <p className="mt-3 text-lg" style={{ fontFamily: "var(--font-display)" }}>
+        <p className="mt-4 text-2xl md:text-[1.7rem]" style={{ fontFamily: "var(--font-display)" }}>
           {price != null ? formatMoney(price, currency) : "—"}
         </p>
 
@@ -197,30 +189,21 @@ export function ProductDetails({
         >
           {cta}
         </button>
-        {/* Luxury Trust Badges */}
-        <div className="mt-6 grid grid-cols-3 gap-2 border-y border-token py-3 text-center text-[0.72rem] tracking-[0.06em] text-muted uppercase">
-          <div className="flex flex-col items-center gap-1">
-            <span className="text-base">🛡️</span>
-            <span>100% Authentic</span>
-          </div>
-          <div className="flex flex-col items-center gap-1 border-x border-token">
-            <span className="text-base">✈️</span>
-            <span>Express Shipping</span>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-            <span className="text-base">🔄</span>
-            <span>30-Day Returns</span>
-          </div>
-        </div>
 
-        {niche === "eyewear" && canTryOn && (
-          <button
-            className="btn btn-outline mt-3 w-full"
-            onClick={() => setTryOnOpen(true)}
-          >
-            Virtual try-on
-          </button>
-        )}
+        <div className="mt-6 grid grid-cols-3 gap-2 border-y border-token py-4 text-center">
+          {[
+            { label: "Authentic", icon: <path d="M12 3l7 3v5c0 4.6-2.98 8.5-7 10-4.02-1.5-7-5.4-7-10V6l7-3z" /> },
+            { label: "Fast shipping", icon: <><path d="M3 12h13M12 5l7 7-7 7" /></> },
+            { label: "30-day returns", icon: <path d="M4 12a8 8 0 1 1 2.6 5.9M4 12V7M4 12h5" /> },
+          ].map((b) => (
+            <div key={b.label} className="flex flex-col items-center gap-2 text-[0.66rem] uppercase tracking-[0.08em] text-muted">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden>
+                {b.icon}
+              </svg>
+              {b.label}
+            </div>
+          ))}
+        </div>
 
         <div className="mt-8 border-t border-token">
           {product.description && (
@@ -233,27 +216,6 @@ export function ProductDetails({
               </p>
             </details>
           )}
-
-          {/* Craftsmanship & Specs Accordion */}
-          <details className="border-b border-token py-4" open>
-            <summary className="cursor-pointer list-none text-sm font-medium uppercase tracking-[0.08em]">
-              Craftsmanship &amp; Specifications
-            </summary>
-            <ul className="mt-3 space-y-2 text-xs leading-relaxed text-muted">
-              <li className="flex items-center gap-2">
-                <span className="font-semibold text-token">Lens Protection:</span> 100% UV400 Protection (UVA/UVB filter)
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="font-semibold text-token">Frame Material:</span> Premium Hand-Finished Italian/Japanese Acetate &amp; Light Alloys
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="font-semibold text-token">Hinge &amp; Hardware:</span> Reinforced Custom Luxury Hinges
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="font-semibold text-token">In the Box:</span> Hard Protective Case, Microfiber Pouch &amp; Cleaning Cloth
-              </li>
-            </ul>
-          </details>
 
           <details className="border-b border-token py-4">
             <summary className="cursor-pointer list-none text-sm font-medium uppercase tracking-[0.08em]">
@@ -282,14 +244,6 @@ export function ProductDetails({
           </button>
         </div>
       </div>
-
-      {tryOnOpen && canTryOn && (
-        <TryOnModal
-          items={tryOnItems}
-          initialId={product.id}
-          onClose={() => setTryOnOpen(false)}
-        />
-      )}
     </div>
   );
 }

@@ -157,6 +157,35 @@ export default async function HomePage() {
         </div>
       </section>
     ) : null,
+    brands: theme.brands?.length ? (
+      <section key="brands" className="container-page py-[var(--space-section)]">
+        <div className="mb-10 text-center">
+          <p className="eyebrow">Shop by brand</p>
+          <h2 className="mt-2" style={{ fontSize: "var(--fs-h2)" }}>
+            Choose a maison
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-6">
+          {theme.brands.map((b) => (
+            <Link key={b.label} href={b.href} className="group block">
+              <div className="relative aspect-square overflow-hidden rounded-token surface">
+                <Image
+                  src={b.image}
+                  alt=""
+                  fill
+                  sizes="(max-width:768px) 50vw, 300px"
+                  className="object-cover transition-transform duration-500 ease-[var(--ease)] group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/25 transition-opacity duration-500 group-hover:bg-black/35" />
+                <p className="absolute inset-x-0 bottom-0 p-3 text-center text-sm font-medium uppercase tracking-[0.08em] text-white md:text-base">
+                  {b.label}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+    ) : null,
     featured: featured.length ? (
       <section key="featured" className="container-page py-[var(--space-section)]">
         <div className="mb-10 text-center">

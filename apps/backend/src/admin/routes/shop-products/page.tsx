@@ -11,7 +11,12 @@ import {
   Checkbox,
   toast,
 } from "@medusajs/ui";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, type ComponentType, type TdHTMLAttributes } from "react";
+
+// @medusajs/ui types Table.Cell as plain HTMLAttributes (missing colSpan,
+// unlike Table.HeaderCell which uses TdHTMLAttributes) — cast locally so a
+// full-width "no rows" cell type-checks.
+const TableCell = Table.Cell as ComponentType<TdHTMLAttributes<HTMLTableCellElement>>;
 
 type SalesChannel = {
   id: string;
@@ -258,15 +263,15 @@ const ShopProductsPage = () => {
         <Table.Body>
           {loading ? (
             <Table.Row>
-              <Table.Cell colSpan={5} className="text-center py-8 text-ui-fg-subtle">
+              <TableCell colSpan={5} className="text-center py-8 text-ui-fg-subtle">
                 Đang tải dữ liệu sản phẩm...
-              </Table.Cell>
+              </TableCell>
             </Table.Row>
           ) : filteredProducts.length === 0 ? (
             <Table.Row>
-              <Table.Cell colSpan={5} className="text-center py-8 text-ui-fg-subtle">
+              <TableCell colSpan={5} className="text-center py-8 text-ui-fg-subtle">
                 Không tìm thấy sản phẩm nào.
-              </Table.Cell>
+              </TableCell>
             </Table.Row>
           ) : (
             filteredProducts.map((p) => {

@@ -9,17 +9,23 @@ export default async function CollectionPage({
   searchParams,
 }: {
   params: Promise<{ handle: string }>;
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page?: string; brand?: string }>;
 }) {
   const { handle } = await params;
-  const { page } = await searchParams;
+  const { page, brand } = await searchParams;
   const category = await getCategoryByHandle(handle);
   if (!category) notFound();
 
   const limit = 12;
   const current = Math.max(1, Number(page ?? "1"));
+  // brand tiles link here with ?brand=<slug> (e.g. "tom-ford") — products
+  // don't have a dedicated brand field, but every handle is "sun-<brand>-<model>"
+  // and titles start with the brand name, so a full-text q search on the
+  // brand name (spaces, not dashes) reliably narrows to just that maison.
+  const brandQuery = brand ? brand.replace(/-/g, " ") : undefined;
   const { products, count } = await listProducts({
     category_id: category.id,
+    q: brandQuery,
     limit,
     offset: (current - 1) * limit,
   });
@@ -30,7 +36,7 @@ export default async function CollectionPage({
       <div className="mb-10 text-center">
         <p className="eyebrow">Collection</p>
         <h1 className="mt-2" style={{ fontSize: "var(--fs-h2)" }}>
-          {category.name}
+          {brandQuery ? `${category.name} — ${brandQuery}` : category.name}
         </h1>
         {category.description && (
           <p className="mx-auto mt-3 max-w-xl text-sm text-muted">
@@ -47,7 +53,7 @@ export default async function CollectionPage({
           {Array.from({ length: pages }, (_, i) => i + 1).map((p) => (
             <a
               key={p}
-              href={`/collections/${handle}?page=${p}`}
+              href={`/collections/${handle}?page=${p}${brand ? `&brand=${brand}` : ""}`}
               className="btn btn-outline"
               style={
                 p === current

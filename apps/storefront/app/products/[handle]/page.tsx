@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import {
-  getCategoryByHandle,
-  getProductByHandle,
-  listProducts,
-} from "@/lib/data/products";
+import { getProductByHandle, listProducts } from "@/lib/data/products";
 import { ProductDetails } from "@/components/product/ProductDetails";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { NICHE } from "@/lib/config";
-import { themeFor } from "@/themes/registry";
 
 export const revalidate = 300;
 
@@ -40,15 +35,6 @@ export default async function ProductPage({
 
   const related = await listProducts({ limit: 4 });
 
-  let tryOnProducts: Awaited<ReturnType<typeof listProducts>>["products"] = [];
-  if (NICHE === "eyewear") {
-    const category = await getCategoryByHandle(themeFor().collectionHandle);
-    if (category) {
-      tryOnProducts = (
-        await listProducts({ category_id: category.id, limit: 24 })
-      ).products;
-    }
-  }
   const jsonLd = {
     "@context": "https://schema.org/",
     "@type": "Product",
@@ -71,7 +57,7 @@ export default async function ProductPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ProductDetails product={product} niche={NICHE} tryOnProducts={tryOnProducts} />
+      <ProductDetails product={product} niche={NICHE} />
       <section className="surface">
         <div className="container-page py-[var(--space-section)]">
           <div className="mb-10 text-center">

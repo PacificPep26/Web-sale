@@ -25,9 +25,11 @@ export type ThemeConfig = {
   /** google font families for --font-display / --font-body */
   fonts: string[];
   /** homepage section order */
-  sections: Array<"hero" | "categories" | "featured" | "editorial" | "usps" | "rail" | "faq">;
+  sections: Array<"hero" | "categories" | "brands" | "featured" | "editorial" | "usps" | "rail" | "faq">;
   /** "shop by category" tiles shown right under the hero */
   categories: { label: string; image: string; href: string }[];
+  /** optional "shop by brand" tile grid — click a brand, see only its products */
+  brands?: { label: string; image: string; href: string }[];
   /** a secondary editorial banner on the home page */
   editorial: { image: string; kicker: string; title: string; body: string; cta: string; href: string };
   usps: { title: string; body: string; icon: UspIcon }[];
@@ -118,7 +120,7 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
   },
   eyewear: {
     key: "eyewear",
-    brand: "Meridian Optic",
+    brand: "Luxshade",
     tagline: "Frames for the light you live in.",
     hero: {
       eyebrow: "Sun & Light",
@@ -136,8 +138,8 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       { label: "New", href: "/collections/eyewear" },
       { label: "About", href: "/pages/about" },
     ],
-    fonts: ["Playfair+Display:500,600,700", "Inter:300,400,500,600"],
-    sections: ["hero", "categories", "usps", "featured", "editorial", "rail", "faq"],
+    fonts: ["Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400", "Be+Vietnam+Pro:wght@300;400;500;600"],
+    sections: ["hero", "brands", "categories", "usps", "featured", "editorial", "rail", "faq"],
     categories: [
       {
         label: "Sunglasses",
@@ -154,6 +156,16 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
         image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=900&q=80",
         href: "/collections/eyewear",
       },
+    ],
+    brands: [
+      { label: "Jacques Marie Mage", image: "/images/sunglasses/sun-jacques-marie-mage-ashcroft.jpg", href: "/collections/eyewear?brand=jacques-marie-mage" },
+      { label: "Miu Miu", image: "/images/sunglasses/sun-miu-miu-miu-regard.jpg", href: "/collections/eyewear?brand=miu-miu" },
+      { label: "Fendi", image: "/images/sunglasses/sun-fendi-fe40005u.jpg", href: "/collections/eyewear?brand=fendi" },
+      { label: "Gucci", image: "/images/sunglasses/sun-gucci-gg0010s.jpg", href: "/collections/eyewear?brand=gucci" },
+      { label: "Cartier", image: "/images/sunglasses/sun-cartier-c-allonge-de-cartier.jpg", href: "/collections/eyewear?brand=cartier" },
+      { label: "Tom Ford", image: "/images/sunglasses/sun-tom-ford-anoushka-ft0371.jpg", href: "/collections/eyewear?brand=tom-ford" },
+      { label: "Prada", image: "/images/sunglasses/sun-prada-pr-14ys.jpg", href: "/collections/eyewear?brand=prada" },
+      { label: "Chrome Hearts", image: "/images/sunglasses/sun-chrome-hearts-99-eyes-matty-boy.jpg", href: "/collections/eyewear?brand=chrome-hearts" },
     ],
     editorial: {
       image:

@@ -12,25 +12,56 @@ export async function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-token bg-base">
       <div className="container-page">
-        {/* top row */}
-        <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center">
-          <div className="flex items-center gap-4">
-            <MobileNav
-              brand={theme.brand}
-              nav={theme.nav}
-              cartCount={count}
-            />
-            <span className="hidden text-[0.72rem] uppercase tracking-[0.14em] text-muted lg:block">
-              United States
-            </span>
-          </div>
+        {/* single row: [logo] [search] [nav links] ····· [account] [cart] */}
+        <div className="flex h-16 items-center gap-6">
+          <MobileNav brand={theme.brand} nav={theme.nav} cartCount={count} />
 
-          <Link href="/" className="wordmark text-xl md:text-2xl">
+          <Link href="/" className="wordmark shrink-0 text-xl md:text-2xl">
             {theme.brand}
           </Link>
 
-          <nav className="flex items-center justify-end gap-4">
-            <Link href="/search" aria-label="Search" className="flex h-9 w-9 items-center justify-center">
+          <Link
+            href="/search"
+            aria-label="Search"
+            className="hidden h-9 w-9 shrink-0 items-center justify-center md:flex"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </Link>
+
+          <nav className="hidden items-center gap-6 md:flex">
+            {theme.nav.map((n) => (
+              <Link key={n.label} href={n.href} className="nav-link">
+                {n.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="ml-auto flex items-center gap-4">
+            <span className="hidden text-[0.72rem] uppercase tracking-[0.14em] text-muted lg:block">
+              United States
+            </span>
+            <span
+              aria-hidden
+              className="hidden h-9 w-9 items-center justify-center opacity-60 md:flex"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <circle cx="12" cy="8" r="3.4" stroke="currentColor" strokeWidth="1.5" />
+                <path
+                  d="M5 20c1.3-3.6 4-5.4 7-5.4s5.7 1.8 7 5.4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
+            <Link
+              href="/search"
+              aria-label="Search"
+              className="flex h-9 w-9 items-center justify-center md:hidden"
+            >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
                 <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
                 <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -64,17 +95,8 @@ export async function Header() {
                 </span>
               )}
             </Link>
-          </nav>
+          </div>
         </div>
-
-        {/* desktop nav row */}
-        <nav className="hidden justify-center gap-9 pb-3 md:flex">
-          {theme.nav.map((n) => (
-            <Link key={n.label} href={n.href} className="nav-link">
-              {n.label}
-            </Link>
-          ))}
-        </nav>
       </div>
     </header>
   );
