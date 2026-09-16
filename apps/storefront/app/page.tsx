@@ -159,45 +159,49 @@ export default async function HomePage() {
     ) : null,
     brands: theme.brands?.length ? (
       <section key="brands" className="w-full">
-        <div className="flex w-full flex-col md:h-[calc(100vh-64px)] md:min-h-[480px] md:flex-row">
-          {theme.brands.map((b) => (
-            <Link
-              key={b.label}
-              href={b.href}
-              className="group relative block h-52 shrink-0 overflow-hidden border-b border-black/8 bg-white last:border-b-0 sm:h-64 md:h-auto md:flex-1 md:border-b-0 md:border-r md:last:border-r-0"
-            >
-              <div className="absolute inset-0 flex items-center justify-center p-3 pb-14 md:p-4 md:pb-28">
-                <div className="relative h-full w-full">
-                  <Image
-                    src={b.image}
-                    alt=""
-                    fill
-                    sizes="(max-width:768px) 100vw, 13vw"
-                    className="object-contain transition-transform duration-700 ease-[var(--ease)] group-hover:scale-105"
-                    style={{ filter: "drop-shadow(0 18px 26px rgba(15,15,15,0.14)) contrast(1.06) saturate(1.05)" }}
-                  />
-                </div>
-              </div>
-              <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5"
-                style={{ background: "linear-gradient(to top, rgba(15,15,15,0.82), rgba(15,15,15,0))" }}
-              />
-              <div
-                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                style={{ boxShadow: "inset 0 0 0 1px rgba(184,137,74,0.6)" }}
-              />
+        {theme.brands.map((b) => (
+          <Link
+            key={b.label}
+            href={b.href}
+            className="group relative flex h-72 w-full items-center overflow-hidden border-b border-white/10 bg-black last:border-b-0 sm:h-96 md:h-[32rem]"
+          >
+            <Image
+              src={b.image}
+              alt=""
+              fill
+              sizes="100vw"
+              priority={false}
+              className="object-cover object-center transition-transform duration-700 ease-[var(--ease)] group-hover:scale-105"
+            />
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{ background: "linear-gradient(to right, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.55) 32%, rgba(10,10,10,0.05) 60%)" }}
+            />
+            <div
+              className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              style={{ boxShadow: "inset 0 0 0 1px rgba(184,137,74,0.55)" }}
+            />
+            <div className="relative z-10 px-6 text-white sm:px-10 md:px-14">
               <p
-                className="absolute inset-x-0 bottom-7 px-2 text-center text-sm font-medium uppercase tracking-[0.14em] text-white md:bottom-9 md:text-base"
-                style={{ fontFamily: "var(--font-display)", textShadow: "0 1px 12px rgba(0,0,0,0.35)" }}
+                className="text-2xl leading-none sm:text-3xl md:text-4xl"
+                style={{
+                  fontFamily: b.font,
+                  fontStyle: b.italic ? "italic" : "normal",
+                  fontWeight: 600,
+                  textShadow: "0 2px 16px rgba(0,0,0,0.45)",
+                }}
               >
                 {b.label}
               </p>
-              <span className="absolute inset-x-0 bottom-3 flex justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:bottom-4">
-                <span className="h-px w-8" style={{ background: "var(--color-brass, #b8894a)" }} />
-              </span>
-            </Link>
-          ))}
-        </div>
+              <p className="mt-3 flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-white/85 sm:text-[11px]">
+                Explore collection
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </p>
+            </div>
+          </Link>
+        ))}
       </section>
     ) : null,
     featured: featured.length ? (

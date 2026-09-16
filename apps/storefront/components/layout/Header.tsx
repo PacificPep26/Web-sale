@@ -3,6 +3,7 @@ import { getCart } from "@/lib/data/cart";
 import { THEMES } from "@/themes/registry";
 import { NICHE } from "@/lib/config";
 import { MobileNav } from "./MobileNav";
+import { HeaderShell } from "./HeaderShell";
 
 export async function Header() {
   const theme = THEMES[NICHE];
@@ -10,7 +11,7 @@ export async function Header() {
   const count = cart?.items?.reduce((n, i) => n + (i.quantity ?? 0), 0) ?? 0;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-token bg-base">
+    <HeaderShell>
       <div className="container-page">
         {/* single row: [logo] [search] [nav links] ····· [account] [cart] */}
         <div className="flex h-16 items-center gap-6">
@@ -30,14 +31,6 @@ export async function Header() {
               <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
           </Link>
-
-          <nav className="hidden items-center gap-6 md:flex">
-            {theme.nav.map((n) => (
-              <Link key={n.label} href={n.href} className="nav-link">
-                {n.label}
-              </Link>
-            ))}
-          </nav>
 
           <div className="ml-auto flex items-center gap-4">
             <span className="hidden text-[0.72rem] uppercase tracking-[0.14em] text-muted lg:block">
@@ -98,6 +91,6 @@ export async function Header() {
           </div>
         </div>
       </div>
-    </header>
+    </HeaderShell>
   );
 }

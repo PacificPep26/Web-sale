@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import "./globals.css";
 import { themeFor } from "@/themes/registry";
 import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
 
 export async function generateMetadata(): Promise<Metadata> {
   const theme = themeFor((await headers()).get("host"));
@@ -18,7 +18,7 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const host = (await headers()).get("host");
   const theme = themeFor(host);
-  const fontHref = `https://fonts.googleapis.com/css2?${theme.fonts
+  const fontHref = `https://fonts.googleapis.com/css2?${[...theme.fonts, ...(theme.extraFonts ?? [])]
     .map((f) => `family=${f}`)
     .join("&")}&display=swap`;
 
@@ -32,7 +32,7 @@ export default async function RootLayout({
       <body className="flex min-h-full flex-col">
         <Header />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <ConditionalFooter />
       </body>
     </html>
   );

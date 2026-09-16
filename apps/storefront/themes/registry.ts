@@ -24,12 +24,14 @@ export type ThemeConfig = {
   nav: NavItem[];
   /** google font families for --font-display / --font-body */
   fonts: string[];
+  /** additional google font families loaded for one-off uses (e.g. a per-brand wordmark) */
+  extraFonts?: string[];
   /** homepage section order */
   sections: Array<"hero" | "categories" | "brands" | "featured" | "editorial" | "usps" | "rail" | "faq">;
   /** "shop by category" tiles shown right under the hero */
   categories: { label: string; image: string; href: string }[];
-  /** optional "shop by brand" tile grid — click a brand, see only its products */
-  brands?: { label: string; image: string; href: string }[];
+  /** optional "shop by brand" full-width row banner — click a brand, see only its products */
+  brands?: { label: string; image: string; href: string; font: string; italic?: boolean }[];
   /** a secondary editorial banner on the home page */
   editorial: { image: string; kicker: string; title: string; body: string; cta: string; href: string };
   usps: { title: string; body: string; icon: UspIcon }[];
@@ -139,6 +141,13 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       { label: "About", href: "/pages/about" },
     ],
     fonts: ["Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400", "Be+Vietnam+Pro:wght@300;400;500;600"],
+    extraFonts: [
+      "Comfortaa:wght@700",
+      "Montserrat:wght@800;900",
+      "Playfair+Display:ital,wght@0,700;1,600",
+      "Prata",
+      "UnifrakturCook:wght@700",
+    ],
     sections: ["brands"],
     categories: [
       {
@@ -158,14 +167,14 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       },
     ],
     brands: [
-      { label: "Jacques Marie Mage", image: "/images/sunglasses/sun-jacques-marie-mage-ashcroft.jpg", href: "/collections/eyewear?brand=jacques-marie-mage" },
-      { label: "Miu Miu", image: "/images/sunglasses/sun-miu-miu-miu-regard.jpg", href: "/collections/eyewear?brand=miu-miu" },
-      { label: "Fendi", image: "/images/sunglasses/sun-fendi-fe40005u.jpg", href: "/collections/eyewear?brand=fendi" },
-      { label: "Gucci", image: "/images/sunglasses/sun-gucci-gg0010s.jpg", href: "/collections/eyewear?brand=gucci" },
-      { label: "Cartier", image: "/images/sunglasses/sun-cartier-c-allonge-de-cartier.jpg", href: "/collections/eyewear?brand=cartier" },
-      { label: "Tom Ford", image: "/images/sunglasses/sun-tom-ford-anoushka-ft0371.jpg", href: "/collections/eyewear?brand=tom-ford" },
-      { label: "Prada", image: "/images/sunglasses/sun-prada-pr-14ys.jpg", href: "/collections/eyewear?brand=prada" },
-      { label: "Chrome Hearts", image: "/images/sunglasses/sun-chrome-hearts-99-eyes-matty-boy.jpg", href: "/collections/eyewear?brand=chrome-hearts" },
+      { label: "Jacques Marie Mage", image: "/brand-hero/jacques-marie-mage.jpg", href: "/collections/eyewear?brand=jacques-marie-mage", font: "'Noto Serif', serif" },
+      { label: "Miu Miu", image: "/brand-hero/miu-miu.jpg", href: "/collections/eyewear?brand=miu-miu", font: "'Comfortaa', sans-serif" },
+      { label: "Fendi", image: "/brand-hero/fendi.jpg", href: "/collections/eyewear?brand=fendi", font: "'Montserrat', sans-serif" },
+      { label: "Gucci", image: "/brand-hero/gucci.jpg", href: "/collections/eyewear?brand=gucci", font: "'Playfair Display', serif" },
+      { label: "Cartier", image: "/brand-hero/cartier.jpg", href: "/collections/eyewear?brand=cartier", font: "'Playfair Display', serif", italic: true },
+      { label: "Tom Ford", image: "/brand-hero/tom-ford.jpg", href: "/collections/eyewear?brand=tom-ford", font: "'Montserrat', sans-serif" },
+      { label: "Prada", image: "/brand-hero/prada.jpg", href: "/collections/eyewear?brand=prada", font: "'Prata', serif" },
+      { label: "Chrome Hearts", image: "/brand-hero/chrome-hearts.jpg", href: "/collections/eyewear?brand=chrome-hearts", font: "'UnifrakturCook', cursive" },
     ],
     editorial: {
       image:
