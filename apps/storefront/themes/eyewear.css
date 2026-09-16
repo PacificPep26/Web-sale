@@ -1,10 +1,14 @@
 /* Luxshade — noir & brass, Noto Serif display */
 [data-theme="eyewear"] {
   --color-bg: #ffffff;
+  --color-surface: #f5f0e8;
+  --color-surface-2: #ebe3d4;
   --color-surface: #faf9f7;
   --color-surface-2: #f2efe9;
   --color-fg: #0f0f0f;
   --color-muted: #6b6b6b;
+  --color-border: #e2ddd3;
+  --card-bg: #f5f0e8;
   --color-border: #eae6df;
   --card-bg: #ffffff;
 
