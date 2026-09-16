@@ -163,42 +163,46 @@ export default async function HomePage() {
           <Link
             key={b.label}
             href={b.href}
-            className="group relative flex h-[28vh] min-h-[200px] max-h-[300px] w-full items-center overflow-hidden border-b border-white/10 bg-black last:border-b-0"
+            className="group relative flex h-52 w-full items-center justify-center overflow-hidden border-b border-white/10 bg-black last:border-b-0 sm:h-60 md:h-72"
           >
-            <Image
-              src={b.image}
-              alt=""
-              fill
-              sizes="100vw"
-              priority={false}
-              className="object-cover object-center transition-transform duration-700 ease-[var(--ease)] group-hover:scale-105"
-            />
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{ background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.52) 35%, rgba(10,10,10,0.05) 65%)" }}
-            />
-            <div
-              className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-              style={{ boxShadow: "inset 0 0 0 1px rgba(184,137,74,0.55)" }}
-            />
-            <div className="relative z-10 px-8 text-white sm:px-14 md:px-20 lg:px-24">
-              <p
-                className="text-2xl leading-none sm:text-3xl md:text-4xl"
-                style={{
-                  fontFamily: b.font,
-                  fontStyle: b.italic ? "italic" : "normal",
-                  fontWeight: 600,
-                  textShadow: "0 2px 16px rgba(0,0,0,0.45)",
-                }}
-              >
-                {b.label}
-              </p>
-              <p className="mt-3 flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-white/85 sm:text-[11px]">
-                Explore collection
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
-                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </p>
+            {/* capped width keeps the crop reasonable on ultra-wide monitors —
+                beyond this the row just letterboxes into the page's own black */}
+            <div className="relative mx-auto h-full w-full max-w-[1200px]">
+              <Image
+                src={b.image}
+                alt=""
+                fill
+                sizes="(max-width: 1200px) 100vw, 1200px"
+                priority={false}
+                className="object-cover object-center transition-transform duration-700 ease-[var(--ease)] group-hover:scale-105"
+              />
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{ background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.52) 35%, rgba(10,10,10,0.05) 65%)" }}
+              />
+              <div
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                style={{ boxShadow: "inset 0 0 0 1px rgba(184,137,74,0.55)" }}
+              />
+              <div className="absolute inset-y-0 left-0 z-10 flex flex-col justify-center px-6 text-white sm:px-10 md:px-12">
+                <p
+                  className="text-xl leading-none sm:text-2xl md:text-3xl"
+                  style={{
+                    fontFamily: b.font,
+                    fontStyle: b.italic ? "italic" : "normal",
+                    fontWeight: 600,
+                    textShadow: "0 2px 16px rgba(0,0,0,0.45)",
+                  }}
+                >
+                  {b.label}
+                </p>
+                <p className="mt-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/85">
+                  Explore collection
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </p>
+              </div>
             </div>
           </Link>
         ))}
