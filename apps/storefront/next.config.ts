@@ -6,7 +6,9 @@ const backend = new URL(
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  output: "standalone",
+  // standalone output is only for the Docker image (Railway); Vercel's
+  // builder has its own packaging and breaks route resolution if this is set
+  ...(process.env.DOCKER_BUILD ? { output: "standalone" as const } : {}),
   // we keep our own AGENTS.md at the repo root
   agentRules: false,
   images: {
