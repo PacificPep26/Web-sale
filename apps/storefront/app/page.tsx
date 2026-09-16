@@ -158,29 +158,43 @@ export default async function HomePage() {
       </section>
     ) : null,
     brands: theme.brands?.length ? (
-      <section key="brands" className="container-page py-[var(--space-section)]">
-        <div className="mb-10 text-center">
-          <p className="eyebrow">Shop by brand</p>
-          <h2 className="mt-2" style={{ fontSize: "var(--fs-h2)" }}>
-            Choose a maison
-          </h2>
-        </div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-6">
+      <section key="brands" className="w-full">
+        <div className="flex w-full flex-col md:h-[calc(100vh-64px)] md:min-h-[480px] md:flex-row">
           {theme.brands.map((b) => (
-            <Link key={b.label} href={b.href} className="group block">
-              <div className="relative aspect-square overflow-hidden rounded-token surface">
-                <Image
-                  src={b.image}
-                  alt=""
-                  fill
-                  sizes="(max-width:768px) 50vw, 300px"
-                  className="object-cover transition-transform duration-500 ease-[var(--ease)] group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/25 transition-opacity duration-500 group-hover:bg-black/35" />
-                <p className="absolute inset-x-0 bottom-0 p-3 text-center text-sm font-medium uppercase tracking-[0.08em] text-white md:text-base">
-                  {b.label}
-                </p>
+            <Link
+              key={b.label}
+              href={b.href}
+              className="group relative block h-52 shrink-0 overflow-hidden border-b border-black/8 bg-white last:border-b-0 sm:h-64 md:h-auto md:flex-1 md:border-b-0 md:border-r md:last:border-r-0"
+            >
+              <div className="absolute inset-0 flex items-center justify-center p-3 pb-14 md:p-4 md:pb-28">
+                <div className="relative h-full w-full">
+                  <Image
+                    src={b.image}
+                    alt=""
+                    fill
+                    sizes="(max-width:768px) 100vw, 13vw"
+                    className="object-contain transition-transform duration-700 ease-[var(--ease)] group-hover:scale-105"
+                    style={{ filter: "drop-shadow(0 18px 26px rgba(15,15,15,0.14)) contrast(1.06) saturate(1.05)" }}
+                  />
+                </div>
               </div>
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5"
+                style={{ background: "linear-gradient(to top, rgba(15,15,15,0.82), rgba(15,15,15,0))" }}
+              />
+              <div
+                className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                style={{ boxShadow: "inset 0 0 0 1px rgba(184,137,74,0.6)" }}
+              />
+              <p
+                className="absolute inset-x-0 bottom-7 px-2 text-center text-sm font-medium uppercase tracking-[0.14em] text-white md:bottom-9 md:text-base"
+                style={{ fontFamily: "var(--font-display)", textShadow: "0 1px 12px rgba(0,0,0,0.35)" }}
+              >
+                {b.label}
+              </p>
+              <span className="absolute inset-x-0 bottom-3 flex justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:bottom-4">
+                <span className="h-px w-8" style={{ background: "var(--color-brass, #b8894a)" }} />
+              </span>
             </Link>
           ))}
         </div>

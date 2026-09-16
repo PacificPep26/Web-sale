@@ -139,7 +139,7 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       { label: "About", href: "/pages/about" },
     ],
     fonts: ["Noto+Serif:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400", "Be+Vietnam+Pro:wght@300;400;500;600"],
-    sections: ["hero", "brands", "categories", "usps", "featured", "editorial", "rail", "faq"],
+    sections: ["brands"],
     categories: [
       {
         label: "Sunglasses",
