@@ -119,9 +119,7 @@ export function ProductDetails({
                       sizes="64px"
                       className={
                         im.url.includes("/tryon/")
-                          ? im.url.includes("worn-victor-male")
-                            ? "object-cover object-[37%_25%]"
-                            : "object-cover object-[43%_25%]"
+                          ? "object-cover object-center"
                           : "object-contain p-1.5"
                       }
                     />
@@ -141,9 +139,7 @@ export function ProductDetails({
                 sizes="(max-width:768px) 100vw, 400px"
                 className={
                   images[activeImg].url.includes("/tryon/")
-                    ? images[activeImg].url.includes("worn-victor-male")
-                      ? "object-cover object-[37%_25%] transition-all duration-300"
-                      : "object-cover object-[43%_25%] transition-all duration-300"
+                    ? "object-cover object-center transition-all duration-300"
                     : "object-contain p-8 md:p-10 transition-all duration-300"
                 }
               />
@@ -169,9 +165,7 @@ export function ProductDetails({
                     sizes="56px"
                     className={
                       im.url.includes("/tryon/")
-                        ? im.url.includes("worn-victor-male")
-                          ? "object-cover object-[37%_25%]"
-                          : "object-cover object-[43%_25%]"
+                        ? "object-cover object-center"
                         : "object-contain p-1"
                     }
                   />
