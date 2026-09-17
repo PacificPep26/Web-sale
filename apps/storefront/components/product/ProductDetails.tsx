@@ -97,18 +97,18 @@ export function ProductDetails({
           : "Add to bag";
 
   return (
-    <div className="container-page grid gap-8 py-6 pb-20 md:grid-cols-12 md:gap-12 md:py-8 md:pb-12">
+    <div className="container-page max-w-6xl grid gap-8 py-6 pb-20 md:grid-cols-[auto_1fr] md:gap-12 lg:gap-16 md:py-8 md:pb-12 items-start">
       {/* gallery */}
-      <div className="md:col-span-7 md:sticky md:top-24 md:self-start">
-        <div className="flex gap-4 items-start w-full">
+      <div className="md:sticky md:top-24 md:self-start">
+        <div className="flex gap-4 items-start">
           {images.length > 1 && (
-            <div className="hidden w-20 shrink-0 flex-col gap-3 sm:flex">
+            <div className="hidden w-16 shrink-0 flex-col gap-2.5 sm:flex">
               {images.map((im, i) => (
                 <button
                   key={im.id ?? i}
                   onClick={() => setActiveImg(i)}
                   aria-label={`Image ${i + 1}`}
-                  className="relative aspect-square w-20 overflow-hidden border border-token transition-opacity bg-card rounded-sm"
+                  className="relative aspect-square w-16 overflow-hidden border border-token transition-opacity bg-card rounded-sm"
                   style={i === activeImg ? { borderColor: "var(--color-fg)", opacity: 1 } : { opacity: 0.55 }}
                 >
                   {im.url && (
@@ -116,7 +116,7 @@ export function ProductDetails({
                       src={im.url}
                       alt=""
                       fill
-                      sizes="80px"
+                      sizes="64px"
                       className={
                         im.url.includes("/tryon/")
                           ? im.url.includes("worn-victor-male")
@@ -131,20 +131,20 @@ export function ProductDetails({
             </div>
           )}
 
-          <div className="relative aspect-[4/5] flex-1 w-full overflow-hidden bg-card flex items-center justify-center rounded-sm">
+          <div className="relative aspect-[4/5] w-[320px] sm:w-[380px] md:w-[400px] max-h-[500px] overflow-hidden bg-card flex items-center justify-center rounded-sm">
             {images[activeImg]?.url && (
               <Image
                 src={images[activeImg].url}
                 alt={product.title}
                 fill
                 priority
-                sizes="(max-width:768px) 100vw, 55vw"
+                sizes="(max-width:768px) 100vw, 400px"
                 className={
                   images[activeImg].url.includes("/tryon/")
                     ? images[activeImg].url.includes("worn-victor-male")
                       ? "object-cover object-[37%_25%] transition-all duration-300"
                       : "object-cover object-[43%_25%] transition-all duration-300"
-                    : "object-contain p-8 md:p-12 transition-all duration-300"
+                    : "object-contain p-8 md:p-10 transition-all duration-300"
                 }
               />
             )}
@@ -158,7 +158,7 @@ export function ProductDetails({
                 key={im.id ?? i}
                 onClick={() => setActiveImg(i)}
                 aria-label={`Image ${i + 1}`}
-                className="relative h-16 w-16 shrink-0 overflow-hidden border border-token bg-card rounded-sm"
+                className="relative h-14 w-14 shrink-0 overflow-hidden border border-token bg-card rounded-sm"
                 style={i === activeImg ? { borderColor: "var(--color-fg)", opacity: 1 } : { opacity: 0.55 }}
               >
                 {im.url && (
@@ -166,13 +166,13 @@ export function ProductDetails({
                     src={im.url}
                     alt=""
                     fill
-                    sizes="64px"
+                    sizes="56px"
                     className={
                       im.url.includes("/tryon/")
                         ? im.url.includes("worn-victor-male")
                           ? "object-cover object-[37%_25%]"
                           : "object-cover object-[43%_25%]"
-                        : "object-contain p-1.5"
+                        : "object-contain p-1"
                     }
                   />
                 )}
@@ -183,7 +183,7 @@ export function ProductDetails({
       </div>
 
       {/* buy box */}
-      <div className="md:col-span-5 md:pt-1">
+      <div className="md:pt-1">
         <div className="flex items-start justify-between gap-4">
           <h1 className="text-3xl leading-tight md:text-[2.6rem]">{product.title}</h1>
           <WishlistButton
