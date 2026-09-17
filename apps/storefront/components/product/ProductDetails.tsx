@@ -39,7 +39,16 @@ export function ProductDetails({
       : product.thumbnail
         ? [{ url: product.thumbnail, id: "thumb" }]
         : [];
-    return [...baseImages, ...wornGalleryImagesFor(product.handle)];
+    const extra = wornGalleryImagesFor(product.handle);
+    const seen = new Set<string>();
+    const list: { id?: string; url: string }[] = [];
+    for (const im of [...baseImages, ...extra]) {
+      if (im?.url && !seen.has(im.url)) {
+        seen.add(im.url);
+        list.push(im);
+      }
+    }
+    return list;
   }, [product.images, product.thumbnail, product.handle]);
   const [activeImg, setActiveImg] = useState(0);
 
@@ -99,18 +108,28 @@ export function ProductDetails({
                   key={im.id ?? i}
                   onClick={() => setActiveImg(i)}
                   aria-label={`Image ${i + 1}`}
-                  className="relative aspect-square w-20 overflow-hidden border border-token transition-opacity"
+                  className="relative aspect-square w-20 overflow-hidden border border-token transition-opacity bg-card"
                   style={i === activeImg ? { borderColor: "var(--color-fg)", opacity: 1 } : { opacity: 0.55 }}
                 >
                   {im.url && (
-                    <Image src={im.url} alt="" fill sizes="80px" className="object-cover" />
+                    <Image
+                      src={im.url}
+                      alt=""
+                      fill
+                      sizes="80px"
+                      className={
+                        im.url.includes("/tryon/")
+                          ? "object-cover object-center"
+                          : "object-contain p-1.5"
+                      }
+                    />
                   )}
                 </button>
               ))}
             </div>
           )}
 
-          <div className="relative aspect-4/5 max-h-[60vh] flex-1 overflow-hidden bg-card md:max-h-none">
+          <div className="relative aspect-[4/5] max-h-[60vh] flex-1 overflow-hidden bg-card md:max-h-none flex items-center justify-center">
             {images[activeImg]?.url && (
               <Image
                 src={images[activeImg].url}
@@ -118,7 +137,11 @@ export function ProductDetails({
                 fill
                 priority
                 sizes="(max-width:768px) 100vw, 55vw"
-                className="object-cover"
+                className={
+                  images[activeImg].url.includes("/tryon/")
+                    ? "object-contain p-2 md:p-4 transition-all duration-300"
+                    : "object-contain p-8 md:p-12 transition-all duration-300"
+                }
               />
             )}
           </div>
@@ -131,10 +154,22 @@ export function ProductDetails({
                 key={im.id ?? i}
                 onClick={() => setActiveImg(i)}
                 aria-label={`Image ${i + 1}`}
-                className="relative h-16 w-16 shrink-0 overflow-hidden border border-token"
+                className="relative h-16 w-16 shrink-0 overflow-hidden border border-token bg-card"
                 style={i === activeImg ? { borderColor: "var(--color-fg)", opacity: 1 } : { opacity: 0.55 }}
               >
-                {im.url && <Image src={im.url} alt="" fill sizes="64px" className="object-cover" />}
+                {im.url && (
+                  <Image
+                    src={im.url}
+                    alt=""
+                    fill
+                    sizes="64px"
+                    className={
+                      im.url.includes("/tryon/")
+                        ? "object-cover object-center"
+                        : "object-contain p-1.5"
+                    }
+                  />
+                )}
               </button>
             ))}
           </div>
