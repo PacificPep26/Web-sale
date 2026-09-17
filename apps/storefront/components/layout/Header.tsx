@@ -1,3 +1,4 @@
+import { EyewearHeader } from "./EyewearHeader";
 import Link from "next/link";
 import { getCart } from "@/lib/data/cart";
 import { THEMES } from "@/themes/registry";
@@ -9,6 +10,8 @@ export async function Header() {
   const theme = THEMES[NICHE];
   const cart = await getCart();
   const count = cart?.items?.reduce((n, i) => n + (i.quantity ?? 0), 0) ?? 0;
+
+  if (theme.key === "eyewear") return <EyewearHeader brand={theme.brand} brands={theme.brands} count={count} />;
 
   return (
     <HeaderShell>

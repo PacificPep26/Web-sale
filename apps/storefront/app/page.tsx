@@ -1,3 +1,4 @@
+import { EyewearHome } from "@/components/EyewearHome";
 import Link from "next/link";
 import Image from "next/image";
 import { headers } from "next/headers";
@@ -79,7 +80,9 @@ function UspIconGlyph({ icon }: { icon: UspIcon }) {
 
 export default async function HomePage() {
   const theme = themeFor((await headers()).get("host"));
-  const { products } = await listProducts({ limit: 12 });
+  if (theme.key === "eyewear") return <EyewearHome theme={theme} />;
+  const needsProducts = theme.sections.includes("featured") || theme.sections.includes("rail");
+  const products = needsProducts ? (await listProducts({ limit: 12 })).products : [];
   const featured = products.slice(0, 4);
   const rail = products.slice(4, 8);
 
@@ -163,7 +166,7 @@ export default async function HomePage() {
           <Link
             key={b.label}
             href={b.href}
-            className="group relative flex h-[33.333vh] min-h-[220px] w-full items-center overflow-hidden border-b border-white/10 bg-black last:border-b-0"
+            className="group relative mx-auto flex h-[33.333vh] min-h-[220px] w-full max-w-[2600px] items-center overflow-hidden border-b border-white/10 bg-black last:border-b-0 md:h-[clamp(220px,25vh,270px)]"
           >
             <Image
               src={b.image}
@@ -171,11 +174,15 @@ export default async function HomePage() {
               fill
               sizes="100vw"
               priority={false}
-              className="object-cover object-center transition-transform duration-700 ease-[var(--ease)] group-hover:scale-105"
+              className="object-cover object-center brightness-110 contrast-105 saturate-105 transition-transform duration-700 ease-[var(--ease)] group-hover:scale-105"
             />
             <div
               className="pointer-events-none absolute inset-0"
-              style={{ background: "linear-gradient(to right, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.52) 35%, rgba(10,10,10,0.05) 65%)" }}
+              style={{ background: "linear-gradient(to right, rgba(8,8,8,0.76) 0%, rgba(8,8,8,0.38) 36%, rgba(8,8,8,0.04) 68%)" }}
+            />
+            <div
+              className="pointer-events-none absolute inset-0 mix-blend-screen opacity-20"
+              style={{ background: "radial-gradient(ellipse at 68% 48%, rgba(255,226,180,0.38) 0%, rgba(255,226,180,0.10) 30%, transparent 64%)" }}
             />
             <div
               className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"

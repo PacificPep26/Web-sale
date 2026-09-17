@@ -32,7 +32,7 @@ export default async function RootLayout({
       <body className="flex min-h-full flex-col">
         <Header />
         <main className="flex-1">{children}</main>
-        <ConditionalFooter />
+        <ConditionalFooter eyewear={theme.key === "eyewear"} />
       </body>
     </html>
   );

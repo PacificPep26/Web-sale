@@ -122,7 +122,7 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
   },
   eyewear: {
     key: "eyewear",
-    brand: "Luxshade",
+    brand: "LuxeShade",
     tagline: "Frames for the light you live in.",
     hero: {
       eyebrow: "Sun & Light",
@@ -167,14 +167,14 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
       },
     ],
     brands: [
-      { label: "Jacques Marie Mage", image: "/brand-hero/jacques-marie-mage.jpg", href: "/collections/eyewear?brand=jacques-marie-mage", font: "'Noto Serif', serif" },
-      { label: "Miu Miu", image: "/brand-hero/miu-miu.jpg", href: "/collections/eyewear?brand=miu-miu", font: "'Comfortaa', sans-serif" },
-      { label: "Fendi", image: "/brand-hero/fendi.jpg", href: "/collections/eyewear?brand=fendi", font: "'Montserrat', sans-serif" },
-      { label: "Gucci", image: "/brand-hero/gucci.jpg", href: "/collections/eyewear?brand=gucci", font: "'Playfair Display', serif" },
-      { label: "Cartier", image: "/brand-hero/cartier.jpg", href: "/collections/eyewear?brand=cartier", font: "'Playfair Display', serif", italic: true },
-      { label: "Tom Ford", image: "/brand-hero/tom-ford.jpg", href: "/collections/eyewear?brand=tom-ford", font: "'Montserrat', sans-serif" },
-      { label: "Prada", image: "/brand-hero/prada.jpg", href: "/collections/eyewear?brand=prada", font: "'Prata', serif" },
-      { label: "Chrome Hearts", image: "/brand-hero/chrome-hearts.jpg", href: "/collections/eyewear?brand=chrome-hearts", font: "'UnifrakturCook', cursive" },
+      { label: "Jacques Marie Mage", image: "/brand-hero/jacques-marie-mage-v3.png", href: "/collections/eyewear?brand=jacques-marie-mage", font: "'Noto Serif', serif" },
+      { label: "Miu Miu", image: "/brand-hero/miu-miu-v2.png", href: "/collections/eyewear?brand=miu-miu", font: "'Comfortaa', sans-serif" },
+      { label: "Fendi", image: "/brand-hero/fendi-v2.png", href: "/collections/eyewear?brand=fendi", font: "'Montserrat', sans-serif" },
+      { label: "Gucci", image: "/brand-hero/gucci-v2.png", href: "/collections/eyewear?brand=gucci", font: "'Playfair Display', serif" },
+      { label: "Cartier", image: "/brand-hero/cartier-v2.png", href: "/collections/eyewear?brand=cartier", font: "'Playfair Display', serif", italic: true },
+      { label: "Tom Ford", image: "/brand-hero/tom-ford-v2.png", href: "/collections/eyewear?brand=tom-ford", font: "'Montserrat', sans-serif" },
+      { label: "Prada", image: "/brand-hero/prada-v2.png", href: "/collections/eyewear?brand=prada", font: "'Prata', serif" },
+      { label: "Chrome Hearts", image: "/brand-hero/chrome-hearts-v2.png", href: "/collections/eyewear?brand=chrome-hearts", font: "'UnifrakturCook', cursive" },
     ],
     editorial: {
       image:
