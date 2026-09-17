@@ -289,40 +289,6 @@ export default async function initial_data_seed({
           ],
         },
         {
-          title: "Polarized Aviator Sunglasses",
-          handle: "polarized-aviator-sunglasses",
-          description:
-            "Classic aviator frame with polarized, impact-resistant lenses and UV400 protection. Spring hinges, lightweight metal frame.",
-          status: ProductStatus.PUBLISHED,
-          category_ids: [catId("Eyewear")],
-          sales_channels: [{ id: channelByKey.eyewear.id }],
-          shipping_profile_id: shippingProfile.id,
-          weight: 40,
-          images: imgs("polarized-aviator-sunglasses"),
-          options: [{ title: "Color", values: ["Gold / Green", "Black / Grey"] }],
-          variants: [
-            { title: "Gold / Green", sku: "SUN-AVI-GLD", options: { Color: "Gold / Green" }, prices: usd(34) },
-            { title: "Black / Grey", sku: "SUN-AVI-BLK", options: { Color: "Black / Grey" }, prices: usd(34) },
-          ],
-        },
-        {
-          title: "Blue-Light Filter Glasses",
-          handle: "blue-light-filter-glasses",
-          description:
-            "Everyday frames with a clear blue-light filtering coating. Anti-glare, no prescription.",
-          status: ProductStatus.PUBLISHED,
-          category_ids: [catId("Eyewear")],
-          sales_channels: [{ id: channelByKey.eyewear.id }],
-          shipping_profile_id: shippingProfile.id,
-          weight: 35,
-          images: imgs("blue-light-filter-glasses"),
-          options: [{ title: "Color", values: ["Tortoise", "Matte Black"] }],
-          variants: [
-            { title: "Tortoise", sku: "BLF-TORT", options: { Color: "Tortoise" }, prices: usd(25) },
-            { title: "Matte Black", sku: "BLF-MBLK", options: { Color: "Matte Black" }, prices: usd(25) },
-          ],
-        },
-        {
           title: "Articulated Desk Figure",
           handle: "articulated-desk-figure",
           description:
@@ -424,59 +390,6 @@ export default async function initial_data_seed({
           variants: [
             { title: "Graphite", sku: "SLV-16-GRA", options: { Color: "Graphite" }, prices: usd(32) },
             { title: "Olive", sku: "SLV-16-OLV", options: { Color: "Olive" }, prices: usd(32) },
-          ],
-        },
-
-        // ── more eyewear ────────────────────────────────────────────
-        {
-          title: "Round Retro Sunglasses",
-          handle: "round-retro-sunglasses",
-          description:
-            "Slim metal round frame, polarized UV400 lenses, adjustable nose pads.",
-          status: ProductStatus.PUBLISHED,
-          category_ids: [catId("Eyewear")],
-          sales_channels: [{ id: channelByKey.eyewear.id }],
-          shipping_profile_id: shippingProfile.id,
-          weight: 32,
-          images: imgs("round-retro-sunglasses"),
-          options: [{ title: "Color", values: ["Gold", "Gunmetal"] }],
-          variants: [
-            { title: "Gold", sku: "SUN-RND-GLD", options: { Color: "Gold" }, prices: usd(29) },
-            { title: "Gunmetal", sku: "SUN-RND-GUN", options: { Color: "Gunmetal" }, prices: usd(29) },
-          ],
-        },
-        {
-          title: "Sport Wrap Sunglasses",
-          handle: "sport-wrap-sunglasses",
-          description:
-            "Wraparound shatter-resistant lenses, rubberized grip temples, made for running and cycling.",
-          status: ProductStatus.PUBLISHED,
-          category_ids: [catId("Eyewear")],
-          sales_channels: [{ id: channelByKey.eyewear.id }],
-          shipping_profile_id: shippingProfile.id,
-          weight: 28,
-          images: imgs("sport-wrap-sunglasses"),
-          options: [{ title: "Color", values: ["Black", "Neon"] }],
-          variants: [
-            { title: "Black", sku: "SUN-SPT-BLK", options: { Color: "Black" }, prices: usd(27) },
-            { title: "Neon", sku: "SUN-SPT-NEO", options: { Color: "Neon" }, prices: usd(27) },
-          ],
-        },
-        {
-          title: "Oversized Square Sunglasses",
-          handle: "oversized-square-sunglasses",
-          description:
-            "Bold acetate square frame with gradient UV400 lenses. Statement piece, lightweight fit.",
-          status: ProductStatus.PUBLISHED,
-          category_ids: [catId("Eyewear")],
-          sales_channels: [{ id: channelByKey.eyewear.id }],
-          shipping_profile_id: shippingProfile.id,
-          weight: 44,
-          images: imgs("oversized-square-sunglasses"),
-          options: [{ title: "Color", values: ["Tortoise", "Black"] }],
-          variants: [
-            { title: "Tortoise", sku: "SUN-SQR-TRT", options: { Color: "Tortoise" }, prices: usd(31) },
-            { title: "Black", sku: "SUN-SQR-BLK", options: { Color: "Black" }, prices: usd(31) },
           ],
         },
 

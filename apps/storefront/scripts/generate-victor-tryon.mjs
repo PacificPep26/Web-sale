@@ -28,6 +28,9 @@ const limitArg = args.indexOf("--limit");
 const LIMIT = limitArg >= 0 ? parseInt(args[limitArg + 1], 10) : Infinity;
 const posesArg = args.indexOf("--poses");
 const POSE_IDS = posesArg >= 0 ? args[posesArg + 1].split(",") : ["left", "front", "right"];
+const handlesArg = args.indexOf("--handles");
+const ONLY_HANDLES = handlesArg >= 0 ? new Set(args[handlesArg + 1].split(",")) : null;
+const forceArg = args.includes("--force");
 const portraitArg = args.indexOf("--portrait");
 const PORTRAIT_PATH = portraitArg >= 0
   ? path.resolve(repoRoot, args[portraitArg + 1])
@@ -64,7 +67,7 @@ async function geminiEditImage({ portraitImg, glassesImg, pose }) {
         ],
       },
     ],
-    generationConfig: { responseModalities: ["IMAGE"] },
+    generationConfig: { responseModalities: ["IMAGE"], imageConfig: { aspectRatio: "3:4" } },
   });
 
   return new Promise((resolve, reject) => {
@@ -102,6 +105,7 @@ async function main() {
   const files = fs
     .readdirSync(glassesDir)
     .filter((f) => f.endsWith(".jpg"))
+    .filter((f) => !ONLY_HANDLES || ONLY_HANDLES.has(f.replace(/\.jpg$/, "")))
     .slice(0, LIMIT === Infinity ? undefined : LIMIT);
 
   console.log(`${files.length} glasses x ${POSE_IDS.length} poses = ${files.length * POSE_IDS.length} calls`);
@@ -112,7 +116,7 @@ async function main() {
     for (const poseId of POSE_IDS) {
       const pose = POSES[poseId];
       const outPath = path.join(outDir, `${handle}-${poseId}.jpg`);
-      if (fs.existsSync(outPath)) {
+      if (fs.existsSync(outPath) && !forceArg) {
         console.log(`${handle} / ${poseId} ... skip (exists)`);
         continue;
       }

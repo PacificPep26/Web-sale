@@ -31,8 +31,11 @@ export function EyewearHero() {
         className="lux-hero-copy"
         style={reduceMotion ? undefined : { y, color }}
       >
-        <h1 id="eyewear-heading">THE EYEWEAR EDIT</h1>
-        <a href="#designers" className="lux-light-link">Discover the collection</a>
+        <div className="lux-hero-heading">
+          <h1 id="eyewear-heading">THE EYEWEAR EDIT</h1>
+          <a href="#designers" className="lux-light-link">Discover the collection</a>
+        </div>
+        <p className="lux-hero-quote">&ldquo;Luxury within sight.&rdquo;</p>
       </motion.div>
     </section>
   )
