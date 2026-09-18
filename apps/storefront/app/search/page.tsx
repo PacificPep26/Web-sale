@@ -2,6 +2,8 @@ import Link from "next/link";
 import { listProducts } from "@/lib/data/products";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { SearchField } from "@/components/layout/SearchField";
+import { ImageSearch } from "@/components/search/image-search"
+import { WhatsappHelp } from "@/components/search/whatsapp-help"
 
 export const metadata = { title: "Search" };
 export const dynamic = "force-dynamic";
@@ -23,6 +25,7 @@ export default async function SearchPage({
         <p className="eyebrow">Search</p>
         <SearchField initial={query} autoFocus className="mt-4" />
       </div>
+      <ImageSearch />
 
       <div className="mt-12">
         {!query ? (
@@ -37,6 +40,7 @@ export default async function SearchPage({
             <Link href="/" className="link-underline mt-4 inline-block">
               Back to home
             </Link>
+            <WhatsappHelp query={query} />
           </div>
         ) : (
           <>

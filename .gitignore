@@ -64,3 +64,6 @@ Thumbs.db
 
 # local docker bind-mounts
 .data/
+
+# antigravity / claude agents
+.agents/

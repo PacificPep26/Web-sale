@@ -35,6 +35,7 @@ WORKDIR /app
 COPY --from=build /repo/apps/storefront/.next/standalone ./
 COPY --from=build /repo/apps/storefront/.next/static ./apps/storefront/.next/static
 COPY --from=build /repo/apps/storefront/public ./apps/storefront/public
+COPY --from=build /repo/apps/storefront/public ./public
 
 EXPOSE 3000
 ENV PORT=3000

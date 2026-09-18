@@ -37,6 +37,25 @@ export function SearchField({
           placeholder="Search"
           className="w-full bg-transparent text-sm outline-none placeholder:text-[color:var(--color-muted)]"
         />
+        <button
+          type="button"
+          onClick={() => {
+            const fileInput = document.getElementById("photo-search-input") as HTMLInputElement | null;
+            if (fileInput) {
+              fileInput.click();
+            } else {
+              router.push("/search#image-search");
+            }
+          }}
+          className="text-muted hover:text-foreground transition-colors p-1"
+          aria-label="Upload photo to search"
+          title="Upload photo to search"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+            <path d="M3 7h4l2-3h6l2 3h4v13H3z" />
+            <circle cx="12" cy="13" r="4" />
+          </svg>
+        </button>
       </div>
     </form>
   );

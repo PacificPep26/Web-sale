@@ -16,7 +16,12 @@ import portraitOverrides from "@/lib/tryon-portraits.json"
 // scripts/generate-victor-tryon.mjs) — these are additional product
 // photography, not a personalized try-on, so they're just extra gallery
 // images rather than a separate "Try It On" feature.
-const WORN_VICTOR_HANDLES = new Set<string>(sunglasses120Handles as string[]);
+const WORN_VICTOR_HANDLES = new Set<string>([
+  ...sunglasses120Handles,
+  ...Object.keys(portraitOverrides).map((url) =>
+    url.split("/").pop()!.replace(/-(front|left|right)\.jpg$/, "")
+  ),
+])
 const VICTOR_POSES = ["front", "left", "right"];
 
 function wornGalleryImagesFor(handle: string): { id: string; url: string }[] {
@@ -101,7 +106,7 @@ export function ProductDetails({
   return (
     <div className="container-page max-w-6xl grid gap-8 py-6 pb-20 md:grid-cols-[auto_1fr] md:gap-12 lg:gap-16 md:py-8 md:pb-12 items-start">
       {/* gallery */}
-      <div className="md:sticky md:top-24 md:self-start">
+      <div className="min-w-0 md:sticky md:top-24 md:self-start">
         <div className="flex gap-4 items-start">
           {images.length > 1 && (
             <div className="hidden w-16 shrink-0 flex-col gap-2.5 sm:flex">
