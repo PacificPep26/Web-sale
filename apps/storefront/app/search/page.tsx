@@ -24,8 +24,8 @@ export default async function SearchPage({
       <div className="mx-auto max-w-xl text-center">
         <p className="eyebrow">Search</p>
         <SearchField initial={query} autoFocus className="mt-4" />
+        <ImageSearch />
       </div>
-      <ImageSearch />
 
       <div className="mt-12">
         {!query ? (

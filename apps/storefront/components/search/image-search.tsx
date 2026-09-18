@@ -17,12 +17,9 @@ export function ImageSearch() {
   const [result, setResult] = useState<ImageSearchResult | null>(null)
   const controller = useRef<AbortController | null>(null)
   const generation = useRef(0)
-
-  const [dragOver, setDragOver] = useState(false)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
 
   useEffect(() => () => { if (preview) URL.revokeObjectURL(preview) }, [preview])
-
   useEffect(() => () => controller.current?.abort(), [])
 
   function selectFile(next?: File) {
@@ -59,7 +56,9 @@ export function ImageSearch() {
       const data = new FormData()
       data.set("image", file)
       const response = await fetch("/api/image-search", {
-        method: "POST", body: data, signal: controller.current.signal,
+        method: "POST",
+        body: data,
+        signal: controller.current.signal,
       })
       const body = await response.json()
       if (!response.ok) throw new Error(body.error || "Image search is unavailable. Please try again.")
@@ -74,88 +73,111 @@ export function ImageSearch() {
   }
 
   return (
-    <section id="image-search" aria-labelledby="image-search-heading" className="mt-8 scroll-mt-24">
-      <div className="mx-auto max-w-xl border border-token p-6 text-center md:p-8">
-        <svg className="mx-auto mb-3" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
-          <path d="M3 7h4l2-3h6l2 3h4v13H3z" /><circle cx="12" cy="13" r="4" />
-        </svg>
-        <h2 id="image-search-heading" className="text-2xl">Find it with a photo</h2>
-        <p className="mt-3 text-sm text-muted">Upload a product photo or screenshot. We’ll look for matching products in our collection.</p>
-        <label
-          onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
-          onDragLeave={() => setDragOver(false)}
-          onDrop={(e) => {
-            e.preventDefault()
-            setDragOver(false)
-            const dropped = e.dataTransfer.files?.[0]
-            if (dropped) selectFile(dropped)
-          }}
-          className={`mt-5 block cursor-pointer border border-dashed p-5 text-sm transition-colors ${
-            dragOver ? "border-stone-900 bg-stone-50" : "border-token hover:border-stone-400"
-          }`}
-        >
-          <span className="font-medium">Choose a photo or drag & drop here</span>
-          <input
-            ref={fileInputRef}
-            id="photo-search-input"
-            type="file"
-            accept="image/jpeg,image/png,image/webp"
-            aria-label="Choose a product photo"
-            className="mt-3 block w-full text-xs file:mr-3 file:border-0 file:bg-stone-100 file:px-3 file:py-2"
-            onChange={event => selectFile(event.target.files?.[0])}
-          />
-          <span className="mt-3 block text-xs text-muted">JPG, PNG or WebP · Up to 5 MB</span>
-        </label>
-        {preview && (
-          <div className="mx-auto mt-5">
-            <div className="relative mx-auto h-44 w-44 border border-token bg-white">
-              <Image src={preview} alt="Your uploaded product photo" fill unoptimized className="object-contain p-2" />
+    <div id="image-search-container" className="mx-auto max-w-xl">
+      {/* Hidden file input triggered by camera button in search bar */}
+      <input
+        ref={fileInputRef}
+        id="photo-search-input"
+        type="file"
+        accept="image/jpeg,image/png,image/webp"
+        aria-label="Choose a product photo"
+        className="hidden"
+        onChange={event => selectFile(event.target.files?.[0])}
+      />
+
+      {/* Sleek card appears ONLY when user selects a photo */}
+      {(file || preview || busy || error || result) && (
+        <div className="mt-6">
+          <div className="flex items-center justify-between gap-3 border border-token bg-card p-3 text-sm">
+            <div className="flex items-center gap-3 min-w-0">
+              {preview && (
+                <div className="relative h-12 w-12 shrink-0 border border-token bg-white">
+                  <Image
+                    src={preview}
+                    alt="Your uploaded product photo"
+                    fill
+                    unoptimized
+                    className="object-contain p-1"
+                  />
+                </div>
+              )}
+              <div className="text-left min-w-0">
+                <p className="truncate text-xs font-medium text-foreground">{file?.name || "Product photo"}</p>
+                {busy ? (
+                  <p className="flex items-center gap-1.5 text-xs text-muted">
+                    <svg className="h-3 w-3 animate-spin text-foreground" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                    </svg>
+                    <span>Analyzing photo with AI…</span>
+                  </p>
+                ) : (
+                  <p className="text-xs text-muted">Photo ready</p>
+                )}
+              </div>
             </div>
-            <button
-              type="button"
-              onClick={() => selectFile(undefined)}
-              className="mt-2 text-xs text-muted underline hover:text-foreground"
-            >
-              ✕ Remove photo
-            </button>
+
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                type="button"
+                disabled={!file || busy}
+                onClick={search}
+                className="bg-stone-900 px-4 py-2 text-xs font-medium !text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                {busy ? "Searching…" : "Search by photo"}
+              </button>
+              <button
+                type="button"
+                onClick={() => selectFile(undefined)}
+                aria-label="Remove photo"
+                className="p-1.5 text-muted hover:text-foreground text-xs"
+                title="Remove photo"
+              >
+                ✕
+              </button>
+            </div>
           </div>
-        )}
-        <p className="mt-4 text-xs text-muted">Your image is sent to our AI provider to find matches. AI suggestions may differ from the exact model.</p>
-        <button
-          type="button"
-          disabled={!file || busy}
-          onClick={search}
-          className="mt-5 flex min-h-12 w-full items-center justify-center gap-2 bg-stone-900 px-6 py-3 text-sm !text-white disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          {busy ? (
-            <>
-              <svg className="h-4 w-4 animate-spin text-white" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-              </svg>
-              <span>Looking for your product…</span>
-            </>
-          ) : (
-            "Search by photo"
-          )}
-        </button>
-        <div role="status" aria-live="polite" className="mt-3 text-sm">{busy ? "Comparing your photo with our collection. This may take a moment." : ""}</div>
-        {error && <p role="alert" className="mt-3 text-sm text-red-700">{error}</p>}
-      </div>
-      {result && <div className="mt-10" aria-live="polite">
-        <h2 className="text-center text-2xl">{result.products.length ? "Possible matches" : "No confident match found"}</h2>
-        <p className="mx-auto mt-3 max-w-xl text-center text-sm text-muted">{result.description}</p>
-        {result.products.length > 0 && <div className="mt-8 grid grid-cols-2 gap-5 md:grid-cols-3">
-          {result.products.map(product => <Link key={product.id} href={`/products/${product.handle}`} className="text-center">
-            <div className="relative aspect-square border border-token bg-card">
-              {product.thumbnail && <Image src={product.thumbnail} alt={product.title} fill sizes="(max-width: 768px) 50vw, 33vw" className="object-contain p-4" />}
+
+          <div role="status" aria-live="polite" className="mt-2 text-center text-xs text-muted">
+            {busy ? "Comparing your photo with our collection. This may take a moment." : ""}
+          </div>
+          {error && <p role="alert" className="mt-3 text-center text-sm text-red-700">{error}</p>}
+
+          {result && (
+            <div className="mt-8" aria-live="polite">
+              <h2 className="text-center text-xl font-medium tracking-tight">
+                {result.products.length ? "Possible matches" : "No confident match found"}
+              </h2>
+              <p className="mx-auto mt-2 max-w-md text-center text-xs text-muted">{result.description}</p>
+              {result.products.length > 0 && (
+                <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3">
+                  {result.products.map(product => (
+                    <Link key={product.id} href={`/products/${product.handle}`} className="group text-center">
+                      <div className="relative aspect-square border border-token bg-card transition-colors group-hover:border-stone-900">
+                        {product.thumbnail && (
+                          <Image
+                            src={product.thumbnail}
+                            alt={product.title}
+                            fill
+                            sizes="(max-width: 768px) 50vw, 33vw"
+                            className="object-contain p-4"
+                          />
+                        )}
+                      </div>
+                      <h3 className="mt-2 text-sm">{product.title}</h3>
+                      <span className="mt-1 inline-block text-xs text-muted underline group-hover:text-foreground">
+                        View product
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
-            <h3 className="mt-3 text-sm">{product.title}</h3>
-            <span className="mt-2 inline-block text-xs underline">View product</span>
-          </Link>)}
-        </div>}
-      </div>}
-      {(result || error) && <WhatsappHelp />}
-    </section>
+          )}
+
+          {(result || error) && <WhatsappHelp />}
+        </div>
+      )}
+    </div>
   )
 }

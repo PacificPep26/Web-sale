@@ -67,3 +67,10 @@ Thumbs.db
 
 # antigravity / claude agents
 .agents/
+ORIGINAL_REQUEST.md
+
+# raw generation assets & loose images
+banner/
+bran/
+/*.png
+/*.jpg
