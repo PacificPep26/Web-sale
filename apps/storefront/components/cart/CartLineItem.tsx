@@ -6,6 +6,7 @@ import { useTransition } from "react";
 import type { HttpTypes } from "@medusajs/types";
 import { updateItem, removeItem } from "@/lib/data/cart";
 import { formatMoney } from "@/lib/money";
+import { productPhoto, productPhotoStyle, resolveProductPhoto } from "@/lib/product-photos"
 
 export function CartLineItem({
   item,
@@ -15,14 +16,14 @@ export function CartLineItem({
   currency: string;
 }) {
   const [pending, start] = useTransition();
-  const thumb = item.thumbnail ?? item.variant?.product?.thumbnail;
   const handle = item.variant?.product?.handle;
+  const thumb = productPhoto(handle) ?? resolveProductPhoto(item.thumbnail ?? item.variant?.product?.thumbnail)
 
   return (
     <div className="flex gap-4 py-4" aria-busy={pending}>
       <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-token-sm surface">
         {thumb && (
-          <Image src={thumb} alt={item.product_title ?? ""} fill sizes="80px" className="object-cover" />
+          <Image src={thumb} style={productPhotoStyle(thumb)} alt={item.product_title ?? ""} fill sizes="80px" className="object-contain" />
         )}
       </div>
       <div className="flex flex-1 flex-col">

@@ -68,7 +68,17 @@ export default async function PolicyPage({
         ))}
       </div>
       <p className="mt-10 text-sm text-muted">
-        Questions? Email us and reference your order number. — {theme.brand}
+        {theme.supportEmail ? (
+          <>
+            Questions? Email{" "}
+            <a href={`mailto:${theme.supportEmail}`} className="underline">
+              {theme.supportEmail}
+            </a>{" "}
+            and reference your order number. — {theme.brand}
+          </>
+        ) : (
+          <>Questions? Email us and reference your order number. — {theme.brand}</>
+        )}
       </p>
     </div>
   );

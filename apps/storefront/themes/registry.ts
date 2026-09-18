@@ -38,6 +38,8 @@ export type ThemeConfig = {
   faqs: { q: string; a: string }[];
   /** category handle used as the "shop all" collection */
   collectionHandle: string;
+  /** customer support email shown in the footer and policy pages */
+  supportEmail?: string;
 };
 
 const domainMap: Record<string, NicheKey> = {
@@ -124,6 +126,7 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
     key: "eyewear",
     brand: "LuxeShade",
     tagline: "Frames for the light you live in.",
+    supportEmail: "luxeshadee@gmail.com",
     hero: {
       eyebrow: "Sun & Light",
       title: "See sharper. Look the part.",

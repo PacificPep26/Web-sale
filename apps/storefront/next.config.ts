@@ -1,4 +1,6 @@
 import type { NextConfig } from "next";
+import productPhotos from "./lib/product-photos.json"
+import photoAliases from "./lib/product-photo-aliases.json"
 
 const backend = new URL(
   process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000"
@@ -6,6 +8,18 @@ const backend = new URL(
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [...Object.entries(productPhotos), ...Object.entries(photoAliases).map(([alias, handle]) =>
+      [alias, productPhotos[handle as keyof typeof productPhotos]] as const
+    )].flatMap(([handle, photo]) => [
+      { source: `/images/sunglasses/${handle}.jpg`, destination: photo.src, permanent: true },
+      ...(handle.startsWith("sun-jacques-marie-mage-") ? [{
+        source: `/product-previews/${handle.slice("sun-jacques-marie-mage-".length)}.png`,
+        destination: photo.src,
+        permanent: true,
+      }] : []),
+    ])
+  },
   // standalone output is only for the Docker image (Railway); Vercel's
   // builder has its own packaging and breaks route resolution if this is set
   ...(process.env.DOCKER_BUILD ? { output: "standalone" as const } : {}),

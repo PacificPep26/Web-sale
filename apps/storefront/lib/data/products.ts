@@ -2,6 +2,7 @@ import { unstable_cache } from "next/cache";
 import { sdk } from "@/lib/medusa";
 import { getRegion } from "./regions";
 import type { HttpTypes } from "@medusajs/types";
+import { withProductPhoto } from "@/lib/product-photos"
 
 const PRODUCT_FIELDS =
   "id,title,handle,description,thumbnail,*images,*options,*options.values,*variants,*variants.options,*variants.calculated_price,variants.inventory_quantity,*categories";
@@ -23,7 +24,7 @@ export async function listProducts(params?: {
     ...(params?.q ? { q: params.q } : {}),
     ...(params?.order ? { order: params.order } : {}),
   });
-  return { products, count };
+  return { products: products.map(withProductPhoto), count };
 }
 
 export async function getProductByHandle(
@@ -36,7 +37,7 @@ export async function getProductByHandle(
     fields: PRODUCT_FIELDS,
     limit: 1,
   });
-  return products[0] ?? null;
+  return products[0] ? withProductPhoto(products[0]) : null;
 }
 
 export const listCategories = unstable_cache(

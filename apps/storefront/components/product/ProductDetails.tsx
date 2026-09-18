@@ -8,6 +8,8 @@ import { formatMoney } from "@/lib/money";
 import { WishlistButton } from "./WishlistButton";
 import type { NicheKey } from "@/themes/registry";
 import sunglasses120Handles from "@/lib/sunglasses-120-handles.json";
+import { productPhotoStyle } from "@/lib/product-photos"
+import portraitOverrides from "@/lib/tryon-portraits.json"
 
 // The 120-model luxury sunglasses catalogue has Gemini-composited "model
 // wearing these glasses" photos for two reference models (see
@@ -22,7 +24,7 @@ function wornGalleryImagesFor(handle: string): { id: string; url: string }[] {
   return ["worn-victor", "worn-victor-male"].flatMap((dir) =>
     VICTOR_POSES.map((pose) => ({
       id: `${dir}-${pose}`,
-      url: `/tryon/${dir}/${handle}-${pose}.jpg`,
+      url: (portraitOverrides as Record<string, string>)[`/tryon/${dir}/${handle}-${pose}.jpg`] ?? `/tryon/${dir}/${handle}-${pose}.jpg`,
     }))
   );
 }
@@ -114,12 +116,13 @@ export function ProductDetails({
                   {im.url && (
                     <Image
                       src={im.url}
+                      style={productPhotoStyle(im.url)}
                       alt=""
                       fill
                       sizes="64px"
                       className={
                         im.url.includes("/tryon/")
-                          ? "object-cover object-center"
+                          ? "object-contain object-center"
                           : "object-contain p-1.5"
                       }
                     />
@@ -133,13 +136,14 @@ export function ProductDetails({
             {images[activeImg]?.url && (
               <Image
                 src={images[activeImg].url}
+                style={productPhotoStyle(images[activeImg].url)}
                 alt={product.title}
                 fill
                 priority
                 sizes="(max-width:768px) 100vw, 400px"
                 className={
                   images[activeImg].url.includes("/tryon/")
-                    ? "object-cover object-center transition-all duration-300"
+                    ? "object-contain object-center transition-all duration-300"
                     : "object-contain p-8 md:p-10 transition-all duration-300"
                 }
               />
@@ -160,12 +164,13 @@ export function ProductDetails({
                 {im.url && (
                   <Image
                     src={im.url}
+                    style={productPhotoStyle(im.url)}
                     alt=""
                     fill
                     sizes="56px"
                     className={
                       im.url.includes("/tryon/")
-                        ? "object-cover object-center"
+                        ? "object-contain object-center"
                         : "object-contain p-1"
                     }
                   />

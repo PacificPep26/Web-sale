@@ -82,8 +82,8 @@ body:has(.lux-menu[open]) { overflow: hidden; }
   .lux-header-actions { gap: 2px; }
   .lux-header-actions > a, .lux-header-actions > button { width: 34px; }
   .lux-home { padding: 0 12px; }
-  .lux-hero-media { height: 70svh; min-height: 420px; max-height: 650px; }
-  .lux-hero-image { object-position: 66% center; }
+  .lux-hero-media { height: auto; aspect-ratio: 16 / 9; min-height: unset; max-height: none; }
+  .lux-hero-image { object-fit: contain; object-position: center; }
   .lux-hero-shade { background: linear-gradient(0deg, #000b, transparent 80%); }
   .lux-hero-copy { margin: 32px 20px 0; grid-template-columns: 1fr; justify-items: start; gap: 18px; }
   .lux-hero-heading h1 { font-size: clamp(24px, 6vw, 32px); }
@@ -98,7 +98,7 @@ body:has(.lux-menu[open]) { overflow: hidden; }
   .lux-brand-label h3 { font-size: 10px; line-height: 1.5; }
   .lux-brand-card > p { font-size: 9px; }
   .lux-editorial { grid-template-columns: 1fr; }
-  .lux-editorial-image { min-height: 310px; }
+  .lux-editorial-image { min-height: unset; aspect-ratio: 2.5 / 1; }
   .lux-editorial-copy { padding: 40px 26px; }
   .lux-closing { padding: 55px 10px; }
   .lux-footer { padding: 40px 22px 0; }

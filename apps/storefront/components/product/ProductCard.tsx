@@ -5,6 +5,7 @@ import type { HttpTypes } from "@medusajs/types";
 import { fromPrice, currencyOf } from "@/lib/data/products";
 import { Price } from "@/components/ui/Price";
 import { WishlistButton } from "./WishlistButton";
+import { productPhotoStyle } from "@/lib/product-photos"
 
 const NEW_WINDOW_MS = 1000 * 60 * 60 * 24 * 45;
 
@@ -36,6 +37,7 @@ export function ProductCard({
           <>
             <Image
               src={imgPrimary}
+              style={productPhotoStyle(imgPrimary)}
               alt={product.title}
               fill
               priority={priority}

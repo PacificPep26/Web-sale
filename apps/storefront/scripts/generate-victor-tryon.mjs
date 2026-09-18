@@ -15,7 +15,7 @@ import sharp from "sharp";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const storefrontRoot = path.resolve(__dirname, "..");
 const repoRoot = path.resolve(storefrontRoot, "../..");
-const glassesDir = path.join(storefrontRoot, "public/images/sunglasses");
+const glassesDir = path.join(storefrontRoot, "public/images/eyewear");
 
 const KEY = process.env.GEMINI_API_KEY;
 if (!KEY) {
@@ -60,14 +60,14 @@ async function geminiEditImage({ portraitImg, glassesImg, pose }) {
       {
         parts: [
           {
-            text: `Image 1 is a portrait of a person. Image 2 shows a pair of glasses. Edit image 1 so the person is wearing the exact glasses shown in image 2, positioned naturally and correctly on their face. Also ${pose.turnNote}. The glasses must sit level and symmetric on the face: the frame's top edge should be parallel to the eyebrow line and both temples should sit at the exact same height above each ear — no tilt, no lean, no one side higher than the other. Keep the person's face, identity, expression, hair, skin tone, clothing, lighting and background completely unchanged — only add the glasses and adjust the head angle as instructed. Photorealistic, correct perspective and scale, natural shadow under the frame and on the skin, same photographic style as image 1.`,
+            text: `Output a single vertical 4:5 portrait. Center the entire head with space above the hair, both sides of the face visible, shoulders and upper chest in frame. Never output a landscape image, collage, or stretched anatomy. Image 1 is a portrait of a person. Image 2 shows a pair of glasses. Edit image 1 so the person is wearing the exact glasses shown in image 2, positioned naturally and correctly on their face. Also ${pose.turnNote}. The glasses must sit level and symmetric on the face: the frame's top edge should be parallel to the eyebrow line and both temples should sit at the exact same height above each ear — no tilt, no lean, no one side higher than the other. Keep the person's face, identity, expression, hair, skin tone, clothing, lighting and background completely unchanged — only add the glasses and adjust the head angle as instructed. Photorealistic, correct perspective and scale, natural shadow under the frame and on the skin, same photographic style as image 1.`,
           },
           { inline_data: { mime_type: "image/jpeg", data: portraitImg.toString("base64") } },
-          { inline_data: { mime_type: "image/jpeg", data: glassesImg.toString("base64") } },
+          { inline_data: { mime_type: glassesImg[0] === 0x89 ? "image/png" : "image/jpeg", data: glassesImg.toString("base64") } },
         ],
       },
     ],
-    generationConfig: { responseModalities: ["IMAGE"], imageConfig: { aspectRatio: "3:4" } },
+    generationConfig: { responseModalities: ["IMAGE"], imageConfig: { aspectRatio: "4:5" } },
   });
 
   return new Promise((resolve, reject) => {
@@ -104,14 +104,14 @@ async function main() {
   const portraitImg = await fetchBuffer(PORTRAIT_PATH);
   const files = fs
     .readdirSync(glassesDir)
-    .filter((f) => f.endsWith(".jpg"))
-    .filter((f) => !ONLY_HANDLES || ONLY_HANDLES.has(f.replace(/\.jpg$/, "")))
+    .filter((f) => /\.(jpg|png)$/.test(f))
+    .filter((f) => !ONLY_HANDLES || ONLY_HANDLES.has(f.replace(/\.(jpg|png)$/, "")))
     .slice(0, LIMIT === Infinity ? undefined : LIMIT);
 
   console.log(`${files.length} glasses x ${POSE_IDS.length} poses = ${files.length * POSE_IDS.length} calls`);
 
   for (const file of files) {
-    const handle = file.replace(/\.jpg$/, "");
+    const handle = file.replace(/\.(jpg|png)$/, "");
     const glassesImg = await fetchBuffer(path.join(glassesDir, file));
     for (const poseId of POSE_IDS) {
       const pose = POSES[poseId];
@@ -123,10 +123,20 @@ async function main() {
       process.stdout.write(`${handle} / ${poseId} ... `);
       try {
         const result = await geminiEditImage({ portraitImg, glassesImg, pose });
-        await fs.promises.writeFile(outPath, result);
+        const metadata = await sharp(result).metadata()
+        const ratio = metadata.width / metadata.height
+        if (!Number.isFinite(ratio) || Math.abs(ratio - 0.8) > 0.04) {
+          throw new Error(`Rejected non-portrait output: ${metadata.width}x${metadata.height}; expected 4:5. Existing image preserved.`)
+        }
+        if (metadata.width < 800 || metadata.height < 1000) {
+          throw new Error(`Rejected low-resolution output: ${metadata.width}x${metadata.height}. Existing image preserved.`)
+        }
+        const jpeg = await sharp(result).rotate().jpeg({ quality: 95 }).toBuffer()
+        await fs.promises.writeFile(outPath, jpeg)
         console.log("ok");
       } catch (err) {
         console.log("FAILED:", err.message);
+        process.exitCode = 1
       }
     }
   }
