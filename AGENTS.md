@@ -16,6 +16,8 @@ Dropshipping, `src/lib/suppliers`), tracking is synced back, and a dropship hub
 - Suppliers have a **sandbox mode** (deterministic fakes) so the pipeline runs with no real API keys
 - Local infra ports: Postgres **5433**, Redis 6379, MinIO **9002**/9001 (Medusa owns 9000)
 - Storefront niche is chosen by `SITE` env (or host); Next 16 dev refuses two instances per dir
+- Stripe Payment Architecture & Anti-Ban Shield: See `docs/STRIPE_GATEWAY_ARCHITECTURE.md`
+- Corporate Review Portal (`apps/landing`): `https://regenx-studio-production.up.railway.app` (Regenxlabsbio LLC)
 
 ## Overview
 
