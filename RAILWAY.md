@@ -28,6 +28,10 @@ Nếu sau này cần multi-instance/scale ngang thì phải thêm Redis service 
 `JWT_SECRET`, `COOKIE_SECRET`, `MEDUSA_WORKER_MODE=shared`, `DATABASE_URL`
 (reference tới Postgres service), `ADMIN_CORS`, `AUTH_CORS`, `STORE_CORS`, `PORT=9000`.
 
+*Cổng thanh toán Stripe (Backend):*
+- `STRIPE_API_KEY`: Khóa bí mật Stripe (dạng `sk_test_...` hoặc `sk_live_...`)
+- `STRIPE_WEBHOOK_SECRET`: Khóa webhook (dạng `whsec_...`) để Medusa nhận tín hiệu thanh toán
+
 ⚠️ **`STORE_CORS` hiện đang trỏ về domain của chính backend** (`web-sale-production...`)
 thay vì domain storefront (`luxshade.up.railway.app`). SSR (server-side fetch từ Next.js)
 không bị ảnh hưởng vì đó là request server-to-server, không qua CORS — nhưng bất kỳ
@@ -39,6 +43,9 @@ frontend nếu gặp lỗi CORS khi thao tác trên site.
 `SITE=eyewear`, `MEDUSA_BACKEND_URL` / `NEXT_PUBLIC_MEDUSA_BACKEND_URL` =
 `https://web-sale-production.up.railway.app`, `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY_EYEWEAR`,
 `NEXT_PUBLIC_DEFAULT_REGION=us`, `PORT=3000`.
+
+*Cổng thanh toán Stripe (Frontend):*
+- `NEXT_PUBLIC_STRIPE_PK`: Khóa công khai Stripe (dạng `pk_test_...` hoặc `pk_live_...`)
 
 *Tính năng tìm kiếm bằng ảnh (`/api/image-search`):*
 - `GEMINI_API_KEY` (Google AI Studio key)
