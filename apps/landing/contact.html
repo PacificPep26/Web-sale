@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Customer Care | Regenxlabsbio LLC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#faf8f5] text-stone-900 font-sans antialiased">
+  <header class="border-b border-stone-200 py-6 px-6 bg-white">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="index.html" class="font-serif text-2xl font-semibold">REGENX STUDIO</a>
+      <a href="index.html" class="text-sm text-stone-600 hover:text-stone-900">← Back to Store</a>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 py-16">
+    <div class="border-b border-stone-200 pb-6 mb-12">
+      <span class="text-xs uppercase tracking-widest text-stone-500 font-mono">Client Concierge</span>
+      <h1 class="text-3xl md:text-4xl font-serif font-medium mt-2">Contact & Support</h1>
+      <p class="text-stone-500 text-sm mt-2">We are dedicated to providing responsive, personalized assistance.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="space-y-8 text-sm text-stone-700">
+        <div>
+          <h3 class="font-semibold text-stone-900 text-base mb-2">Corporate Headquarters</h3>
+          <p class="font-medium text-stone-900">Regenxlabsbio LLC</p>
+          <p class="text-stone-600">108 W 13th St</p>
+          <p class="text-stone-600">Wilmington, DE, 19801</p>
+          <p class="text-stone-600">United States of America</p>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-stone-900 text-base mb-2">Direct Communications</h3>
+          <p class="text-stone-600">General & Order Support: <a href="mailto:support@regenxlabsbio.com" class="text-amber-800 underline font-medium">support@regenxlabsbio.com</a></p>
+          <p class="text-stone-600">Concierge Desk: <a href="mailto:luxeshadee@gmail.com" class="text-amber-800 underline font-medium">luxeshadee@gmail.com</a></p>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-stone-900 text-base mb-2">Operating Hours</h3>
+          <p class="text-stone-600">Monday – Friday: 9:00 AM – 6:00 PM EST</p>
+          <p class="text-stone-600">Saturday: 10:00 AM – 3:00 PM EST</p>
+          <p class="text-stone-500 text-xs mt-1">Typical response time: Under 12 business hours.</p>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl border border-stone-200 shadow-sm">
+        <h3 class="font-semibold text-stone-900 text-lg mb-4">Send a Message</h3>
+        <form onsubmit="event.preventDefault(); alert('Thank you for contacting Regenx Studio. Your inquiry has been received and our concierge team will respond within 12 hours.');" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">Full Name</label>
+            <input type="text" required placeholder="Jane Doe" class="w-full px-3 py-2 border border-stone-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-stone-800">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">Email Address</label>
+            <input type="email" required placeholder="jane@example.com" class="w-full px-3 py-2 border border-stone-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-stone-800">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">Order # (If applicable)</label>
+            <input type="text" placeholder="RX-OPT-01" class="w-full px-3 py-2 border border-stone-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-stone-800">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">Message</label>
+            <textarea rows="4" required placeholder="How can our concierge team assist you today?" class="w-full px-3 py-2 border border-stone-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-stone-800"></textarea>
+          </div>
+          <button type="submit" class="w-full py-3 bg-stone-900 text-white rounded text-xs font-semibold uppercase tracking-wider hover:bg-amber-900 transition-colors">
+            Submit Inquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-stone-200 py-8 text-center text-xs text-stone-500 bg-white">
+    © 2026 Regenxlabsbio LLC. 108 W 13th St, Wilmington, DE 19801, USA.
+  </footer>
+</body>
+</html>
+
