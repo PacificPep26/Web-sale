@@ -20,4 +20,4 @@ export const DEFAULT_REGION = process.env.NEXT_PUBLIC_DEFAULT_REGION || "us";
 
 export const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PK || "";
 
-export const CART_COOKIE = "_medusa_cart_id";
+export const CART_COOKIE = `_medusa_cart_id_${NICHE}`;

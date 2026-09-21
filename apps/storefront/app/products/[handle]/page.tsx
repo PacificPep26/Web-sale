@@ -1,3 +1,4 @@
+import { ToyDetails } from "@/components/toys/toy-details"
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProductByHandle } from "@/lib/data/products";
@@ -54,7 +55,7 @@ export default async function ProductPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ProductDetails product={product} niche={NICHE} />
+      {NICHE === "toys" ? <ToyDetails product={product} /> : <ProductDetails product={product} niche={NICHE} />}
     </>
   );
 }

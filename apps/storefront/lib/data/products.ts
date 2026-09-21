@@ -5,7 +5,7 @@ import type { HttpTypes } from "@medusajs/types";
 import { withProductPhoto } from "@/lib/product-photos"
 
 const PRODUCT_FIELDS =
-  "id,title,handle,description,thumbnail,*images,*options,*options.values,*variants,*variants.options,*variants.calculated_price,variants.inventory_quantity,*categories";
+  "id,title,handle,description,thumbnail,metadata,*images,*options,*options.values,*variants,*variants.options,*variants.calculated_price,variants.inventory_quantity,variants.manage_inventory,variants.allow_backorder,*categories";
 
 export async function listProducts(params?: {
   limit?: number;

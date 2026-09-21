@@ -1,3 +1,4 @@
+import { ToyHeader } from "@/components/toys/toy-header"
 import { EyewearHeader } from "./EyewearHeader";
 import Link from "next/link";
 import { getCart } from "@/lib/data/cart";
@@ -10,6 +11,8 @@ export async function Header() {
   const theme = THEMES[NICHE];
   const cart = await getCart();
   const count = cart?.items?.reduce((n, i) => n + (i.quantity ?? 0), 0) ?? 0;
+
+  if (theme.key === "toys") return <ToyHeader count={count} />
 
   if (theme.key === "eyewear") return <EyewearHeader brand={theme.brand} brands={theme.brands} count={count} />;
 

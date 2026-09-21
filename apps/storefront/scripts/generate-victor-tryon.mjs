@@ -34,7 +34,7 @@ const forceArg = args.includes("--force");
 const portraitArg = args.indexOf("--portrait");
 const PORTRAIT_PATH = portraitArg >= 0
   ? path.resolve(repoRoot, args[portraitArg + 1])
-  : path.join(repoRoot, "androgynous-portrait-black-shirt-natural-skin.png");
+  : path.join(__dirname, "assets/androgynous-portrait-black-shirt-natural-skin.png");
 const outdirArg = args.indexOf("--outdir");
 const outDir = path.join(storefrontRoot, "public/tryon", outdirArg >= 0 ? args[outdirArg + 1] : "worn-victor");
 fs.mkdirSync(outDir, { recursive: true });

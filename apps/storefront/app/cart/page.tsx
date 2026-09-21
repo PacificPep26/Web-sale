@@ -1,3 +1,5 @@
+import { ToyCartPage } from "@/components/toys/toy-cart"
+import { NICHE } from "@/lib/config"
 import Link from "next/link";
 import { getCart } from "@/lib/data/cart";
 import { CartLineItem } from "@/components/cart/CartLineItem";
@@ -8,6 +10,7 @@ export const dynamic = "force-dynamic";
 
 export default async function CartPage() {
   const cart = await getCart();
+  if (NICHE === "toys") return <ToyCartPage cart={cart} />
   const currency = cart?.currency_code ?? "usd";
   const items = cart?.items ?? [];
 

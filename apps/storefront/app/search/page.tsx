@@ -1,3 +1,5 @@
+import { NICHE } from "@/lib/config"
+import { ToyCollection } from "@/components/toys/toy-collection"
 import Link from "next/link";
 import { listProducts } from "@/lib/data/products";
 import { ProductGrid } from "@/components/product/ProductGrid";
@@ -15,6 +17,7 @@ export default async function SearchPage({
 }) {
   const { q = "" } = await searchParams;
   const query = q.trim();
+  if (NICHE === "toys") return <ToyCollection filters={{ q: query }} />
   const { products, count } = query
     ? await listProducts({ q: query, limit: 24 })
     : { products: [], count: 0 };

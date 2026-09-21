@@ -10,6 +10,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 sys.stdout.reconfigure(encoding='utf-8')
 
 excel_path = r'd:\victor\Web-product-project\Sunglasses_120_Models_Embedded_Product_Images.xlsx'
+excel_path = r'd:\victor\Web-product-project\docs\catalog\Sunglasses_120_Models_Embedded_Product_Images.xlsx'
 out_dir = r'd:\victor\Web-product-project\apps\storefront\public\images\sunglasses'
 json_out = r'd:\victor\Web-product-project\apps\backend\src\scripts\data\sunglasses-120.json'
 

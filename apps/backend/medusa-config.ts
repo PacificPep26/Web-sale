@@ -78,6 +78,9 @@ module.exports = defineConfig({
                     apiKey: STRIPE_API_KEY,
                     webhookSecret: process.env.STRIPE_WEBHOOK_SECRET,
                     capture: true,
+                    paymentDescription:
+                      process.env.STRIPE_PAYMENT_DESCRIPTION ||
+                      'LuxeShade Studio Order',
                   },
                 },
               ]

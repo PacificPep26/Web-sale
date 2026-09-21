@@ -1,3 +1,6 @@
+import { ToyCollection } from "@/components/toys/toy-collection"
+import { NICHE } from "@/lib/config"
+import type { ToyFilters } from "@dtc/shared-types/playpuff"
 import { notFound } from "next/navigation";
 import { getCategoryByHandle, listProducts } from "@/lib/data/products";
 import { ProductGrid } from "@/components/product/ProductGrid";
@@ -9,10 +12,12 @@ export default async function CollectionPage({
   searchParams,
 }: {
   params: Promise<{ handle: string }>;
-  searchParams: Promise<{ page?: string; brand?: string }>;
+  searchParams: Promise<ToyFilters & { brand?: string }>;
 }) {
   const { handle } = await params;
-  const { page, brand } = await searchParams;
+  const filters = await searchParams
+  if (NICHE === "toys" && handle === "toys") return <ToyCollection filters={filters} />
+  const { page, brand } = filters
   const category = await getCategoryByHandle(handle);
   if (!category) notFound();
 

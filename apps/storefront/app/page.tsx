@@ -1,3 +1,4 @@
+import { ToyHome } from "@/components/toys/toy-home"
 import { EyewearHome } from "@/components/EyewearHome";
 import Link from "next/link";
 import Image from "next/image";
@@ -80,6 +81,7 @@ function UspIconGlyph({ icon }: { icon: UspIcon }) {
 
 export default async function HomePage() {
   const theme = themeFor((await headers()).get("host"));
+  if (theme.key === "toys") return <ToyHome />
   if (theme.key === "eyewear") return <EyewearHome theme={theme} />;
   const needsProducts = theme.sections.includes("featured") || theme.sections.includes("rail");
   const products = needsProducts ? (await listProducts({ limit: 12 })).products : [];

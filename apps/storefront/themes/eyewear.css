@@ -18,20 +18,20 @@
 .lux-header-row { height: 88px; display: flex; align-items: center; padding: 0 3.3%; gap: 40px; }
 .lux-wordmark { font-size: 32px; text-transform: uppercase; letter-spacing: -.065em; font-weight: 600; line-height: 1; }
 .lux-desktop-nav { display: flex; margin: auto; gap: 34px; font-size: 11px; }
+.lux-desktop-nav a { white-space: nowrap; }
 .lux-desktop-nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
 .lux-header-actions { display: flex; gap: 15px; align-items: center; }
 .lux-header-actions > a, .lux-header-actions > button { display: flex; width: 38px; height: 44px; align-items: center; justify-content: center; cursor: pointer; }
 .lux-home { padding: 0 24px; }
 .lux-hero { position: relative; color: #191919; }
-.lux-hero-media { position: relative; height: min(780px, calc(100svh - 118px)); min-height: 420px; overflow: hidden; background: #171510; }
-.lux-hero-image { object-fit: cover; object-position: center 38%; }
-.lux-hero-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,10,10,.72), rgba(10,10,10,.12) 42%, transparent 65%); }
-.lux-hero-copy { position: relative; z-index: 1; margin: 32px 32px 0; display: grid; grid-template-columns: auto 1fr; align-items: start; gap: 40px; }
+.lux-hero-media { position: relative; aspect-ratio: 2600 / 1463; overflow: hidden; background: #171510; }
+.lux-hero-image { object-fit: contain; object-position: center; }
+.lux-hero-copy { position: relative; z-index: 1; margin: 24px 0 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 24px; }
 .lux-hero-heading h1 { font-size: clamp(26px, 2.6vw, 40px); line-height: 1.15; letter-spacing: -.025em; font-weight: 600; margin-bottom: 16px; }
-.lux-hero-quote { justify-self: center; font-family: "Noto Serif", serif; font-style: italic; font-weight: 400; font-size: clamp(20px, 2.6vw, 38px); line-height: 1.25; white-space: nowrap; text-align: center; margin: 0; }
+.lux-hero-quote { justify-self: center; font-family: "Noto Serif", serif; font-style: italic; font-weight: 400; font-size: clamp(20px, 2.6vw, 38px); line-height: 1.25; text-align: center; margin: 0; }
 .lux-light-link { display: inline-block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding-bottom: 6px; border-bottom: 1px solid currentColor; transition: opacity 0.3s ease; }
 .lux-light-link:hover { opacity: 0.7; }
-.lux-designers { padding: 88px 0 72px; scroll-margin-top: 240px; }
+.lux-designers { padding: 32px 0 48px; scroll-margin-top: 104px; }
 .lux-section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 36px; }
 .lux-kicker { font-size: 9px; letter-spacing: .16em; margin-bottom: 17px; }
 .lux-section-heading h2 { font-size: clamp(24px, 2.4vw, 36px); font-weight: 400; letter-spacing: -.035em; }
@@ -72,7 +72,10 @@
 body:has(.lux-menu[open]) { overflow: hidden; }
 @media (max-width: 1000px) {
   .lux-brand-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-  .lux-desktop-nav { gap: 20px; }
+  .lux-header-row { height: 76px; justify-content: space-between; gap: 16px; }
+  .lux-desktop-nav { display: none; }
+  .lux-hero-quote { font-size: clamp(18px, 2.6vw, 26px); }
+  .lux-designers { scroll-margin-top: 92px; }
   .lux-editorial-image { min-height: 400px; }
 }
 @media (max-width: 640px) {
@@ -82,18 +85,15 @@ body:has(.lux-menu[open]) { overflow: hidden; }
   .lux-header-actions { gap: 2px; }
   .lux-header-actions > a, .lux-header-actions > button { width: 34px; }
   .lux-home { padding: 0 12px; }
-  .lux-hero-media { height: auto; aspect-ratio: 16 / 9; min-height: unset; max-height: none; }
-  .lux-hero-image { object-fit: contain; object-position: center; }
-  .lux-hero-shade { background: linear-gradient(0deg, #000b, transparent 80%); }
-  .lux-hero-copy { margin: 32px 20px 0; grid-template-columns: 1fr; justify-items: start; gap: 18px; }
-  .lux-hero-heading h1 { font-size: clamp(24px, 6vw, 32px); }
-  .lux-hero-quote { justify-self: center; text-align: center; font-size: clamp(15px, 5.2vw, 22px); }
-  .lux-designers { padding: 56px 0 46px; scroll-margin-top: 220px; }
+  .lux-hero-copy { margin: 18px 0 0; grid-template-columns: minmax(0, 1fr); justify-items: start; gap: 10px; }
+  .lux-hero-heading h1 { font-size: clamp(22px, 6vw, 32px); margin-bottom: 10px; }
+  .lux-hero-quote { justify-self: start; text-align: left; font-size: 18px; }
+  .lux-designers { padding: 24px 0 36px; scroll-margin-top: 88px; }
   .lux-section-heading { display: block; margin-bottom: 25px; }
   .lux-section-heading h2 { font-size: 27px; max-width: 290px; line-height: 1.25; }
   .lux-section-heading > a { margin-top: 22px; }
   .lux-brand-grid { gap: 28px 12px; }
-  .lux-brand-photo { aspect-ratio: .9; }
+  .lux-brand-photo { aspect-ratio: 1.16; }
   .lux-brand-label { margin-top: 12px; }
   .lux-brand-label h3 { font-size: 10px; line-height: 1.5; }
   .lux-brand-card > p { font-size: 9px; }
@@ -107,8 +107,7 @@ body:has(.lux-menu[open]) { overflow: hidden; }
   .lux-footer-bottom { flex-wrap: wrap; line-height: 1.8; }
 }
 @media (prefers-reduced-motion: reduce) { .lux-brand-photo img { transition: none; } .lux-brand-card:hover img { transform: none; } }
-@media (prefers-reduced-motion: reduce) { .lux-hero-copy { transform: none !important; color: #191919 !important; } }
 .lux-logo { display: block; width: 235px; height: 48px; overflow: hidden; position: relative; }
 .lux-logo img { position: absolute; width: 100%; height: auto; max-width: none; top: 50%; transform: translateY(-50%); }
-.lux-footer .lux-logo { width: 265px; height: 58px; }
-@media (max-width: 640px) { .lux-header .lux-logo { width: 172px; height: 38px; } .lux-header-row { gap: 4px; } }
+.lux-footer .lux-logo { width: min(265px, 100%); height: 58px; }
+@media (max-width: 640px) { .lux-header .lux-logo { width: clamp(140px, 43vw, 172px); height: 38px; } .lux-header-row { gap: 4px; } }

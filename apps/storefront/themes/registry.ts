@@ -202,62 +202,16 @@ export const THEMES: Record<NicheKey, ThemeConfig> = {
   },
   toys: {
     key: "toys",
-    brand: "Odd Shelf",
-    tagline: "Objects for the desk, the shelf, the quiet ten minutes.",
-    hero: {
-      eyebrow: "For Grown-Ups",
-      title: "Something good for the shelf",
-      subtitle:
-        "Articulated figures, landscape puzzles and models — curated for collectors, not kids.",
-      cta: "Shop the shelf",
-      image:
-        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=2000&q=80",
-      align: "left",
-    },
-    nav: [
-      { label: "Figures", href: "/collections/toys" },
-      { label: "Puzzles", href: "/collections/toys" },
-      { label: "New", href: "/collections/toys" },
-      { label: "About", href: "/pages/about" },
-    ],
-    fonts: ["Fraunces:500,600", "Inter:300,400,500,600"],
-    sections: ["hero", "categories", "usps", "rail", "editorial", "featured", "faq"],
-    categories: [
-      {
-        label: "Figures",
-        image: "https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=900&q=80",
-        href: "/collections/toys",
-      },
-      {
-        label: "Puzzles",
-        image: "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=900&q=80",
-        href: "/collections/toys",
-      },
-      {
-        label: "New In",
-        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&q=80",
-        href: "/collections/toys",
-      },
-    ],
-    editorial: {
-      image:
-        "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=1600&q=80",
-      kicker: "Curation",
-      title: "Chosen one at a time, for adults",
-      body: "Everything here is collector-grade and meant for people over fourteen. If it wouldn't earn a place on our own shelf, it isn't listed.",
-      cta: "About Odd Shelf",
-      href: "/pages/about",
-    },
-    usps: [
-      { title: "Collector-grade", body: "Adult collectibles — not for children under 14.", icon: "shield" },
-      { title: "Ships protected", body: "Double-boxed so corners survive the trip.", icon: "truck" },
-      { title: "Easy returns", body: "30 days if it's not what you hoped.", icon: "return" },
-    ],
-    faqs: [
-      { q: "Are these safe for kids?", a: "These are adult collectibles and may contain small parts. Not for children under 14." },
-      { q: "How long is delivery?", a: "2–7 business days within the US depending on the item." },
-      { q: "Do puzzles come with a poster?", a: "Yes, every 1000-piece puzzle includes a reference sheet." },
-    ],
+    brand: "PlayPuff",
+    tagline: "A little play. A whole lot of joy. Toys for growing imaginations and collectibles worth keeping.",
+    hero: { eyebrow: "A world of play", title: "A little play. A whole lot of joy.", subtitle: "Discover toys for growing imaginations and collectibles worth keeping.", cta: "Shop Kids & Family", image: "/playpuff/hero-poster.webp", align: "left" },
+    nav: [{ label: "Shop All", href: "/collections/toys" }, { label: "Kids & Family", href: "/collections/toys?audience=kids" }, { label: "Collectors 14+", href: "/collections/toys?audience=collectors" }, { label: "About", href: "/pages/about" }],
+    fonts: ["Nunito:wght@600;700;800;900", "Nunito+Sans:wght@400;500;600;700"],
+    sections: [],
+    categories: [],
+    editorial: { image: "/playpuff/hero-poster.webp", kicker: "Hello, we?re PlayPuff", title: "Never too little. Never too grown-up.", body: "There?s room for every kind of play.", cta: "Our story", href: "/pages/about" },
+    usps: [],
+    faqs: [],
     collectionHandle: "toys",
   },
   watches: {

@@ -1,3 +1,5 @@
+import { ToyFooter } from "@/components/toys/toy-footer"
+import { ToyCartProvider } from "@/components/toys/toy-cart"
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
@@ -10,6 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: { default: `${theme.brand} — ${theme.hero.eyebrow}`, template: `%s · ${theme.brand}` },
     description: theme.tagline,
+    ...(theme.key === "toys" ? { icons: { icon: "/playpuff/icon.png" } } : {}),
   };
 }
 
@@ -30,9 +33,7 @@ export default async function RootLayout({
         <link rel="stylesheet" href={fontHref} />
       </head>
       <body className="flex min-h-full flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <ConditionalFooter eyewear={theme.key === "eyewear"} />
+        {theme.key === "toys" ? <ToyCartProvider><Header /><main className="flex-1">{children}</main><ToyFooter /></ToyCartProvider> : <><Header /><main className="flex-1">{children}</main><ConditionalFooter eyewear={theme.key === "eyewear"} /></>}
       </body>
     </html>
   );

@@ -8,6 +8,7 @@ const backend = new URL(
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  ...(process.env.NODE_ENV === "development" && process.env.SITE === "toys" ? { distDir: ".next/playpuff" } : {}),
   async redirects() {
     return [...Object.entries(productPhotos), ...Object.entries(photoAliases).map(([alias, handle]) =>
       [alias, productPhotos[handle as keyof typeof productPhotos]] as const

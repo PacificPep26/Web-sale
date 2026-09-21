@@ -4,12 +4,14 @@ import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { sdk } from "@/lib/medusa";
-import { CART_COOKIE } from "@/lib/config";
+import { CART_COOKIE, NICHE } from "@/lib/config";
 import { getRegion } from "./regions";
+import { getStorefrontChannel } from "./channel";
+import { buildSafeStripePayload } from "@/lib/stripe-shield";
 import type { HttpTypes } from "@medusajs/types";
 
 const CART_FIELDS =
-  "*items,*items.variant,*items.variant.product,*items.thumbnail,*shipping_address,*billing_address,*shipping_methods,*payment_collection,*payment_collection.payment_sessions,+region.*";
+  "sales_channel_id,completed_at,*items,*items.variant,*items.variant.product,*items.thumbnail,*shipping_address,*billing_address,*shipping_methods,*payment_collection,*payment_collection.payment_sessions,+region.*";
 
 async function readCartId() {
   return (await cookies()).get(CART_COOKIE)?.value ?? null;
@@ -41,6 +43,8 @@ export async function getCart(): Promise<HttpTypes.StoreCart | null> {
   if (!id) return null;
   try {
     const { cart } = await sdk.store.cart.retrieve(id, { fields: CART_FIELDS });
+    const channel = await getStorefrontChannel()
+    if (cart.sales_channel_id !== channel) throw new Error("Cart belongs to another storefront")
     return cart;
   } catch {
     await clearCartId();
@@ -50,15 +54,17 @@ export async function getCart(): Promise<HttpTypes.StoreCart | null> {
 
 export async function getOrCreateCart(): Promise<HttpTypes.StoreCart> {
   const existing = await getCart();
-  if (existing) return existing;
+  if (existing && !existing.completed_at) return existing;
   const region = await getRegion();
-  const { cart } = await sdk.store.cart.create({ region_id: region.id });
+  const sales_channel_id = await getStorefrontChannel()
+  const { cart } = await sdk.store.cart.create({ region_id: region.id, sales_channel_id });
   await writeCartId(cart.id);
   return cart;
 }
 
 export async function addItem(variantId: string, quantity = 1) {
   const cart = await getOrCreateCart();
+  assertCartEditable(cart)
   await sdk.store.cart.createLineItem(cart.id, {
     variant_id: variantId,
     quantity,
@@ -67,8 +73,10 @@ export async function addItem(variantId: string, quantity = 1) {
 }
 
 export async function updateItem(lineItemId: string, quantity: number) {
-  const id = await readCartId();
-  if (!id) return;
+  const cart = await getCart()
+  if (!cart) return
+  assertCartEditable(cart)
+  const id = cart.id;
   if (quantity <= 0) {
     await sdk.store.cart.deleteLineItem(id, lineItemId);
   } else {
@@ -78,8 +86,10 @@ export async function updateItem(lineItemId: string, quantity: number) {
 }
 
 export async function removeItem(lineItemId: string) {
-  const id = await readCartId();
-  if (!id) return;
+  const cart = await getCart()
+  if (!cart) return
+  assertCartEditable(cart)
+  const id = cart.id;
   await sdk.store.cart.deleteLineItem(id, lineItemId);
   revalidatePath("/", "layout");
 }
@@ -98,8 +108,10 @@ export type CheckoutAddress = {
 };
 
 export async function setCheckoutDetails(addr: CheckoutAddress) {
-  const id = await readCartId();
-  if (!id) throw new Error("No cart");
+  const cart = await getCart()
+  if (!cart) throw new Error("No cart")
+  assertCartEditable(cart)
+  const id = cart.id;
   const { email, ...address } = addr;
   await sdk.store.cart.update(id, {
     email,
@@ -121,8 +133,10 @@ export async function listShippingOptions(): Promise<
 }
 
 export async function setShippingMethod(optionId: string) {
-  const id = await readCartId();
-  if (!id) throw new Error("No cart");
+  const cart = await getCart()
+  if (!cart) throw new Error("No cart")
+  assertCartEditable(cart)
+  const id = cart.id;
   await sdk.store.cart.addShippingMethod(id, { option_id: optionId });
   revalidatePath("/checkout");
 }
@@ -130,9 +144,12 @@ export async function setShippingMethod(optionId: string) {
 export async function initPaymentSession(providerId: string) {
   const cart = await getCart();
   if (!cart) throw new Error("No cart");
+  if (providerId !== "pp_stripe_stripe" && (NICHE === "toys" || process.env.NODE_ENV === "production")) throw new Error("Card payments are not configured")
+  const safeData = buildSafeStripePayload(cart.id, NICHE);
   const { payment_collection } = await sdk.store.payment.initiatePaymentSession(
     cart,
     { provider_id: providerId }
+    { provider_id: providerId, data: safeData }
   );
   return payment_collection;
 }
@@ -150,4 +167,10 @@ export async function placeOrder() {
     (res as { error?: { message?: string } }).error?.message ??
       "Could not place the order"
   );
+}
+
+function assertCartEditable(cart: HttpTypes.StoreCart) {
+  const locked = cart.completed_at || cart.payment_collection?.payment_sessions?.some(s =>
+    s.status === "authorized" || ["processing", "succeeded", "requires_capture"].includes(String(s.data?.status)))
+  if (locked) throw new Error("This payment is being processed. Return to checkout to check your order.")
 }
