@@ -7,13 +7,14 @@ import { CheckoutClient } from "@/components/checkout/CheckoutClient";
 export const metadata = { title: "Checkout" };
 export const dynamic = "force-dynamic";
 
-export default async function CheckoutPage() {
+export default async function CheckoutPage({ searchParams }: { searchParams: Promise<{ payment_return?: string }> }) {
+  const paymentReturn = (await searchParams).payment_return === "1"
   const cart = await getCart();
   if (!cart || !cart.items?.length) redirect("/cart");
 
   const shippingOptions = await listShippingOptions();
 
-  if (NICHE === "toys") return <ToyCheckout cart={cart} shippingOptions={shippingOptions} paymentsEnabled={!!STRIPE_PK && (process.env.NODE_ENV !== "production" || process.env.PLAYPUFF_LAUNCH_READY === "true")} />
+  if (NICHE === "toys") return <ToyCheckout paymentReturn={paymentReturn} cart={cart} shippingOptions={shippingOptions} paymentsEnabled={!!STRIPE_PK && (process.env.NODE_ENV !== "production" || process.env.PLAYPUFF_LAUNCH_READY === "true")} />
 
   return (
     <div className="container-page py-10">

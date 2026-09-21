@@ -11,13 +11,19 @@ import { ToyPayment } from "./toy-payment"
 
 const addressFields = [["first_name", "First name"], ["last_name", "Last name"], ["address_1", "Street address"], ["address_2", "Apartment / suite (optional)"], ["city", "City"], ["province", "State (e.g. CA)"], ["postal_code", "ZIP code"], ["phone", "Phone (optional)"]] as const
 
-export function ToyCheckout({ cart: initialCart, shippingOptions: initialOptions, paymentsEnabled }: { cart: HttpTypes.StoreCart; shippingOptions: HttpTypes.StoreCartShippingOption[]; paymentsEnabled: boolean }) {
+function hasContact(cart: HttpTypes.StoreCart) {
+  const a = cart.shipping_address
+  return !!(cart.email && a?.first_name && a.last_name && a.address_1 && a.city && a.province && a.postal_code && a.country_code === "us")
+}
+
+export function ToyCheckout({ cart: initialCart, shippingOptions: initialOptions, paymentsEnabled, paymentReturn = false }: { paymentReturn?: boolean; cart: HttpTypes.StoreCart; shippingOptions: HttpTypes.StoreCartShippingOption[]; paymentsEnabled: boolean }) {
   const [cart, setCart] = useState(initialCart)
   const [options, setOptions] = useState(initialOptions)
-  const [step, setStep] = useState(initialCart.shipping_methods?.length ? "payment" : initialCart.shipping_address ? "delivery" : "address")
+  const [step, setStep] = useState(!hasContact(initialCart) ? "address" : initialCart.shipping_methods?.length ? "payment" : "delivery")
   const [separate, setSeparate] = useState(false)
-  const [secret, setSecret] = useState<string | null>(null)
-  const [processing, setProcessing] = useState(false)
+  const session = initialCart.payment_collection?.payment_sessions?.find(s => s.provider_id === "pp_stripe_stripe" && !["canceled", "error"].includes(s.status))
+  const [secret, setSecret] = useState<string | null>(paymentReturn && typeof session?.data?.client_secret === "string" ? session.data.client_secret : null)
+  const [processing, setProcessing] = useState(session?.status === "authorized" || ["succeeded", "processing", "requires_capture"].includes(String(session?.data?.status)))
   const [error, setError] = useState("")
   const [pending, start] = useTransition()
   const lock = useRef(false)
@@ -25,11 +31,6 @@ export function ToyCheckout({ cart: initialCart, shippingOptions: initialOptions
   const router = useRouter()
   const paid = useCallback(async () => { const result = await completeToyOrder(); router.replace(`/order/${result.orderId}`) }, [router])
   useEffect(() => { if (summary.current) summary.current.open = matchMedia("(min-width: 768px)").matches }, [])
-  useEffect(() => {
-    const session = initialCart.payment_collection?.payment_sessions?.find(s => s.provider_id === "pp_stripe_stripe" && !["canceled", "error"].includes(s.status))
-    if (session?.status === "authorized" || ["succeeded", "processing", "requires_capture"].includes(String(session?.data?.status))) setProcessing(true)
-    else if (new URLSearchParams(location.search).has("payment_return") && typeof session?.data?.client_secret === "string") setSecret(session.data.client_secret)
-  }, [initialCart])
   function run(action: () => Promise<void>) {
     if (lock.current) return
     lock.current = true
@@ -50,7 +51,7 @@ export function ToyCheckout({ cart: initialCart, shippingOptions: initialOptions
       setCart(result.cart); setOptions(result.shippingOptions); setSecret(null); setStep("delivery")
     })} className="pp-address-grid"><label className="pp-full">Email<input name="email" type="email" autoComplete="email" required defaultValue={cart.email ?? ""} /></label>{address("", cart.shipping_address)}<p className="pp-full">Country: United States</p><label className="pp-full"><span><input type="checkbox" checked={separate} onChange={e => setSeparate(e.target.checked)} /> Use a different billing address</span></label>{separate && address("billing_", cart.billing_address)}<button className="pp-button pp-full" disabled={pending}>{pending ? "Saving…" : "Continue to delivery"}</button></form> : <p>{cart.email}<br />{cart.shipping_address?.address_1}, {cart.shipping_address?.city}, {cart.shipping_address?.province} {cart.shipping_address?.postal_code}</p>}</section>
     {step !== "address" && <section className="pp-checkout-step"><h2>2. Delivery {step === "payment" && !processing && <button disabled={pending} onClick={() => { setStep("delivery"); setSecret(null) }}>Edit</button>}</h2>{step === "delivery" ? <>{options.map(o => <button key={o.id} className="pp-delivery-option" disabled={pending} onClick={() => run(async () => { setCart(await chooseToyShipping(o.id)); setSecret(null); setStep("payment") })}><span>{o.name}</span><strong>{o.amount == null ? "Calculated at checkout" : money(o.amount)}</strong></button>)}{!options.length && <p>No delivery options are available for this address. Please edit your address or try again later.</p>}</> : <p>{cart.shipping_methods?.map(s => s.name).join(", ")}</p>}</section>}
-    {step === "payment" && <section className="pp-checkout-step"><h2>3. Payment</h2>{processing ? <><p>Your payment is being checked. Confirm your order without paying again.</p><button className="pp-button" disabled={pending} onClick={() => run(paid)}>Check order status</button></> : !paymentsEnabled ? <p>Payments are not available yet. Your bag is saved; please check back soon.</p> : secret ? <ToyPayment key={secret} clientSecret={secret} label={`Pay ${money(cart.total ?? 0)}`} onPaid={paid} /> : <button className="pp-button" disabled={pending} onClick={() => run(async () => { const result = await prepareToyPayment(); setCart(result.cart); setSecret(result.clientSecret); setProcessing(result.processing) })}>{pending ? "Preparing…" : "Continue to secure payment"}</button>}</section>}
+    <section className="pp-checkout-step"><h2>3. Payment</h2>{step !== "payment" ? <p>Secure card payment with Stripe is available after you complete your contact details and select delivery.</p> : processing ? <><p>Your payment is being checked. Confirm your order without paying again.</p><button className="pp-button" disabled={pending} onClick={() => run(paid)}>Check order status</button></> : !paymentsEnabled ? <p>Payments are not available yet. Your bag is saved; please check back soon.</p> : secret ? <ToyPayment key={secret} clientSecret={secret} label={`Pay ${money(cart.total ?? 0)}`} onPaid={paid} /> : <button className="pp-button" disabled={pending} onClick={() => run(async () => { const result = await prepareToyPayment(); setCart(result.cart); setSecret(result.clientSecret); setProcessing(result.processing) })}>{pending ? "Preparing…" : "Continue to secure payment"}</button>}</section>
     {error && <p className="pp-error" role="alert">{error}</p>}
-  </div><details className="pp-checkout-summary" ref={summary} open><summary><span>Your order</span><strong>{money(cart.total ?? 0)}</strong></summary><ul className="pp-cart-items">{cart.items?.map(i => <li key={i.id}><div className="pp-cart-image">{i.thumbnail && <Image src={i.thumbnail} alt="" fill sizes="50px" />}</div><div>{i.product_title}<p>{i.variant_title} × {i.quantity}</p></div><strong>{money(i.total ?? 0)}</strong></li>)}</ul><dl><div><dt>Subtotal</dt><dd>{money(cart.item_subtotal ?? 0)}</dd></div>{!!cart.discount_total && <div><dt>Discount</dt><dd>−{money(cart.discount_total)}</dd></div>}<div><dt>Shipping</dt><dd>{cart.shipping_methods?.length ? money(cart.shipping_total ?? 0) : "Calculated at delivery"}</dd></div><div><dt>Tax</dt><dd>{cart.shipping_address ? money(cart.tax_total ?? 0) : "Calculated after address"}</dd></div><div><dt><strong>{cart.shipping_methods?.length ? "Total" : "Estimated total"}</strong></dt><dd><strong>{money(cart.total ?? 0)}</strong></dd></div></dl></details></div></div>
+  </div><details className="pp-checkout-summary" ref={summary} open><summary><span>Your order</span><strong>{money(cart.total ?? 0)}</strong></summary><ul className="pp-cart-items">{cart.items?.map(i => <li key={i.id}><div className="pp-cart-image">{i.thumbnail && <Image src={i.thumbnail} alt="" fill sizes="50px" />}</div><div>{i.product_title}<p>{i.variant_title} × {i.quantity}</p></div><strong>{money(i.total ?? 0)}</strong></li>)}</ul><dl><div><dt>Subtotal</dt><dd>{money(cart.item_subtotal ?? 0)}</dd></div>{!!cart.discount_total && <div><dt>Discount</dt><dd>−{money(cart.discount_total)}</dd></div>}<div><dt>Shipping</dt><dd>{cart.shipping_methods?.length ? money(cart.shipping_total ?? 0) : "Calculated at delivery"}</dd></div><div><dt>Tax</dt><dd>{hasContact(cart) ? money(cart.tax_total ?? 0) : "Calculated after address"}</dd></div><div><dt><strong>{cart.shipping_methods?.length ? "Total" : "Estimated total"}</strong></dt><dd><strong>{money(cart.total ?? 0)}</strong></dd></div></dl></details></div></div>
 }

@@ -11,7 +11,7 @@ import { buildSafeStripePayload } from "@/lib/stripe-shield";
 import type { HttpTypes } from "@medusajs/types";
 
 const CART_FIELDS =
-  "sales_channel_id,completed_at,*items,*items.variant,*items.variant.product,*items.thumbnail,*shipping_address,*billing_address,*shipping_methods,*payment_collection,*payment_collection.payment_sessions,+region.*";
+  "+sales_channel_id,+completed_at,+id,+email,+currency_code,+region_id,+total,+subtotal,+item_subtotal,+discount_total,+shipping_total,+tax_total,*items,+items.total,+items.subtotal,*items.variant,*items.variant.product,*items.thumbnail,*shipping_address,*billing_address,*shipping_methods,*payment_collection,*payment_collection.payment_sessions,+region.*";
 
 async function readCartId() {
   return (await cookies()).get(CART_COOKIE)?.value ?? null;
@@ -148,7 +148,6 @@ export async function initPaymentSession(providerId: string) {
   const safeData = buildSafeStripePayload(cart.id, NICHE);
   const { payment_collection } = await sdk.store.payment.initiatePaymentSession(
     cart,
-    { provider_id: providerId }
     { provider_id: providerId, data: safeData }
   );
   return payment_collection;

@@ -4,7 +4,7 @@ import { filterToys, type ToyFilters } from "@dtc/shared-types/playpuff"
 
 type Input = { channel_ids: string[]; region_id: string; filters: ToyFilters }
 
-const listToysStep = createStep("list-playpuff-products", async (input: Input, { container }) => {
+const listToysStep = createStep("list-toys", async (input: Input, { container }) => {
   const query = container.resolve(ContainerRegistrationKeys.QUERY)
   const { data: channels } = await query.graph({ entity: "sales_channel", fields: ["id", "name"], filters: { id: input.channel_ids } })
   const channel = channels.find(c => c.name === "Toys")
@@ -45,4 +45,4 @@ const listToysStep = createStep("list-playpuff-products", async (input: Input, {
   return new StepResponse({ ...filterToys(publicProducts, input.filters), categories })
 })
 
-export const listToysWorkflow = createWorkflow("list-playpuff-catalog", (input: Input) => new WorkflowResponse(listToysStep(input)))
+export const listToysWorkflow = createWorkflow("list-toys", (input: Input) => new WorkflowResponse(listToysStep(input)))

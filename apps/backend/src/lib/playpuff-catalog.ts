@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "@medusajs/framework/zod"
 
 export const toyCatalogRow = z.object({
   sku: z.string().trim().min(1),

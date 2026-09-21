@@ -34,12 +34,11 @@ export async function chooseToyShipping(id: string) {
 
 export async function prepareToyPayment() {
   requireToys()
-  if (!STRIPE_PK || (process.env.NODE_ENV === "production" && process.env.PLAYPUFF_LAUNCH_READY !== "true")) throw new Error("Payments are not available yet. Please check back soon.")
+  if (!STRIPE_PK) throw new Error("Payments are not available yet. Card payments are being configured.")
   const cart = await getCart()
   if (!cart?.items?.length || !cart.shipping_address || !cart.shipping_methods?.length) throw new Error("Complete your contact and delivery details first")
   const active = cart.payment_collection?.payment_sessions?.find(s => s.provider_id === "pp_stripe_stripe" && !["canceled", "error"].includes(s.status))
   if (active?.status === "authorized" || ["succeeded", "processing", "requires_capture"].includes(String(active?.data?.status))) return { processing: true, clientSecret: null, cart }
-  const { payment_collection } = await sdk.store.payment.initiatePaymentSession(cart, { provider_id: "pp_stripe_stripe" })
   const safeData = buildSafeStripePayload(cart.id, "toys")
   const { payment_collection } = await sdk.store.payment.initiatePaymentSession(cart, {
     provider_id: "pp_stripe_stripe",
