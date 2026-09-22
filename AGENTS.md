@@ -114,6 +114,7 @@ cd apps/backend
 <pm> exec medusa db:migrate                  # run migrations
 <pm> exec medusa user -e admin@test.com -p supersecret
 <pm> run backend:seed                        # from root; seeds initial data
+npx medusa exec ./src/scripts/seed-real-eyewear.ts # seeds 120+ real luxury eyewear products & purges demo data
 ```
 
 ## Medusa Skills & MCP Server
