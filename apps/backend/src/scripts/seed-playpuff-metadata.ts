@@ -78,3 +78,4 @@ export default async function seedPlaypuffMetadata({
 
   logger.info("Successfully updated PlayPuff metadata for all toy products!")
 }
+

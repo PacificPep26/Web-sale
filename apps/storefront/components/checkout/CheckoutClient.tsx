@@ -11,9 +11,11 @@ import {
 } from "@/lib/data/cart";
 import { formatMoney } from "@/lib/money";
 import { StripePayment } from "./StripePayment";
+import { WisePayment } from "./WisePayment";
 import { STRIPE_PK } from "@/lib/config";
 
 type Step = "address" | "delivery" | "payment";
+type PaymentMethodType = "stripe" | "wise";
 
 export function CheckoutClient({
   cart,
@@ -26,6 +28,7 @@ export function CheckoutClient({
   const [step, setStep] = useState<Step>(
     cart.shipping_address ? (cart.shipping_methods?.length ? "payment" : "delivery") : "address"
   );
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethodType>("stripe");
   const [pending, start] = useTransition();
   const [error, setError] = useState<string | null>(null);
   const [stripeSecret, setStripeSecret] = useState<string | null>(null);
@@ -54,7 +57,7 @@ export function CheckoutClient({
     });
   }
 
-  function startPayment() {
+  function startStripePayment() {
     start(async () => {
       setError(null);
       try {
@@ -77,6 +80,22 @@ export function CheckoutClient({
     });
   }
 
+  function handleWiseComplete() {
+    start(async () => {
+      setError(null);
+      try {
+        await placeOrder();
+      } catch (e) {
+        setError((e as Error).message);
+      }
+    });
+  }
+
+  // Calculate order summary totals
+  const baseTotal = cart.total ?? 0;
+  const wiseDiscountAmount = paymentMethod === "wise" ? 2000 : 0; // $20.00 off
+  const displayTotal = Math.max(0, baseTotal - wiseDiscountAmount);
+
   return (
     <div className="grid gap-10 md:grid-cols-[1fr_320px]">
       <div className="space-y-8">
@@ -85,7 +104,7 @@ export function CheckoutClient({
           <h2 className="text-lg font-semibold">
             1. Contact & shipping{" "}
             {step !== "address" && (
-              <button className="ml-2 text-xs underline" onClick={() => setStep("address")}>
+              <button className="ml-2 text-xs underline text-muted-foreground hover:text-foreground" onClick={() => setStep("address")}>
                 edit
               </button>
             )}
@@ -114,7 +133,7 @@ export function CheckoutClient({
             <h2 className="text-lg font-semibold">
               2. Delivery{" "}
               {step === "payment" && (
-                <button className="ml-2 text-xs underline" onClick={() => setStep("delivery")}>
+                <button className="ml-2 text-xs underline text-muted-foreground hover:text-foreground" onClick={() => setStep("delivery")}>
                   edit
                 </button>
               )}
@@ -126,14 +145,27 @@ export function CheckoutClient({
                     key={o.id}
                     disabled={pending}
                     onClick={() => chooseShipping(o.id)}
-                    className="flex w-full items-center justify-between rounded-token border border-token p-3 text-left text-sm hover:surface"
+                    className="flex w-full items-center justify-between rounded-token border border-token p-3.5 text-left text-sm hover:surface transition-colors"
                   >
-                    <span>{o.name}</span>
-                    <span>{formatMoney(o.amount ?? 0, currency)}</span>
+                    <div className="flex flex-col">
+                      <span className="font-medium">Worldwide Flat Express Shipping</span>
+                      <span className="text-xs text-muted-foreground">Direct door-to-door tracked delivery</span>
+                    </div>
+                    <span className="font-semibold">{formatMoney(o.amount ?? 0, currency)}</span>
                   </button>
                 ))}
                 {!shippingOptions.length && (
-                  <p className="text-sm text-muted">No shipping options for this address.</p>
+                  <button
+                    disabled={pending}
+                    onClick={() => setStep("payment")}
+                    className="flex w-full items-center justify-between rounded-token border border-token p-3.5 text-left text-sm hover:surface"
+                  >
+                    <div className="flex flex-col">
+                      <span className="font-medium">Worldwide Flat Express Shipping</span>
+                      <span className="text-xs text-muted-foreground">Tracked global express</span>
+                    </div>
+                    <span className="font-semibold">Free</span>
+                  </button>
                 )}
               </div>
             )}
@@ -142,62 +174,127 @@ export function CheckoutClient({
 
         {/* payment */}
         {step === "payment" && (
-          <section>
-            <h2 className="text-lg font-semibold">3. Payment</h2>
-            {!stripeSecret && (
-              <button className="btn btn-accent mt-3 w-full" disabled={pending} onClick={startPayment}>
-                {pending
-                  ? "Preparing…"
-                  : STRIPE_PK
-                    ? "Continue to card"
-                    : "Place order (test / no card)"}
+          <section className="space-y-4">
+            <h2 className="text-lg font-semibold">3. Payment Method</h2>
+
+            {/* Payment Method Tabs */}
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setPaymentMethod("stripe");
+                  setStripeSecret(null);
+                }}
+                className={`p-3.5 rounded-xl border text-left flex flex-col justify-between transition-all ${
+                  paymentMethod === "stripe"
+                    ? "border-primary bg-primary/5 ring-2 ring-primary/20 font-semibold"
+                    : "border-token hover:border-foreground/30 text-muted-foreground"
+                }`}
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-sm">Credit / Debit Card</span>
+                  <span className="text-xs px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">Stripe</span>
+                </div>
+                <span className="text-xs opacity-75">Visa, Mastercard, Amex</span>
               </button>
+
+              <button
+                type="button"
+                onClick={() => setPaymentMethod("wise")}
+                className={`p-3.5 rounded-xl border text-left flex flex-col justify-between transition-all relative overflow-hidden ${
+                  paymentMethod === "wise"
+                    ? "border-emerald-600 bg-emerald-50/50 dark:bg-emerald-950/30 ring-2 ring-emerald-500/30 font-semibold"
+                    : "border-token hover:border-emerald-500/40 text-muted-foreground"
+                }`}
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-sm text-emerald-900 dark:text-emerald-200">Wise QR Transfer</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-600 text-white font-bold">
+                    Save $20
+                  </span>
+                </div>
+                <span className="text-xs text-emerald-700 dark:text-emerald-400">Wise App / US Bank Transfer</span>
+              </button>
+            </div>
+
+            {/* Selected Method Details */}
+            {paymentMethod === "stripe" && (
+              <div className="mt-4 space-y-3">
+                {!stripeSecret && (
+                  <button className="btn btn-accent w-full py-3 text-sm font-semibold" disabled={pending} onClick={startStripePayment}>
+                    {pending
+                      ? "Preparing secure payment…"
+                      : STRIPE_PK
+                        ? "Continue to Card Details"
+                        : "Place order (Test Mode)"}
+                  </button>
+                )}
+                {stripeSecret && (
+                  <div className="mt-2">
+                    <StripePayment clientSecret={stripeSecret} onPaid={placeOrder} />
+                  </div>
+                )}
+              </div>
             )}
-            {stripeSecret && (
+
+            {paymentMethod === "wise" && (
               <div className="mt-4">
-                <StripePayment clientSecret={stripeSecret} onPaid={placeOrder} />
+                <WisePayment
+                  totalAmount={baseTotal}
+                  currencyCode={currency}
+                  onComplete={handleWiseComplete}
+                  pending={pending}
+                />
               </div>
             )}
           </section>
         )}
 
         {error && (
-          <p className="text-sm" style={{ color: "var(--color-danger)" }}>
+          <p className="text-sm p-3 rounded bg-red-50 text-red-600 border border-red-200">
             {error}
           </p>
         )}
       </div>
 
-      {/* summary */}
-      <aside className="h-fit rounded-token border border-token p-5 text-sm">
-        <h2 className="font-semibold">Order summary</h2>
-        <ul className="mt-3 space-y-2">
+      {/* order summary */}
+      <aside className="h-fit rounded-token border border-token p-5 text-sm sticky top-6">
+        <h2 className="font-semibold text-base mb-3">Order summary</h2>
+        <ul className="space-y-2.5">
           {cart.items?.map((it) => (
-            <li key={it.id} className="flex justify-between gap-2">
-              <span className="text-muted">
+            <li key={it.id} className="flex justify-between gap-2 text-xs">
+              <span className="text-muted-foreground">
                 {it.product_title} × {it.quantity}
               </span>
-              <span>{formatMoney(it.total ?? 0, currency)}</span>
+              <span className="font-medium">{formatMoney(it.total ?? 0, currency)}</span>
             </li>
           ))}
         </ul>
-        <dl className="mt-3 space-y-1 border-t border-token pt-3">
+        <dl className="mt-4 space-y-1.5 border-t border-token pt-3 text-xs">
           <div className="flex justify-between">
-            <dt className="text-muted">Subtotal</dt>
+            <dt className="text-muted-foreground">Subtotal</dt>
             <dd>{formatMoney(cart.item_subtotal ?? 0, currency)}</dd>
           </div>
           <div className="flex justify-between">
-            <dt className="text-muted">Shipping</dt>
+            <dt className="text-muted-foreground">Shipping</dt>
             <dd>{formatMoney(cart.shipping_total ?? 0, currency)}</dd>
           </div>
           <div className="flex justify-between">
-            <dt className="text-muted">Tax</dt>
+            <dt className="text-muted-foreground">Tax</dt>
             <dd>{formatMoney(cart.tax_total ?? 0, currency)}</dd>
           </div>
+          {paymentMethod === "wise" && (
+            <div className="flex justify-between font-semibold text-emerald-600 dark:text-emerald-400">
+              <dt>Wise QR Discount</dt>
+              <dd>−{formatMoney(2000, currency)}</dd>
+            </div>
+          )}
         </dl>
-        <div className="mt-3 flex justify-between border-t border-token pt-3 font-semibold">
+        <div className="mt-3 flex justify-between border-t border-token pt-3 font-semibold text-base">
           <span>Total</span>
-          <span>{formatMoney(cart.total ?? 0, currency)}</span>
+          <span className={paymentMethod === "wise" ? "text-emerald-600 dark:text-emerald-400" : ""}>
+            {formatMoney(displayTotal, currency)}
+          </span>
         </div>
       </aside>
     </div>
