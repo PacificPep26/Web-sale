@@ -41,7 +41,15 @@ function Inner({ onPaid }: { onPaid: () => Promise<void> }) {
 
   return (
     <div>
-      <PaymentElement />
+      <PaymentElement
+        options={{
+          paymentMethodOrder: ["card"],
+          wallets: {
+            applePay: "never",
+            googlePay: "never",
+          },
+        }}
+      />
       {err && <p className="mt-2 text-sm" style={{ color: "var(--color-danger)" }}>{err}</p>}
       <button className="btn btn-accent mt-4 w-full" disabled={busy || !stripe} onClick={pay}>
         {busy ? "Processing…" : "Pay & place order"}

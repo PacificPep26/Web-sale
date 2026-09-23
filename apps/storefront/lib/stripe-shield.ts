@@ -60,6 +60,7 @@ export function buildSafeStripePayload(cartId: string, niche: string = DEFAULT_N
 
   return {
     payment_description,
+    payment_method_types: ["card"],
     metadata: {
       store: niche === "toys" ? "playpuff" : "luxeshade",
       category: niche === "toys" ? "creative_toys" : "eyewear_studio",

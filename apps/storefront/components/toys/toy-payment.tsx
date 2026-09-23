@@ -37,7 +37,7 @@ function PaymentForm({ label, onPaid }: { label: string; onPaid: () => Promise<v
     } catch { setError("We couldn’t confirm your order yet. Check order status before making another payment."); setPaid(true) }
     finally { lock.current = false; setBusy(false) }
   }
-  return <>{!paid && <PaymentElement />}{error && <p className="pp-error" role="alert">{error}</p>}{paid ? <button className="pp-button" disabled={busy} onClick={async () => { if (lock.current) return; lock.current = true; setBusy(true); try { await onPaid() } catch { setError("Still checking your order. Please retry shortly; you won’t be charged again.") } finally { lock.current = false; setBusy(false) } }}>Check order status</button> : <button className="pp-button" disabled={busy || !stripe || !elements} onClick={pay}>{busy ? "Processing…" : label}</button>}</>
+  return <>{!paid && <PaymentElement options={{ paymentMethodOrder: ["card"], wallets: { applePay: "never", googlePay: "never" } }} />}{error && <p className="pp-error" role="alert">{error}</p>}{paid ? <button className="pp-button" disabled={busy} onClick={async () => { if (lock.current) return; lock.current = true; setBusy(true); try { await onPaid() } catch { setError("Still checking your order. Please retry shortly; you won’t be charged again.") } finally { lock.current = false; setBusy(false) } }}>Check order status</button> : <button className="pp-button" disabled={busy || !stripe || !elements} onClick={pay}>{busy ? "Processing…" : label}</button>}</>
 }
 
 export function ToyPayment({ clientSecret, label, onPaid }: { clientSecret: string; label: string; onPaid: () => Promise<void> }) {
