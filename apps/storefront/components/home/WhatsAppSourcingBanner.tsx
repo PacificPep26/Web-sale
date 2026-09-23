@@ -17,20 +17,20 @@ export function WhatsAppSourcingBanner({
 
   return (
     <section className={`w-full py-12 md:py-16 px-4 ${className}`}>
-      <div className="max-w-5xl mx-auto rounded-2xl bg-gradient-to-br from-zinc-900 via-zinc-800 to-black p-8 md:p-12 text-white shadow-2xl border border-zinc-700/50 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="max-w-5xl mx-auto rounded-2xl bg-black p-8 md:p-12 text-white shadow-2xl border border-amber-500/30 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
         
         {/* Background Decorative Element */}
-        <div className="absolute -right-16 -top-16 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -left-16 -bottom-16 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -right-16 -top-16 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -left-16 -bottom-16 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Text Content */}
         <div className="space-y-3 z-10 text-center md:text-left max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-semibold tracking-wider uppercase border border-emerald-500/30">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-xs font-semibold tracking-wider uppercase border border-amber-500/30">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
             VIP Custom Sourcing Service
           </div>
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-white leading-tight">
-            Looking for a specific <span className="text-emerald-400">Brand, Make or Model</span>?
+            Looking for a specific <span className="text-amber-400">Brand, Make or Model</span>?
           </h2>
           <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
             We can source <strong className="text-white">any brand, rare edition, or custom model</strong> directly from our global supplier network. Send us a message on WhatsApp with your request!
@@ -43,7 +43,7 @@ export function WhatsAppSourcingBanner({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center justify-center gap-3 px-7 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-semibold text-base shadow-lg shadow-emerald-600/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+            className="group flex items-center justify-center gap-3 px-7 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-semibold text-base shadow-lg shadow-emerald-600/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
           >
             <svg
               className="w-6 h-6 fill-current"
@@ -54,13 +54,9 @@ export function WhatsAppSourcingBanner({
             </svg>
             <span>Source Any Model on WhatsApp</span>
           </a>
-          <span className="text-[11px] text-zinc-400">
-            ⚡ Direct response from our sourcing team
-          </span>
         </div>
 
       </div>
     </section>
   );
 }
-
