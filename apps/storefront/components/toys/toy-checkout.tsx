@@ -40,12 +40,26 @@ export function ToyCheckout({ cart: initialCart, shippingOptions: initialOptions
   }
   const money = (amount: number) => formatMoney(amount, cart.currency_code)
   
-  const baseTotal = cart.total ?? 0
+  const flatShippingAmount = 7500 // $75.00 USD Flat Express Shipping
+  const subtotal = cart.item_subtotal ?? 0
+  const tax = cart.tax_total ?? 0
+  const baseTotal = subtotal + flatShippingAmount + tax
   const wiseDiscount = paymentMethod === "wise" ? 2000 : 0
   const displayTotal = Math.max(0, baseTotal - wiseDiscount)
 
   function address(prefix: string, existing?: HttpTypes.StoreCartAddress | null) {
     return addressFields.map(([key, label]) => <label key={prefix + key} className={key.startsWith("address") ? "pp-full" : ""}>{label}<input name={prefix + key} defaultValue={existing?.[key] ?? ""} required={!["address_2", "phone"].includes(key)} autoComplete={`${prefix ? "billing" : "shipping"} ${{ first_name: "given-name", last_name: "family-name", address_1: "address-line1", address_2: "address-line2", city: "address-level2", province: "address-level1", postal_code: "postal-code", phone: "tel" }[key]}`} pattern={key === "province" ? "[A-Za-z]{2}" : key === "postal_code" ? "[0-9]{5}(-[0-9]{4})?" : undefined} /></label>)
+  }
+
+  const handleSelectToyShipping = () => {
+    const optionId = options[0]?.id
+    run(async () => {
+      if (optionId) {
+        setCart(await chooseToyShipping(optionId))
+      }
+      setSecret(null)
+      setStep("payment")
+    })
   }
 
   return <div className="pp-wrap pp-section"><p className="pp-eyebrow">ONE STEP CLOSER TO HAPPY</p><h1 style={{ marginBottom: 28 }}>Checkout</h1><div className="pp-checkout"><div className="pp-checkout-steps">
@@ -58,7 +72,7 @@ export function ToyCheckout({ cart: initialCart, shippingOptions: initialOptions
       const result = await saveToyAddress(shipping, billing)
       setCart(result.cart); setOptions(result.shippingOptions); setSecret(null); setStep("delivery")
     })} className="pp-address-grid"><label className="pp-full">Email<input name="email" type="email" autoComplete="email" required defaultValue={cart.email ?? ""} /></label>{address("", cart.shipping_address)}<p className="pp-full">Country: United States</p><label className="pp-full"><span><input type="checkbox" checked={separate} onChange={e => setSeparate(e.target.checked)} /> Use a different billing address</span></label>{separate && address("billing_", cart.billing_address)}<button className="pp-button pp-full" disabled={pending}>{pending ? "Saving…" : "Continue to delivery"}</button></form> : <p>{cart.email}<br />{cart.shipping_address?.address_1}, {cart.shipping_address?.city}, {cart.shipping_address?.province} {cart.shipping_address?.postal_code}</p>}</section>
-    {step !== "address" && <section className="pp-checkout-step"><h2>2. Delivery {step === "payment" && !processing && <button disabled={pending} onClick={() => { setStep("delivery"); setSecret(null) }}>Edit</button>}</h2>{step === "delivery" ? <>{options.map(o => <button key={o.id} className="pp-delivery-option" disabled={pending} onClick={() => run(async () => { setCart(await chooseToyShipping(o.id)); setSecret(null); setStep("payment") })}><span>Worldwide Flat Express Shipping</span><strong>{o.amount == null ? "Calculated at checkout" : money(o.amount)}</strong></button>)}{!options.length && <button className="pp-delivery-option" disabled={pending} onClick={() => setStep("payment")}><span>Worldwide Flat Express Shipping</span><strong>Free</strong></button>}</> : <p>Worldwide Flat Express Shipping</p>}</section>}
+    {step !== "address" && <section className="pp-checkout-step"><h2>2. Delivery {step === "payment" && !processing && <button disabled={pending} onClick={() => { setStep("delivery"); setSecret(null) }}>Edit</button>}</h2>{step === "delivery" ? <button className="pp-delivery-option" disabled={pending} onClick={handleSelectToyShipping}><span>Worldwide Flat Express Shipping</span><strong>{money(flatShippingAmount)}</strong></button> : <p>Worldwide Flat Express Shipping ({money(flatShippingAmount)})</p>}</section>}
     <section className="pp-checkout-step">
       <h2>3. Payment</h2>
       {step !== "payment" ? (
@@ -110,5 +124,5 @@ export function ToyCheckout({ cart: initialCart, shippingOptions: initialOptions
       )}
     </section>
     {error && <p className="pp-error" role="alert">{error}</p>}
-  </div><details className="pp-checkout-summary" ref={summary} open><summary><span>Your order</span><strong>{money(displayTotal)}</strong></summary><ul className="pp-cart-items">{cart.items?.map(i => <li key={i.id}><div className="pp-cart-image">{i.thumbnail && <Image src={i.thumbnail} alt="" fill sizes="50px" />}</div><div>{i.product_title}<p>{i.variant_title} × {i.quantity}</p></div><strong>{money(i.total ?? 0)}</strong></li>)}</ul><dl><div><dt>Subtotal</dt><dd>{money(cart.item_subtotal ?? 0)}</dd></div>{!!cart.discount_total && <div><dt>Discount</dt><dd>−{money(cart.discount_total)}</dd></div>}<div><dt>Shipping</dt><dd>{cart.shipping_methods?.length ? money(cart.shipping_total ?? 0) : "Calculated at delivery"}</dd></div>{paymentMethod === "wise" && <div style={{ color: "#059669", fontWeight: 600 }}><dt>Wise QR Discount</dt><dd>−{money(2000)}</dd></div>}<div><dt>Tax</dt><dd>{hasContact(cart) ? money(cart.tax_total ?? 0) : "Calculated after address"}</dd></div><div><dt><strong>Total</strong></dt><dd><strong>{money(displayTotal)}</strong></dd></div></dl></details></div></div>
+  </div><details className="pp-checkout-summary" ref={summary} open><summary><span>Your order</span><strong>{money(displayTotal)}</strong></summary><ul className="pp-cart-items">{cart.items?.map(i => <li key={i.id}><div className="pp-cart-image">{i.thumbnail && <Image src={i.thumbnail} alt="" fill sizes="50px" />}</div><div>{i.product_title}<p>{i.variant_title} × {i.quantity}</p></div><strong>{money(i.total ?? 0)}</strong></li>)}</ul><dl><div><dt>Subtotal</dt><dd>{money(subtotal)}</dd></div><div><dt>Shipping (Flat Express)</dt><dd>{money(flatShippingAmount)}</dd></div>{paymentMethod === "wise" && <div style={{ color: "#059669", fontWeight: 600 }}><dt>Wise QR Discount</dt><dd>−{money(2000)}</dd></div>}<div><dt>Tax</dt><dd>{hasContact(cart) ? money(tax) : "Calculated after address"}</dd></div><div><dt><strong>Total</strong></dt><dd><strong>{money(displayTotal)}</strong></dd></div></dl></details></div></div>
 }

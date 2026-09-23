@@ -33,6 +33,8 @@ export function CheckoutClient({
   const [error, setError] = useState<string | null>(null);
   const [stripeSecret, setStripeSecret] = useState<string | null>(null);
 
+  const flatShippingAmount = 7500; // Fixed $75.00 USD Flat Express Shipping
+
   function submitAddress(fd: FormData) {
     const addr = Object.fromEntries(fd) as unknown as CheckoutAddress;
     addr.country_code = "us";
@@ -46,10 +48,13 @@ export function CheckoutClient({
     });
   }
 
-  function chooseShipping(optionId: string) {
+  function handleSelectSingleShipping() {
+    const optionId = shippingOptions[0]?.id;
     start(async () => {
       try {
-        await setShippingMethod(optionId);
+        if (optionId) {
+          await setShippingMethod(optionId);
+        }
         setStep("payment");
       } catch (e) {
         setError((e as Error).message);
@@ -91,8 +96,10 @@ export function CheckoutClient({
     });
   }
 
-  // Calculate order summary totals
-  const baseTotal = cart.total ?? 0;
+  // Calculate order summary totals ($75 flat shipping, -$20 Wise discount)
+  const subtotal = cart.item_subtotal ?? 0;
+  const tax = cart.tax_total ?? 0;
+  const baseTotal = subtotal + flatShippingAmount + tax;
   const wiseDiscountAmount = paymentMethod === "wise" ? 2000 : 0; // $20.00 off
   const displayTotal = Math.max(0, baseTotal - wiseDiscountAmount);
 
@@ -139,35 +146,25 @@ export function CheckoutClient({
               )}
             </h2>
             {step === "delivery" && (
-              <div className="mt-3 space-y-2">
-                {shippingOptions.map((o) => (
-                  <button
-                    key={o.id}
-                    disabled={pending}
-                    onClick={() => chooseShipping(o.id)}
-                    className="flex w-full items-center justify-between rounded-token border border-token p-3.5 text-left text-sm hover:surface transition-colors"
-                  >
-                    <div className="flex flex-col">
-                      <span className="font-medium">Worldwide Flat Express Shipping</span>
-                      <span className="text-xs text-muted-foreground">Direct door-to-door tracked delivery</span>
-                    </div>
-                    <span className="font-semibold">{formatMoney(o.amount ?? 0, currency)}</span>
-                  </button>
-                ))}
-                {!shippingOptions.length && (
-                  <button
-                    disabled={pending}
-                    onClick={() => setStep("payment")}
-                    className="flex w-full items-center justify-between rounded-token border border-token p-3.5 text-left text-sm hover:surface"
-                  >
-                    <div className="flex flex-col">
-                      <span className="font-medium">Worldwide Flat Express Shipping</span>
-                      <span className="text-xs text-muted-foreground">Tracked global express</span>
-                    </div>
-                    <span className="font-semibold">Free</span>
-                  </button>
-                )}
+              <div className="mt-3">
+                {/* Single Flat Rate Shipping Button */}
+                <button
+                  disabled={pending}
+                  onClick={handleSelectSingleShipping}
+                  className="flex w-full items-center justify-between rounded-token border-2 border-primary/40 bg-primary/5 p-4 text-left text-sm hover:surface transition-all"
+                >
+                  <div className="flex flex-col">
+                    <span className="font-semibold text-base">Worldwide Flat Express Shipping</span>
+                    <span className="text-xs text-muted-foreground">Direct door-to-door tracked express delivery (3-5 business days)</span>
+                  </div>
+                  <span className="font-bold text-lg text-primary">{formatMoney(flatShippingAmount, currency)}</span>
+                </button>
               </div>
+            )}
+            {step === "payment" && (
+              <p className="mt-2 text-sm text-muted-foreground">
+                Worldwide Flat Express Shipping ({formatMoney(flatShippingAmount, currency)})
+              </p>
             )}
           </section>
         )}
@@ -273,15 +270,15 @@ export function CheckoutClient({
         <dl className="mt-4 space-y-1.5 border-t border-token pt-3 text-xs">
           <div className="flex justify-between">
             <dt className="text-muted-foreground">Subtotal</dt>
-            <dd>{formatMoney(cart.item_subtotal ?? 0, currency)}</dd>
+            <dd>{formatMoney(subtotal, currency)}</dd>
           </div>
           <div className="flex justify-between">
-            <dt className="text-muted-foreground">Shipping</dt>
-            <dd>{formatMoney(cart.shipping_total ?? 0, currency)}</dd>
+            <dt className="text-muted-foreground">Shipping (Flat Express)</dt>
+            <dd className="font-medium">{formatMoney(flatShippingAmount, currency)}</dd>
           </div>
           <div className="flex justify-between">
             <dt className="text-muted-foreground">Tax</dt>
-            <dd>{formatMoney(cart.tax_total ?? 0, currency)}</dd>
+            <dd>{formatMoney(tax, currency)}</dd>
           </div>
           {paymentMethod === "wise" && (
             <div className="flex justify-between font-semibold text-emerald-600 dark:text-emerald-400">
