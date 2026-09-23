@@ -155,7 +155,7 @@ export function CheckoutClient({
                 >
                   <div className="flex flex-col">
                     <span className="font-semibold text-base">Worldwide Flat Express Shipping</span>
-                    <span className="text-xs text-muted-foreground">Direct door-to-door tracked express delivery (3-5 business days)</span>
+                    <span className="text-xs text-muted-foreground">Direct door-to-door tracked express delivery</span>
                   </div>
                   <span className="font-bold text-lg text-primary">{formatMoney(flatShippingAmount, currency)}</span>
                 </button>
