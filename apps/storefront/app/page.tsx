@@ -313,6 +313,7 @@ export default async function HomePage() {
     ),
   };
 
+  return <>{theme.sections.map((s) => Section[s])}</>;
   return (
     <>
       {theme.sections.map((s) => Section[s])}

@@ -90,6 +90,9 @@ export default async function seedRealEyewear({
     const photoInfo = photosMap[handle]
     const imageUrl = photoInfo?.src || `/images/eyewear/${handle}.jpg`
 
+    const isChromeHearts = handle.toLowerCase().includes("chrome-hearts")
+    const itemPrice = isChromeHearts ? 450 : 350
+
     return {
       title,
       handle,
@@ -106,7 +109,7 @@ export default async function seedRealEyewear({
           title: "Standard Edition",
           sku: `SKU-${handle.toUpperCase()}`,
           options: { "Frame & Lens": "Standard Edition" },
-          prices: usd(350),
+          prices: usd(itemPrice),
         },
       ],
     }
