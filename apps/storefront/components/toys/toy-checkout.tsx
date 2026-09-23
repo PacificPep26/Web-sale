@@ -40,11 +40,11 @@ export function ToyCheckout({ cart: initialCart, shippingOptions: initialOptions
   }
   const money = (amount: number) => formatMoney(amount, cart.currency_code)
   
-  const flatShippingAmount = 7500 // $75.00 USD Flat Express Shipping
+  const flatShippingAmount = 75 // $75.00 USD Flat Express Shipping
   const subtotal = cart.item_subtotal ?? 0
   const tax = cart.tax_total ?? 0
   const baseTotal = subtotal + flatShippingAmount + tax
-  const wiseDiscount = paymentMethod === "wise" ? 2000 : 0
+  const wiseDiscount = paymentMethod === "wise" ? 20 : 0
   const displayTotal = Math.max(0, baseTotal - wiseDiscount)
 
   function address(prefix: string, existing?: HttpTypes.StoreCartAddress | null) {
@@ -124,5 +124,5 @@ export function ToyCheckout({ cart: initialCart, shippingOptions: initialOptions
       )}
     </section>
     {error && <p className="pp-error" role="alert">{error}</p>}
-  </div><details className="pp-checkout-summary" ref={summary} open><summary><span>Your order</span><strong>{money(displayTotal)}</strong></summary><ul className="pp-cart-items">{cart.items?.map(i => <li key={i.id}><div className="pp-cart-image">{i.thumbnail && <Image src={i.thumbnail} alt="" fill sizes="50px" />}</div><div>{i.product_title}<p>{i.variant_title} × {i.quantity}</p></div><strong>{money(i.total ?? 0)}</strong></li>)}</ul><dl><div><dt>Subtotal</dt><dd>{money(subtotal)}</dd></div><div><dt>Shipping (Flat Express)</dt><dd>{money(flatShippingAmount)}</dd></div>{paymentMethod === "wise" && <div style={{ color: "#059669", fontWeight: 600 }}><dt>Wise QR Discount</dt><dd>−{money(2000)}</dd></div>}<div><dt>Tax</dt><dd>{hasContact(cart) ? money(tax) : "Calculated after address"}</dd></div><div><dt><strong>Total</strong></dt><dd><strong>{money(displayTotal)}</strong></dd></div></dl></details></div></div>
+  </div><details className="pp-checkout-summary" ref={summary} open><summary><span>Your order</span><strong>{money(displayTotal)}</strong></summary><ul className="pp-cart-items">{cart.items?.map(i => <li key={i.id}><div className="pp-cart-image">{i.thumbnail && <Image src={i.thumbnail} alt="" fill sizes="50px" />}</div><div>{i.product_title}<p>{i.variant_title} × {i.quantity}</p></div><strong>{money(i.total ?? 0)}</strong></li>)}</ul><dl><div><dt>Subtotal</dt><dd>{money(subtotal)}</dd></div><div><dt>Shipping (Flat Express)</dt><dd>{money(flatShippingAmount)}</dd></div>{paymentMethod === "wise" && <div style={{ color: "#059669", fontWeight: 600 }}><dt>Wise QR Discount</dt><dd>−{money(20)}</dd></div>}<div><dt>Tax</dt><dd>{hasContact(cart) ? money(tax) : "Calculated after address"}</dd></div><div><dt><strong>Total</strong></dt><dd><strong>{money(displayTotal)}</strong></dd></div></dl></details></div></div>
 }

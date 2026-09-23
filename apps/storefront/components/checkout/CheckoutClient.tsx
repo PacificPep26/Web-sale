@@ -33,7 +33,7 @@ export function CheckoutClient({
   const [error, setError] = useState<string | null>(null);
   const [stripeSecret, setStripeSecret] = useState<string | null>(null);
 
-  const flatShippingAmount = 7500; // Fixed $75.00 USD Flat Express Shipping
+  const flatShippingAmount = 75; // $75.00 USD Flat Express Shipping
 
   function submitAddress(fd: FormData) {
     const addr = Object.fromEntries(fd) as unknown as CheckoutAddress;
@@ -100,7 +100,7 @@ export function CheckoutClient({
   const subtotal = cart.item_subtotal ?? 0;
   const tax = cart.tax_total ?? 0;
   const baseTotal = subtotal + flatShippingAmount + tax;
-  const wiseDiscountAmount = paymentMethod === "wise" ? 2000 : 0; // $20.00 off
+  const wiseDiscountAmount = paymentMethod === "wise" ? 20 : 0; // $20.00 off
   const displayTotal = Math.max(0, baseTotal - wiseDiscountAmount);
 
   return (
@@ -283,7 +283,7 @@ export function CheckoutClient({
           {paymentMethod === "wise" && (
             <div className="flex justify-between font-semibold text-emerald-600 dark:text-emerald-400">
               <dt>Wise QR Discount</dt>
-              <dd>−{formatMoney(2000, currency)}</dd>
+              <dd>−{formatMoney(20, currency)}</dd>
             </div>
           )}
         </dl>

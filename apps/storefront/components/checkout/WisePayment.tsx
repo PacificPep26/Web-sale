@@ -4,7 +4,7 @@ import { useState } from "react";
 import { formatMoney } from "@/lib/money";
 
 interface WisePaymentProps {
-  totalAmount: number; // in cents or currency unit
+  totalAmount: number; // in dollars
   currencyCode: string;
   onComplete: () => Promise<void> | void;
   pending: boolean;
@@ -18,8 +18,8 @@ export function WisePayment({
 }: WisePaymentProps) {
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
-  // Discounted total: subtract $20 (2000 cents or 20 units)
-  const finalTotal = Math.max(0, totalAmount - 2000);
+  // Discounted total: subtract $20.00 USD
+  const finalTotal = Math.max(0, totalAmount - 20);
 
   const copyToClipboard = (text: string, fieldName: string) => {
     navigator.clipboard.writeText(text);
@@ -34,16 +34,6 @@ export function WisePayment({
     accountNumber: "217275118061",
     bankAddress: "108 W 13th St, Wilmington, DE 19801",
   };
-
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=Bank:${encodeURIComponent(
-    wiseDetails.bankName
-  )}%0AAccount:${encodeURIComponent(
-    wiseDetails.accountName
-  )}%0ARouting:${encodeURIComponent(
-    wiseDetails.routingNumber
-  )}%0AAccNum:${encodeURIComponent(
-    wiseDetails.accountNumber
-  )}%0AAmount:${formatMoney(finalTotal, currencyCode)}`;
 
   return (
     <div className="rounded-xl border-2 border-emerald-500/30 bg-emerald-50/40 p-5 dark:bg-emerald-950/20 text-foreground space-y-4">
@@ -69,17 +59,17 @@ export function WisePayment({
       <div className="grid gap-4 md:grid-cols-2 items-center">
         <div className="flex flex-col items-center justify-center p-3 bg-white dark:bg-zinc-900 rounded-lg border border-emerald-200 dark:border-emerald-800 shadow-sm text-center">
           <img
-            src={qrUrl}
-            alt="Wise Payment QR Code"
-            width={160}
-            height={160}
-            className="rounded border border-gray-200 p-1"
+            src="/wise-qr-official.png"
+            alt="Official Wise Payment QR Code"
+            width={180}
+            height={220}
+            className="rounded border border-gray-200 p-1 object-contain max-h-[220px]"
           />
           <p className="mt-2 text-xs font-medium text-emerald-800 dark:text-emerald-300">
-            Scan to pay via Wise App / Banking
+            Scan with Wise App to Pay
           </p>
           <p className="text-[11px] text-muted-foreground mt-0.5">
-            Amount: <strong className="text-emerald-600 dark:text-emerald-400">{formatMoney(finalTotal, currencyCode)}</strong>
+            Total Payable: <strong className="text-emerald-600 dark:text-emerald-400">{formatMoney(finalTotal, currencyCode)}</strong>
           </p>
         </div>
 
@@ -155,4 +145,3 @@ export function WisePayment({
     </div>
   );
 }
-
