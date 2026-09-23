@@ -5,6 +5,7 @@ import { listToys } from "@/lib/data/toys"
 import { ToyCard } from "./toy-card"
 import { ToyPicks } from "./toy-picks"
 import { ToyVideo } from "./toy-video"
+import { WhatsAppSourcingBanner } from "../home/WhatsAppSourcingBanner"
 
 export async function ToyHome() {
   const results = await Promise.allSettled([listToys({ audience: "kids" }), listToys({ audience: "collectors" })])
@@ -27,6 +28,7 @@ export async function ToyHome() {
     {categories.length > 0 && <section className="pp-wrap pp-section"><div className="pp-section-heading"><h2>So many ways to play.</h2></div><div className="pp-category-grid">{categories.map(c => <Link key={c.id} href={`/collections/toys?category=${c.handle}`}><h3>{c.name}</h3><span>Explore →</span></Link>)}</div></section>}
     {!!collectors?.products.length && <section className="pp-wrap pp-section"><div className="pp-section-heading"><div><p className="pp-eyebrow">A PLACE FOR YOUR PASSION · 14+</p><h2>Collector’s Corner</h2></div><Link href="/collections/toys?audience=collectors">Explore the collection ↗</Link></div><div className="pp-product-grid">{collectors.products.slice(0, 4).map(p => <ToyCard key={p.id} product={p} />)}</div></section>}
     <section className="pp-wrap pp-story pp-section"><div><p className="pp-eyebrow">HELLO, WE’RE PLAYPUFF.</p><h2>Never too little.<br />Never too grown-up.</h2><p>Play looks different for everyone. It’s a first discovery, a shared afternoon, or that perfect addition to your collection. There’s room for it all here.</p><Link className="pp-text-link" href="/pages/about">A little about us ↗</Link></div></section>
+    <WhatsAppSourcingBanner />
     <section className="pp-wrap pp-section pp-faq"><h2>A little help goes a long way.</h2>{[["How do I choose the right age?", "Explore our four age groups, then check the specific age recommendation and warnings on each product. Collectibles marked 14+ are not intended for younger children."], ["Where do you deliver?", "PlayPuff is being prepared for customers in the United States. Available shipping methods and charges are shown at checkout before payment."], ["Where can I find return information?", "Check our returns page for the current policy before placing an order."]].map(([q, a]) => <details key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</section>
   </div>
 }

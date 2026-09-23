@@ -6,6 +6,7 @@ import { headers } from "next/headers";
 import { themeFor, type UspIcon } from "@/themes/registry";
 import { listProducts } from "@/lib/data/products";
 import { ProductGrid } from "@/components/product/ProductGrid";
+import { WhatsAppSourcingBanner } from "@/components/home/WhatsAppSourcingBanner";
 
 export const revalidate = 300;
 
@@ -312,5 +313,10 @@ export default async function HomePage() {
     ),
   };
 
-  return <>{theme.sections.map((s) => Section[s])}</>;
+  return (
+    <>
+      {theme.sections.map((s) => Section[s])}
+      <WhatsAppSourcingBanner />
+    </>
+  );
 }
