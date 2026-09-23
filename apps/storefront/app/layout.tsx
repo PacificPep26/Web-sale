@@ -6,6 +6,7 @@ import "./globals.css";
 import { themeFor } from "@/themes/registry";
 import { Header } from "@/components/layout/Header";
 import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
+import { FloatingWhatsAppWidget } from "@/components/ui/FloatingWhatsAppWidget";
 
 export async function generateMetadata(): Promise<Metadata> {
   const theme = themeFor((await headers()).get("host"));
@@ -33,7 +34,20 @@ export default async function RootLayout({
         <link rel="stylesheet" href={fontHref} />
       </head>
       <body className="flex min-h-full flex-col">
-        {theme.key === "toys" ? <ToyCartProvider><Header /><main className="flex-1">{children}</main><ToyFooter /></ToyCartProvider> : <><Header /><main className="flex-1">{children}</main><ConditionalFooter eyewear={theme.key === "eyewear"} /></>}
+        <FloatingWhatsAppWidget />
+        {theme.key === "toys" ? (
+          <ToyCartProvider>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <ToyFooter />
+          </ToyCartProvider>
+        ) : (
+          <>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <ConditionalFooter eyewear={theme.key === "eyewear"} />
+          </>
+        )}
       </body>
     </html>
   );
