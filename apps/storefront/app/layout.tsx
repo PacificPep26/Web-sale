@@ -7,6 +7,9 @@ import { themeFor } from "@/themes/registry";
 import { Header } from "@/components/layout/Header";
 import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
 import { FloatingWhatsAppWidget } from "@/components/ui/FloatingWhatsAppWidget";
+import Script from "next/script";
+
+const GOOGLE_ADS_TAG_ID = "AW-18406999814"
 
 export async function generateMetadata(): Promise<Metadata> {
   const theme = themeFor((await headers()).get("host"));
@@ -34,6 +37,20 @@ export default async function RootLayout({
         <link rel="stylesheet" href={fontHref} />
       </head>
       <body className="flex min-h-full flex-col">
+        {theme.key === "eyewear" && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_TAG_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-ads-base-tag" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GOOGLE_ADS_TAG_ID}');`}
+            </Script>
+          </>
+        )}
         <FloatingWhatsAppWidget />
         {theme.key === "toys" ? (
           <ToyCartProvider>
