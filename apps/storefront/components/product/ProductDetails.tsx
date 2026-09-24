@@ -34,7 +34,7 @@ function wornGalleryImagesFor(handle: string): { id: string; url: string }[] {
       };
     })
       .filter((img) => img.isPublished)
-      .map(({ isPublished: _, ...img }) => img)
+      .map((img) => ({ id: img.id, url: img.url }))
   );
 }
 
