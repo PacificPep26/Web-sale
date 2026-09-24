@@ -121,6 +121,6 @@ body:has(.lux-menu[open]) { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   .lux-hero-copy { transform: none !important; }
-  .lux-hero-copy-overlay { display: none; }
+  .lux-hero-copy-overlay { display: block; }
   .lux-hero-copy-layout { animation: none; }
 }

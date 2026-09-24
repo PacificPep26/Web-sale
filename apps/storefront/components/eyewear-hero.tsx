@@ -17,7 +17,7 @@ export function EyewearHero() {
   const copyOpacity = useTransform(scrollYProgress, [0, 0.18, 0.35], [0, 0, 1])
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.18, 0.35], [1, 1, 0])
   const copyStyle = reduceMotion ? { y: 0, opacity: 1 } : { y: copyY, opacity: copyOpacity }
-  const overlayStyle = reduceMotion ? { opacity: 0 } : { y: overlayY, opacity: overlayOpacity }
+  const overlayStyle = reduceMotion ? { y: 0, opacity: 1 } : { y: overlayY, opacity: overlayOpacity }
 
   return (
     <section ref={heroRef} className="lux-hero" aria-labelledby="eyewear-heading">
