@@ -7,7 +7,7 @@ interface FloatingWhatsAppWidgetProps {
 }
 
 export function FloatingWhatsAppWidget({
-  phoneNumber = "84918056881",
+  phoneNumber = "84889719967",
 }: FloatingWhatsAppWidgetProps) {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     "Hi! Don't see what I need on the store. Can you help me order a specific model?"

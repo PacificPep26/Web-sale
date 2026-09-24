@@ -8,7 +8,7 @@ interface WhatsAppSourcingBannerProps {
 }
 
 export function WhatsAppSourcingBanner({
-  phoneNumber = "84918056881",
+  phoneNumber = "84889719967",
   className = "",
 }: WhatsAppSourcingBannerProps) {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(

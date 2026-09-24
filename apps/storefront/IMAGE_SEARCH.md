@@ -8,7 +8,7 @@ score of at least 0.85 become suggestions. Scores are model judgments, not
 calibrated probabilities; the UI deliberately calls results possible matches.
 
 No match, service errors and empty text searches offer WhatsApp support at
-`0918 056 881`. The customer must attach their photo in WhatsApp themselves;
+`0889 719 967`. The customer must attach their photo in WhatsApp themselves;
 the chat link only pre-fills a message. Uploaded photos are not written to disk.
 They are sent to Gemini; the upload UI discloses this before submission.
 

@@ -68,6 +68,7 @@ const CONTENT: Record<string, PolicySection> = {
     subtitle: "Personalized assistance for our collectors and clients",
     body: [
       "Email: luxeshadee@gmail.com (Concierge team responds within 24 hours).",
+      "Phone & WhatsApp: 0889 719 967.",
       "Customer Care Hours: Monday – Saturday, 8:00 AM – 7:00 PM EST.",
       "Studio Support: LuxeShade Studio Logistics, United States.",
       "For urgent order modifications or address corrections, please email us with 'URGENT: Order #[Number]' in the subject line.",
