@@ -12,9 +12,9 @@ export function EyewearHero() {
     offset: ["start start", "end start"],
   })
 
-  // Smooth translation pulling title cleanly below banner into dedicated title space
-  const y = useTransform(scrollYProgress, [0, 0.40], ["0px", "95px"])
-  const color = useTransform(scrollYProgress, [0.06, 0.26], ["#fafaf8", "#191919"])
+  // Large downward translation (0px -> 190px) to pull title completely down into dedicated white space
+  const y = useTransform(scrollYProgress, [0, 0.40], ["0px", "190px"])
+  const color = useTransform(scrollYProgress, [0.04, 0.22], ["#fafaf8", "#191919"])
 
   return (
     <section ref={heroRef} className="lux-hero" aria-labelledby="eyewear-heading">
