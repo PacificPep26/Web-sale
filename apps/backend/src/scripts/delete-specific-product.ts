@@ -11,12 +11,22 @@ export default async function deleteSpecificProduct({
   const query = container.resolve(ContainerRegistrationKeys.QUERY)
 
   const handleToDelete = "sun-fendi-fe4075us-first-crystal"
+  const productId = process.env.PRODUCT_ID
 
-  const { data: products } = await query.graph({
+  if (productId) {
+    await deleteProductsWorkflow(container).run({
+      input: { ids: [productId] },
+    })
+    logger.info(`Successfully deleted product ID ${productId} (${handleToDelete})`)
+    return
+  }
+
+  const { data } = await query.graph({
     entity: "product",
     fields: ["id", "title", "handle"],
-    filters: { handle: handleToDelete },
+    pagination: { take: 1000 },
   })
+  const products = data.filter((product) => product.handle === handleToDelete)
 
   if (!products.length) {
     logger.info(`Product with handle "${handleToDelete}" not found in database.`)

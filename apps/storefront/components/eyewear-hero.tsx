@@ -1,8 +1,23 @@
+﻿"use client"
+
 import Image from "next/image"
+import { useRef } from "react"
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 
 export function EyewearHero() {
+  const heroRef = useRef<HTMLElement>(null)
+  const reduceMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  })
+
+  // Full downward translation (0px -> 125px) pulling title completely below banner into dedicated title space
+  const y = useTransform(scrollYProgress, [0, 0.45], ["0px", "125px"])
+  const color = useTransform(scrollYProgress, [0.06, 0.30], ["#fafaf8", "#191919"])
+
   return (
-    <section className="lux-hero" aria-labelledby="eyewear-heading">
+    <section ref={heroRef} className="lux-hero" aria-labelledby="eyewear-heading">
       <div className="lux-hero-media">
         <Image
           src="/brand-hero/hero-eyewear-edit.jpg"
@@ -13,26 +28,32 @@ export function EyewearHero() {
           className="lux-hero-image"
         />
         <div className="lux-hero-shade" />
-        {/* The image clips this decorative white layer at its exact lower edge. */}
-        <div className="lux-hero-copy lux-hero-copy-overlay" aria-hidden="true">
-          <div className="lux-hero-copy-layout">
-            <div className="lux-hero-heading">
-              <p className="lux-hero-title">THE EYEWEAR EDIT</p>
-              <span className="lux-light-link">Discover the collection</span>
-            </div>
-            <p className="lux-hero-quote">&ldquo;Luxury within sight.&rdquo;</p>
-          </div>
-        </div>
       </div>
-      <div className="lux-hero-copy">
+
+      <motion.div
+        className="lux-hero-copy"
+        style={reduceMotion ? undefined : { color, y }}
+      >
         <div className="lux-hero-copy-layout">
-          <div className="lux-hero-heading">
+          <motion.div
+            className="lux-hero-heading"
+            initial={reduceMotion ? false : { opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          >
             <h1 id="eyewear-heading" className="lux-hero-title">THE EYEWEAR EDIT</h1>
             <a href="#designers" className="lux-light-link">Discover the collection</a>
-          </div>
-          <p className="lux-hero-quote">&ldquo;Luxury within sight.&rdquo;</p>
+          </motion.div>
+          <motion.p
+            className="lux-hero-quote"
+            initial={reduceMotion ? false : { opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            &ldquo;Luxury within sight.&rdquo;
+          </motion.p>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
