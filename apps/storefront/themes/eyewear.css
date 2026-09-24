@@ -29,7 +29,7 @@
 .lux-hero-media { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: #171510; }
 .lux-hero-image { object-fit: contain; object-position: center; }
 .lux-hero-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 30%, transparent 60%); pointer-events: none; }
-.lux-hero-copy { position: relative; z-index: 2; margin-top: 24px; padding: 0 32px; }
+.lux-hero-copy { position: relative; z-index: 2; margin-top: 0; padding: 32px; }
 .lux-hero-copy-overlay { position: absolute; inset: auto 0 38px; width: 100%; margin-top: 0; z-index: 3; color: #fafaf8; pointer-events: none; }
 .lux-hero-copy-layout { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; gap: 24px; animation: lux-hero-enter .9s cubic-bezier(.16, 1, .3, 1) both; }
 @keyframes lux-hero-enter { from { transform: translateY(28px); } to { transform: translateY(0); } }
@@ -96,7 +96,7 @@ body:has(.lux-menu[open]) { overflow: hidden; }
   .lux-header-actions > a, .lux-header-actions > button { width: 34px; }
   .lux-home { padding: 0; }
   .lux-hero { --hero-header-height: 72px; }
-  .lux-hero-copy { padding: 0 20px; }
+  .lux-hero-copy { padding: 28px 20px; }
   .lux-hero-copy-layout { gap: 14px; }
   .lux-hero-title { font-size: clamp(22px, 6vw, 32px); margin-bottom: 10px; }
   .lux-hero-quote { justify-self: start; text-align: left; font-size: 18px; }
@@ -119,8 +119,3 @@ body:has(.lux-menu[open]) { overflow: hidden; }
   .lux-footer-bottom { flex-wrap: wrap; line-height: 1.8; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .lux-hero-copy { transform: none !important; }
-  .lux-hero-copy-overlay { display: block; }
-  .lux-hero-copy-layout { animation: none; }
-}
