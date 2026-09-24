@@ -8,33 +8,15 @@ import { formatMoney } from "@/lib/money";
 import { WishlistButton } from "./WishlistButton";
 import type { NicheKey } from "@/themes/registry";
 import { productPhotoStyle } from "@/lib/product-photos"
-import portraitOverrides from "@/lib/tryon-portraits.json"
 
-// Only images that passed the 4:5 validation and were published in this
-// manifest may enter the gallery. Raw generator outputs are deliberately not
-// shown: a landscape response in the fixed portrait container makes faces look
-// stretched and cropped.
-const WORN_VICTOR_HANDLES = new Set<string>([
-  ...Object.keys(portraitOverrides).map((url) =>
-    url.split("/").pop()!.replace(/-(front|left|right)\.jpg$/, "")
-  ),
-])
 const VICTOR_POSES = ["front", "left", "right"];
 
 function wornGalleryImagesFor(handle: string): { id: string; url: string }[] {
-  if (!WORN_VICTOR_HANDLES.has(handle)) return [];
   return ["worn-victor", "worn-victor-male"].flatMap((dir) =>
-    VICTOR_POSES.map((pose) => {
-      const defaultUrl = `/tryon/${dir}/${handle}-${pose}.jpg`;
-      const url = (portraitOverrides as Record<string, string>)[defaultUrl] ?? defaultUrl;
-      return {
-        id: `${dir}-${pose}`,
-        url,
-        isPublished: Boolean((portraitOverrides as Record<string, string>)[defaultUrl]),
-      };
-    })
-      .filter((img) => img.isPublished)
-      .map((img) => ({ id: img.id, url: img.url }))
+    VICTOR_POSES.map((pose) => ({
+      id: `${dir}-${pose}`,
+      url: `/tryon/${dir}/${handle}-${pose}.jpg`,
+    }))
   );
 }
 
