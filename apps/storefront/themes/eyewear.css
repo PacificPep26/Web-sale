@@ -24,19 +24,19 @@
 .lux-desktop-nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
 .lux-header-actions { display: flex; gap: 15px; align-items: center; }
 .lux-header-actions > a, .lux-header-actions > button { display: flex; width: 38px; height: 44px; align-items: center; justify-content: center; cursor: pointer; }
-.lux-home { padding: 0; }
-.lux-hero { position: relative; color: #191919; margin-bottom: 120px; }
-.lux-hero-media { position: relative; width: 100%; height: calc(100vh - 88px); min-height: 520px; overflow: hidden; background: #171510; }
+.lux-home { padding: 0 24px; max-width: 1560px; margin: 0 auto; box-sizing: border-box; }
+.lux-hero { position: relative; color: #191919; margin-bottom: 90px; }
+.lux-hero-media { position: relative; width: 100%; height: calc(100vh - 120px); max-height: 820px; min-height: 480px; overflow: hidden; background: #171510; }
 .lux-hero-image { object-fit: cover; object-position: center; }
 .lux-hero-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 30%, transparent 60%); pointer-events: none; }
-.lux-hero-copy { position: absolute; bottom: 32px; left: 0; right: 0; padding: 0 32px; z-index: 10; color: #fafaf8; pointer-events: auto; }
+.lux-hero-copy { position: absolute; bottom: 28px; left: 0; right: 0; padding: 0 28px; z-index: 10; color: #fafaf8; pointer-events: auto; }
 .lux-hero-copy-layout { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; gap: 24px; }
 .lux-hero-heading { grid-column: 1; min-width: 0; }
 .lux-hero-title { font-size: clamp(26px, 2.6vw, 40px); line-height: 1.15; letter-spacing: -.025em; font-weight: 600; margin: 0 0 12px; }
 .lux-hero-quote { grid-column: 2; justify-self: center; font-family: "Noto Serif", serif; font-style: italic; font-weight: 400; font-size: clamp(20px, 2.6vw, 36px); line-height: 1.25; text-align: center; margin: 0; padding-bottom: 4px; white-space: nowrap; }
 .lux-light-link { display: inline-block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding-bottom: 6px; border-bottom: 1px solid currentColor; transition: opacity 0.3s ease; }
 .lux-light-link:hover { opacity: 0.7; }
-.lux-designers { padding: 48px 0 56px; scroll-margin-top: 104px; }
+.lux-designers { padding: 40px 0 52px; scroll-margin-top: 104px; }
 .lux-section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 36px; }
 .lux-kicker { font-size: 9px; letter-spacing: .16em; margin-bottom: 17px; }
 .lux-section-heading h2 { font-size: clamp(24px, 2.4vw, 36px); font-weight: 400; letter-spacing: -.035em; }
@@ -80,7 +80,7 @@ body:has(.lux-menu[open]) { overflow: hidden; }
   .lux-brand-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .lux-header-row { height: 76px; justify-content: space-between; gap: 16px; }
   .lux-desktop-nav { display: none; }
-  .lux-hero { margin-bottom: 100px; }
+  .lux-hero { margin-bottom: 75px; }
   .lux-hero-copy-layout { grid-template-columns: minmax(0, 1fr); gap: 18px; }
   .lux-hero-quote { grid-column: 1; justify-self: start; text-align: left; white-space: normal; font-size: clamp(18px, 2.6vw, 26px); }
   .lux-designers { scroll-margin-top: 92px; }
@@ -92,14 +92,14 @@ body:has(.lux-menu[open]) { overflow: hidden; }
   .lux-desktop-nav { display: none; }
   .lux-header-actions { gap: 2px; }
   .lux-header-actions > a, .lux-header-actions > button { width: 34px; }
-  .lux-home { padding: 0; }
-  .lux-hero { margin-bottom: 85px; }
-  .lux-hero-media { height: calc(100vh - 72px); min-height: 440px; }
-  .lux-hero-copy { padding: 24px 16px; bottom: 20px; }
-  .lux-hero-copy-layout { gap: 14px; }
+  .lux-home { padding: 0 16px; }
+  .lux-hero { margin-bottom: 65px; }
+  .lux-hero-media { height: calc(100vh - 72px); min-height: 420px; }
+  .lux-hero-copy { padding: 20px 14px; bottom: 18px; }
+  .lux-hero-copy-layout { gap: 12px; }
   .lux-hero-title { font-size: clamp(22px, 6vw, 32px); margin-bottom: 10px; }
   .lux-hero-quote { justify-self: start; text-align: left; font-size: 18px; }
-  .lux-designers { padding: 36px 0 40px; scroll-margin-top: 88px; }
+  .lux-designers { padding: 28px 0 36px; scroll-margin-top: 88px; }
   .lux-section-heading { display: block; margin-bottom: 25px; }
   .lux-section-heading h2 { font-size: 27px; max-width: 290px; line-height: 1.25; }
   .lux-section-heading > a { margin-top: 22px; }
