@@ -7,25 +7,19 @@ import { addItem } from "@/lib/data/cart";
 import { formatMoney } from "@/lib/money";
 import { WishlistButton } from "./WishlistButton";
 import type { NicheKey } from "@/themes/registry";
-import sunglasses120Handles from "@/lib/sunglasses-120-handles.json";
 import { productPhotoStyle } from "@/lib/product-photos"
 import portraitOverrides from "@/lib/tryon-portraits.json"
 
-// The 120-model luxury sunglasses catalogue has Gemini-composited "model
-// wearing these glasses" photos for two reference models (see
-// scripts/generate-victor-tryon.mjs) — these are additional product
-// photography, not a personalized try-on, so they're just extra gallery
-// images rather than a separate "Try It On" feature.
+// Only images that passed the 4:5 validation and were published in this
+// manifest may enter the gallery. Raw generator outputs are deliberately not
+// shown: a landscape response in the fixed portrait container makes faces look
+// stretched and cropped.
 const WORN_VICTOR_HANDLES = new Set<string>([
-  ...sunglasses120Handles,
   ...Object.keys(portraitOverrides).map((url) =>
     url.split("/").pop()!.replace(/-(front|left|right)\.jpg$/, "")
   ),
 ])
 const VICTOR_POSES = ["front", "left", "right"];
-const EXCLUDED_WORN_IMAGES = new Set<string>([
-  "/tryon/worn-victor/sun-miu-miu-mu-56zs-front.jpg",
-]);
 
 function wornGalleryImagesFor(handle: string): { id: string; url: string }[] {
   if (!WORN_VICTOR_HANDLES.has(handle)) return [];
@@ -37,7 +31,7 @@ function wornGalleryImagesFor(handle: string): { id: string; url: string }[] {
         id: `${dir}-${pose}`,
         url,
       };
-    }).filter((img) => !EXCLUDED_WORN_IMAGES.has(img.url))
+    }).filter((img) => Boolean((portraitOverrides as Record<string, string>)[img.url]))
   );
 }
 

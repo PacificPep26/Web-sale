@@ -17,7 +17,18 @@ const storefrontRoot = path.resolve(__dirname, "..");
 const repoRoot = path.resolve(storefrontRoot, "../..");
 const glassesDir = path.join(storefrontRoot, "public/images/eyewear");
 
-const KEY = process.env.GEMINI_API_KEY;
+function readGeminiKeyFromLocalEnv() {
+  // The generator is run outside Next.js, so it does not receive values from
+  // .env.local automatically. Keep the key process-local and never log it.
+  for (const file of [".env.local", ".env"]) {
+    const envPath = path.join(storefrontRoot, file);
+    if (!fs.existsSync(envPath)) continue;
+    const match = fs.readFileSync(envPath, "utf8").match(/^GEMINI_API_KEY\s*=\s*["']?([^\r\n"']+)/m);
+    if (match?.[1]) return match[1].trim();
+  }
+}
+
+const KEY = process.env.GEMINI_API_KEY ?? readGeminiKeyFromLocalEnv();
 if (!KEY) {
   console.error("Set GEMINI_API_KEY in the environment first.");
   process.exit(1);
@@ -36,8 +47,11 @@ const PORTRAIT_PATH = portraitArg >= 0
   ? path.resolve(repoRoot, args[portraitArg + 1])
   : path.join(__dirname, "assets/androgynous-portrait-black-shirt-natural-skin.png");
 const outdirArg = args.indexOf("--outdir");
-const outDir = path.join(storefrontRoot, "public/tryon", outdirArg >= 0 ? args[outdirArg + 1] : "worn-victor");
+const outputDirectory = outdirArg >= 0 ? args[outdirArg + 1] : "worn-victor";
+const outDir = path.join(storefrontRoot, "public/tryon", outputDirectory);
 fs.mkdirSync(outDir, { recursive: true });
+const portraitManifestPath = path.join(storefrontRoot, "lib", "tryon-portraits.json");
+const portraitManifest = JSON.parse(fs.readFileSync(portraitManifestPath, "utf8"));
 const pronounArg = args.indexOf("--pronoun");
 const PRONOUN = pronounArg >= 0 ? args[pronounArg + 1] : "her";
 const POSSESSIVE = PRONOUN === "his" ? "his" : PRONOUN === "their" ? "their" : "her";
@@ -115,7 +129,9 @@ async function main() {
     const glassesImg = await fetchBuffer(path.join(glassesDir, file));
     for (const poseId of POSE_IDS) {
       const pose = POSES[poseId];
-      const outPath = path.join(outDir, `${handle}-${poseId}.jpg`);
+      const sourceUrl = `/tryon/${outputDirectory}/${handle}-${poseId}.jpg`;
+      const publishedUrl = sourceUrl.replace(/\.jpg$/, "-portrait.jpg");
+      const outPath = path.join(storefrontRoot, "public", publishedUrl);
       if (fs.existsSync(outPath) && !forceArg) {
         console.log(`${handle} / ${poseId} ... skip (exists)`);
         continue;
@@ -132,7 +148,19 @@ async function main() {
           throw new Error(`Rejected low-resolution output: ${metadata.width}x${metadata.height}. Existing image preserved.`)
         }
         const jpeg = await sharp(result).rotate().jpeg({ quality: 95 }).toBuffer()
-        await fs.promises.writeFile(outPath, jpeg)
+        const temporaryPath = `${outPath}.tmp`
+        await fs.promises.writeFile(temporaryPath, jpeg)
+        await fs.promises.rename(temporaryPath, outPath)
+
+        // The product page reads only this manifest, so a failed or landscape
+        // generation can never become visible to customers.
+        portraitManifest[sourceUrl] = publishedUrl
+        const manifestTemporaryPath = `${portraitManifestPath}.tmp`
+        await fs.promises.writeFile(
+          manifestTemporaryPath,
+          JSON.stringify(portraitManifest, null, 2) + "\n"
+        )
+        await fs.promises.rename(manifestTemporaryPath, portraitManifestPath)
         console.log("ok");
       } catch (err) {
         console.log("FAILED:", err.message);

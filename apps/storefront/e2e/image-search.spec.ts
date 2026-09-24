@@ -131,7 +131,7 @@ test("mobile no-match and error states offer the correct WhatsApp chat", async (
   await page.getByRole("button", { name: "Search by photo" }).click()
   await expect(page.getByRole("heading", { name: "No confident match found" })).toBeVisible()
   const contact = page.getByRole("link", { name: "Ask us on WhatsApp" })
-  await expect(contact).toHaveAttribute("href", /^https:\/\/wa\.me\/84828008881\?text=/)
+  await expect(contact).toHaveAttribute("href", /^https:\/\/wa\.me\/84918056881\?text=/)
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy()
   await page.screenshot({ path: "test-results/image-search-mobile.png", fullPage: true })
   await page.route("**/api/image-search", route => route.fulfill({ status: 503, json: { error: "Photo search is temporarily unavailable." } }))

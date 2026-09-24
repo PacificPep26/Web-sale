@@ -13,7 +13,9 @@
     "start:watches": "cross-env SITE=watches next start -p 3003",
     "sites": "npm run clean && npm run build && concurrently -n cases,eyewear,toys,watches -c blue,green,magenta,yellow \"npm:start:cases\" \"npm:start:eyewear\" \"npm:start:toys\" \"npm:start:watches\"",
     "lint": "eslint",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "tryon:miu:regenerate": "node scripts/generate-victor-tryon.mjs --force --handles sun-miu-miu-mu-11ws,sun-miu-miu-mu-11zs,sun-miu-miu-mu-56zs,sun-miu-miu-mu-a03s,sun-miu-miu-mu-09ws,sun-miu-miu-mu-a04s,sun-miu-miu-mu-a06s,sun-miu-miu-mu-01zs,sun-miu-miu-mu-04zs,sun-miu-miu-miu-regard,sun-miu-miu-mu-a07s,sun-miu-miu-mu-a08s,sun-miu-miu-mu-a09s,sun-miu-miu-mu-b01s,sun-miu-miu-mu-b06s",
+    "tryon:miu:regenerate:male": "node scripts/generate-victor-tryon.mjs --force --outdir worn-victor-male --portrait apps/storefront/scripts/assets/male-model-black-shirt-texture-preserved.png --pronoun his --handles sun-miu-miu-mu-11ws,sun-miu-miu-mu-11zs,sun-miu-miu-mu-56zs,sun-miu-miu-mu-a03s,sun-miu-miu-mu-09ws,sun-miu-miu-mu-a04s,sun-miu-miu-mu-a06s,sun-miu-miu-mu-01zs,sun-miu-miu-mu-04zs,sun-miu-miu-miu-regard,sun-miu-miu-mu-a07s,sun-miu-miu-mu-a08s,sun-miu-miu-mu-a09s,sun-miu-miu-mu-b01s,sun-miu-miu-mu-b06s"
   },
   "dependencies": {
     "@medusajs/js-sdk": "2.20.1",

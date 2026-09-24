@@ -1,4 +1,4 @@
-const phone = "84828008881"
+const phone = "84918056881"
 
 export function whatsappSearchUrl(query?: string) {
   const message = query

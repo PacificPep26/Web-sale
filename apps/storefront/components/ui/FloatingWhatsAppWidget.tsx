@@ -7,7 +7,7 @@ interface FloatingWhatsAppWidgetProps {
 }
 
 export function FloatingWhatsAppWidget({
-  phoneNumber = "19728181899",
+  phoneNumber = "84918056881",
 }: FloatingWhatsAppWidgetProps) {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     "Hi! Don't see what I need on the store. Can you help me order a specific model?"
@@ -20,11 +20,12 @@ export function FloatingWhatsAppWidget({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contact via WhatsApp"
-        className="group flex items-center gap-3 bg-black text-white border border-zinc-700 px-4.5 py-2.5 rounded-full shadow-xl backdrop-blur-md transition-all hover:bg-zinc-900 hover:border-zinc-500 text-[11px] tracking-wide"
+        className="flex items-center gap-3 rounded-full border border-black bg-white px-4.5 py-2.5 text-[11px] font-normal tracking-normal text-black transition-colors hover:bg-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+        style={{ fontFamily: "var(--font-body)" }}
       >
-        <span className="text-zinc-300">Don&apos;t see what you need?</span>
-        <span className="text-white font-medium border-b border-white pb-0.5 tracking-wider uppercase text-[10px]">
-          Contact now ↗
+        <span>Don&apos;t see what you need?</span>
+        <span className="border-b border-current pb-0.5 font-medium">
+          Contact now
         </span>
       </a>
     </div>
