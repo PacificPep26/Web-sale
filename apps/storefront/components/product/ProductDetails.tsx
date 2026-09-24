@@ -30,8 +30,11 @@ function wornGalleryImagesFor(handle: string): { id: string; url: string }[] {
       return {
         id: `${dir}-${pose}`,
         url,
+        isPublished: Boolean((portraitOverrides as Record<string, string>)[defaultUrl]),
       };
-    }).filter((img) => Boolean((portraitOverrides as Record<string, string>)[img.url]))
+    })
+      .filter((img) => img.isPublished)
+      .map(({ isPublished: _, ...img }) => img)
   );
 }
 
