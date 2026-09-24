@@ -18,6 +18,7 @@ Dropshipping, `src/lib/suppliers`), tracking is synced back, and a dropship hub
 - Storefront niche is chosen by `SITE` env (or host); Next 16 dev refuses two instances per dir
 - Stripe Payment Architecture & Anti-Ban Shield: See `docs/STRIPE_GATEWAY_ARCHITECTURE.md`
 - Corporate Review Portal (`apps/landing`): `https://regenx-studio-production.up.railway.app` (Regenxlabsbio LLC)
+- Storefront UI Rules: Floating WhatsApp Widget must remain a minimalist Black & White pill bar (`FloatingWhatsAppWidget.tsx`), no green/gold icons or glowing badges. Eyewear Hero (`eyewear-hero.tsx`) must cover 100vh on initial render with text sliding down on scroll.
 
 ## Overview
 

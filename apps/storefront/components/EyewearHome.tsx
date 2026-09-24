@@ -3,7 +3,6 @@ import Link from "next/link"
 import type { ThemeConfig } from "@/themes/registry"
 import { ScrollReveal } from "@/components/ui/ScrollReveal"
 import { EyewearHero } from "@/components/eyewear-hero"
-import { WhatsAppSourcingBanner } from "@/components/home/WhatsAppSourcingBanner"
 
 export function EyewearHome({ theme }: { theme: ThemeConfig }) {
   return (
@@ -24,7 +23,6 @@ export function EyewearHome({ theme }: { theme: ThemeConfig }) {
         <div className="lux-editorial-image"><Image src="/brand-hero/miu-miu-editorial-v5.jpg" alt="Tortoiseshell cat-eye sunglasses in warm sunlight" fill sizes="(max-width: 640px) 100vw, 60vw" /></div>
         <div className="lux-editorial-copy"><p className="lux-kicker">IN A NEW LIGHT</p><ScrollReveal as="h2">The art of<br />being yourself.</ScrollReveal><p>Distinctive shapes. Considered details. Find the frames that feel entirely your own.</p><Link href="/collections/eyewear?brand=miu-miu" className="lux-text-link">Explore Miu Miu</Link></div>
       </section>
-      <WhatsAppSourcingBanner />
       <div className="lux-closing"><ScrollReveal as="p">Luxury brands. Exceptional prices.</ScrollReveal><Link href="/collections/eyewear" className="lux-dark-button">Find your next pair</Link></div>
     </div>
   )

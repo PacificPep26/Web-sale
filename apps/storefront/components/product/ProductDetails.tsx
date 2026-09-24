@@ -23,14 +23,21 @@ const WORN_VICTOR_HANDLES = new Set<string>([
   ),
 ])
 const VICTOR_POSES = ["front", "left", "right"];
+const EXCLUDED_WORN_IMAGES = new Set<string>([
+  "/tryon/worn-victor/sun-miu-miu-mu-56zs-front.jpg",
+]);
 
 function wornGalleryImagesFor(handle: string): { id: string; url: string }[] {
   if (!WORN_VICTOR_HANDLES.has(handle)) return [];
   return ["worn-victor", "worn-victor-male"].flatMap((dir) =>
-    VICTOR_POSES.map((pose) => ({
-      id: `${dir}-${pose}`,
-      url: (portraitOverrides as Record<string, string>)[`/tryon/${dir}/${handle}-${pose}.jpg`] ?? `/tryon/${dir}/${handle}-${pose}.jpg`,
-    }))
+    VICTOR_POSES.map((pose) => {
+      const defaultUrl = `/tryon/${dir}/${handle}-${pose}.jpg`;
+      const url = (portraitOverrides as Record<string, string>)[defaultUrl] ?? defaultUrl;
+      return {
+        id: `${dir}-${pose}`,
+        url,
+      };
+    }).filter((img) => !EXCLUDED_WORN_IMAGES.has(img.url))
   );
 }
 
