@@ -12,9 +12,12 @@ export function EyewearHero() {
     offset: ["start start", "end start"],
   })
 
-  // Text starts inside bottom of hero image and slides down into dedicated space below when scrolling
-  const y = useTransform(scrollYProgress, [0, 0.45], ["0px", "60px"])
-  const color = useTransform(scrollYProgress, [0.05, 0.35], ["#ffffff", "#191919"])
+  const copyY = useTransform(scrollYProgress, [0, 0.35], ["calc(-100% - 56px)", "0px"])
+  const overlayY = useTransform(scrollYProgress, [0, 0.35], ["0px", "calc(100% + 56px)"])
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.18, 0.35], [0, 0, 1])
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.18, 0.35], [1, 1, 0])
+  const copyStyle = reduceMotion ? { y: 0, opacity: 1 } : { y: copyY, opacity: copyOpacity }
+  const overlayStyle = reduceMotion ? { opacity: 0 } : { y: overlayY, opacity: overlayOpacity }
 
   return (
     <section ref={heroRef} className="lux-hero" aria-labelledby="eyewear-heading">
@@ -28,16 +31,28 @@ export function EyewearHero() {
           className="lux-hero-image"
         />
         <div className="lux-hero-shade" />
+        {/* The image clips this decorative white layer at its exact lower edge. */}
+        <motion.div className="lux-hero-copy lux-hero-copy-overlay" style={overlayStyle} aria-hidden="true">
+          <div className="lux-hero-copy-layout">
+            <div className="lux-hero-heading">
+              <p className="lux-hero-title">THE EYEWEAR EDIT</p>
+              <span className="lux-light-link">Discover the collection</span>
+            </div>
+            <p className="lux-hero-quote">&ldquo;Luxury within sight.&rdquo;</p>
+          </div>
+        </motion.div>
       </div>
       <motion.div
         className="lux-hero-copy"
-        style={reduceMotion ? undefined : { y, color }}
+        style={copyStyle}
       >
-        <div className="lux-hero-heading">
-          <h1 id="eyewear-heading">THE EYEWEAR EDIT</h1>
-          <a href="#designers" className="lux-light-link">Discover the collection</a>
+        <div className="lux-hero-copy-layout">
+          <div className="lux-hero-heading">
+            <h1 id="eyewear-heading" className="lux-hero-title">THE EYEWEAR EDIT</h1>
+            <a href="#designers" className="lux-light-link">Discover the collection</a>
+          </div>
+          <p className="lux-hero-quote">&ldquo;Luxury within sight.&rdquo;</p>
         </div>
-        <p className="lux-hero-quote">&ldquo;Luxury within sight.&rdquo;</p>
       </motion.div>
     </section>
   )
