@@ -13,7 +13,7 @@ export function EyewearHome({ theme }: { theme: ThemeConfig }) {
           {theme.brands?.map((brand) => (
             <Link key={brand.label} href={brand.href} className="lux-brand-card">
               <div className="lux-brand-photo"><Image src={brand.image} alt={`${brand.label} eyewear collection`} fill sizes="(max-width: 640px) 50vw, (max-width: 1000px) 50vw, 25vw" /></div>
-              <div className="lux-brand-label"><h3>{brand.label}</h3><span aria-hidden="true">↗</span></div>
+              <div className="lux-brand-label"><h3>{brand.label}</h3></div>
               <p>Discover the collection</p>
             </Link>
           ))}
