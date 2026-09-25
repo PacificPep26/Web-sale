@@ -9,6 +9,17 @@ import { WishlistButton } from "./WishlistButton";
 import type { NicheKey } from "@/themes/registry";
 import { productPhotoStyle } from "@/lib/product-photos"
 
+const VICTOR_POSES = ["front", "left", "right"];
+
+function wornGalleryImagesFor(handle: string): { id: string; url: string }[] {
+  return ["worn-victor", "worn-victor-male"].flatMap((dir) =>
+    VICTOR_POSES.map((pose) => ({
+      id: `${dir}-${pose}`,
+      url: `/tryon/${dir}/${handle}-${pose}.jpg`,
+    }))
+  );
+}
+
 export function ProductDetails({
   product,
 }: {
@@ -21,16 +32,17 @@ export function ProductDetails({
       : product.thumbnail
         ? [{ url: product.thumbnail, id: "thumb" }]
         : [];
+    const extra = wornGalleryImagesFor(product.handle);
     const seen = new Set<string>();
     const list: { id?: string; url: string }[] = [];
-    for (const im of baseImages) {
+    for (const im of [...baseImages, ...extra]) {
       if (im?.url && !seen.has(im.url)) {
         seen.add(im.url);
         list.push(im);
       }
     }
     return list;
-  }, [product.images, product.thumbnail]);
+  }, [product.images, product.thumbnail, product.handle]);
   const [activeImg, setActiveImg] = useState(0);
 
   const options = product.options ?? [];

@@ -27,11 +27,12 @@ export function productPhotoStyle(url?: string | null) {
 export function withProductPhoto(product: HttpTypes.StoreProduct): HttpTypes.StoreProduct {
   const url = productPhoto(product.handle)
   if (!url) return product
+  const images = (product.images ?? []).filter(image =>
+    image.url !== url && resolveProductPhoto(image.url) !== url
+  )
   return {
     ...product,
     thumbnail: url,
-    // Local curated photography replaces the legacy supplier gallery entirely.
-    // Keeping the API images here lets old portraits become selectable again.
-    images: [{ id: `${product.id}-normalized`, url, rank: 0 }],
+    images: [{ id: `${product.id}-normalized`, url, rank: 0 }, ...images],
   }
 }
