@@ -1,5 +1,6 @@
 import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http";
 import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils";
+import { resolveAdminProductThumbnail } from "./utils";
 
 export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
   const query = req.scope.resolve(ContainerRegistrationKeys.QUERY);
@@ -24,7 +25,10 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
 
   res.json({
     sales_channels: salesChannels ?? [],
-    products: products ?? [],
+    products: (products ?? []).map((product) => ({
+      ...product,
+      thumbnail: resolveAdminProductThumbnail(product.thumbnail),
+    })),
   });
 };
 
@@ -61,4 +65,3 @@ export const POST = async (req: MedusaRequest, res: MedusaResponse) => {
 
   res.json({ success: true, count: product_ids.length });
 };
-

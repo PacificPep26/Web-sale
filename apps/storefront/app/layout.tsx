@@ -7,8 +7,10 @@ import { themeFor } from "@/themes/registry";
 import { Header } from "@/components/layout/Header";
 import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
 import { FloatingWhatsAppWidget } from "@/components/ui/FloatingWhatsAppWidget";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
 const GOOGLE_ADS_TAG_ID = "AW-18406999814"
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
 export async function generateMetadata(): Promise<Metadata> {
   const theme = themeFor((await headers()).get("host"));
@@ -34,21 +36,23 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="stylesheet" href={fontHref} />
-        {theme.key === "eyewear" && (
+        {theme.key === "eyewear" && (GA_MEASUREMENT_ID || GOOGLE_ADS_TAG_ID) && (
           <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_TAG_ID}`} />
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID || GOOGLE_ADS_TAG_ID}`} />
             <script
               dangerouslySetInnerHTML={{
                 __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${GOOGLE_ADS_TAG_ID}');`,
+gtag('config', '${GOOGLE_ADS_TAG_ID}');
+${GA_MEASUREMENT_ID ? `gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: false });` : ""}`,
               }}
             />
           </>
         )}
       </head>
       <body className="flex min-h-full flex-col">
+        {theme.key === "eyewear" && GA_MEASUREMENT_ID && <GoogleAnalytics />}
         <FloatingWhatsAppWidget />
         {theme.key === "toys" ? (
           <ToyCartProvider>

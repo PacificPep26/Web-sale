@@ -40,6 +40,8 @@ const ShopProductsPage = () => {
   const [search, setSearch] = useState("");
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [failedImages, setFailedImages] = useState<string[]>([]);
+  const [hasSelectedInitialChannel, setHasSelectedInitialChannel] = useState(false);
 
   const loadData = async () => {
     setLoading(true);
@@ -58,6 +60,16 @@ const ShopProductsPage = () => {
   useEffect(() => {
     loadData();
   }, []);
+
+  // LuxeShade is the primary storefront. Open it immediately when its sales
+  // channel is present, while retaining every shop as a selectable tab.
+  useEffect(() => {
+    const eyewear = channels.find((channel) => channel.name.toLowerCase() === "eyewear");
+    if (eyewear && !hasSelectedInitialChannel) {
+      setActiveChannelId(eyewear.id);
+      setHasSelectedInitialChannel(true);
+    }
+  }, [channels, hasSelectedInitialChannel]);
 
   // Filter products by active tab and search query
   const filteredProducts = useMemo(() => {
@@ -291,15 +303,20 @@ const ShopProductsPage = () => {
                   )}
                   <Table.Cell>
                     <div className="flex items-center gap-3">
-                      {p.thumbnail ? (
+                      {p.thumbnail && !failedImages.includes(p.id) ? (
                         <img
                           src={p.thumbnail}
                           alt={p.title}
                           className="w-10 h-10 object-cover rounded border border-ui-border-base"
+                          onError={() =>
+                            setFailedImages((current) =>
+                              current.includes(p.id) ? current : [...current, p.id]
+                            )
+                          }
                         />
                       ) : (
                         <div className="w-10 h-10 bg-ui-bg-subtle rounded border border-ui-border-base flex items-center justify-center text-xs text-ui-fg-muted">
-                          No Pic
+                          No image
                         </div>
                       )}
                       <div>
@@ -373,4 +390,3 @@ export const config = defineRouteConfig({
 });
 
 export default ShopProductsPage;
-
