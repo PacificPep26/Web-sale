@@ -33,7 +33,7 @@ export default async function SearchPage({
       <div className="mt-12">
         {!query ? (
           <p className="text-muted py-16 text-center text-sm uppercase tracking-[0.14em]">
-            Type to search the collection
+            Type at least 2 characters to search the collection
           </p>
         ) : count === 0 ? (
           <div className="py-16 text-center">

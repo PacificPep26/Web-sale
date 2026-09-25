@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function SearchField({
   initial = "",
@@ -14,13 +14,28 @@ export function SearchField({
 }) {
   const router = useRouter();
   const ref = useRef<HTMLInputElement>(null);
+  const [query, setQuery] = useState(initial);
+
+  useEffect(() => {
+    const value = query.trim();
+    const current = initial.trim();
+    if (value === current || (value.length > 0 && value.length < 2)) return;
+
+    const timer = window.setTimeout(() => {
+      router.replace(value ? `/search?q=${encodeURIComponent(value)}` : "/search", {
+        scroll: false,
+      });
+    }, 300);
+
+    return () => window.clearTimeout(timer);
+  }, [initial, query, router]);
 
   return (
     <form
       className={className}
       onSubmit={(e) => {
         e.preventDefault();
-        const v = ref.current?.value.trim();
+        const v = query.trim();
         router.push(v ? `/search?q=${encodeURIComponent(v)}` : "/search");
       }}
     >
@@ -32,7 +47,8 @@ export function SearchField({
         <input
           ref={ref}
           name="q"
-          defaultValue={initial}
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
           autoFocus={autoFocus}
           placeholder="Search"
           className="w-full bg-transparent text-sm outline-none placeholder:text-[color:var(--color-muted)]"

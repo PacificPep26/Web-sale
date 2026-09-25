@@ -33,6 +33,13 @@ Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` on Railway's **frontend** service to the
 GA4 web measurement ID (`G-...`), then redeploy. LuxeShade sends page views to
 GA4; view traffic in the Google Analytics dashboard, not Medusa Admin.
 
+## Storefront search
+
+The text search starts automatically 300 ms after a visitor stops typing two
+or more characters. Pressing Enter remains available to immediately open the
+same full results page. Photo search stays an explicit action after upload so
+an accidental file selection does not consume Gemini search quota.
+
 ## Verification for each change
 
 Run these from the repository root before deploying:
