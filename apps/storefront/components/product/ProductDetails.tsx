@@ -15,7 +15,13 @@ function wornGalleryImagesFor(handle: string): { id: string; url: string }[] {
   return ["worn-victor", "worn-victor-male"].flatMap((dir) =>
     VICTOR_POSES.map((pose) => ({
       id: `${dir}-${pose}`,
-      url: `/tryon/${dir}/${handle}-${pose}.jpg`,
+      // The male Cartier source files were replaced in-place. Version their URLs
+      // so an existing browser/CDN cache cannot keep serving the older portraits.
+      url: `/tryon/${dir}/${handle}-${pose}.jpg${
+        dir === "worn-victor-male" && handle === "sun-cartier-c-allonge-de-cartier"
+          ? "?v=20260925"
+          : ""
+      }`,
     }))
   );
 }
